@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solauncher - The Memetastic Rocket Fuel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Anton', sans-serif;
+            overflow-x: hidden;
+        }
+        header, footer {
+            background-color: #000;
+            color: #9945FF;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #14F195;
+        }
+        img {
+            width: 150px;
+            display: block;
+            margin: 20px auto;
+            animation: float 3s ease-in-out infinite;
+        }
+        section {
+            margin: 40px 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #222;
+            border-radius: 8px;
+            animation: fadeIn 1s forwards;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0 0 20px;
+        }
+        .about, .tokenomics, .how-to-buy, .community, .contract {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            animation: fadeInUp 1s forwards;
+        }
+        .tokenomics p, .how-to-buy p, .community p {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .contract h3 {
+            margin-bottom: 10px;
+        }
+        .clipboard {
+            display: inline-block;
+            cursor: pointer;
+            background-color: #9945FF;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+        }
+        a {
+            color: #14F195;
+            text-decoration: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translatey(0px); }
+            50% { transform: translatey(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solauncher - Soar to Meme Glory!</h1>
+    </header>
+    <div class="container">
+        <section class="hero">
+            <img src="https://ipfs.io/ipfs/QmdYk9gUJUxUWRK7BbAhbxm6t9RPiqXosT4dassFj77FRh" alt="Solauncher Logo" onerror="this.style.display='none'">
+            <h1>Solauncher <span style="font-size:0.6em;">($SO)</span></h1>
+            <p>Get ready to launch your memes into the stratosphere!</p>
+        </section>
+        <section class="about">
+            <h2>About Solauncher</h2>
+            <p>Yo, degens! Solauncher is not just a meme coin; it's the ultimate ticket to meme rocket land. We don't just launch rockets; we launch dreams, memes, and pure chaos into the universe. Strap in, because it's gonna be a wild ride!</p>
+        </section>
+        <section class="tokenomics">
+            <h2>Tokenomics</h2>
+            <p>Total Supply: 1,000,000,000 SO 🚀</p>
+            <p>Burn: 50% 🔥</p>
+            <p>Liquidity: 30% 🌊</p>
+            <p>Development: 10% 💻</p>
+            <p>Marketing: 10% 📈</p>
+        </section>
+        <section class="how-to-buy">
+            <h2>How to Buy</h2>
+            <p>1. Get yo' SOL bags ready 💰</p>
+            <p>2. Head over to Jupiter's intergalactic exchange 🌌</p>
+            <p>3. Paste the Contract Address: <strong>so73rnhQzkGEHLhXW4mYRwtUbxsiGxW7jXZNGeisiGq</strong> 🪐</p>
+            <p>4. Smash that buy button and join the meme army! 🚀</p>
+        </section>
+        <section class="community">
+            <h2>Join the Champaign</h2>
+            <p>Follow us on <a href="https://x.com/solaunchertool" target="_blank" rel="noopener noreferrer">Twitter/X</a> for the latest memes and chaos.</p>
+            <p>Join our <a href="https://t.me/SolauncherTool" target="_blank" rel="noopener noreferrer">Telegram</a> for insider meme trades.</p>
+        </section>
+        <section class="contract">
+            <h3>Contract Address</h3>
+            <p id="contract-address">so73rnhQzkGEHLhXW4mYRwtUbxsiGxW7jXZNGeisiGq</p>
+            <button class="clipboard" onclick="copyContract()">Copy</button>
+        </section>
+    </div>
+    <footer>
+        Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#9945FF;font-weight:bold;text-decoration:none">Solauncher</a>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        function copyContract() {
+            const address = document.getElementById("contract-address").textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                alert("Contract Address Copied!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
