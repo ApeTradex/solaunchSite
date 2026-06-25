@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Dump Strategy - $DUMPSTR">
+    <meta property="og:description" content="Dump Strategy causing Bitcoin hard dumps! 📉">
+    <meta property="og:image" content="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu">
+    <title>Dump Strategy - $DUMPSTR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Comic+Sans+MS&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web/dist/phosphor.css">
+    <style>
+        :root {
+            --primary: #e46511;
+            --secondary: #b20101;
+            --bg: #121212;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            margin: 0;
+            font-family: 'Archivo', sans-serif;
+            background: var(--bg);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+        header img {
+            width: 50px;
+        }
+        header nav {
+            display: flex;
+            gap: 16px;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: var(--primary);
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff007f, #00ff7f, #007fff, #ff00ff) 200%;
+            background-size: 800% 800%;
+            animation: gradientAnim 10s infinite linear;
+            text-align: center;
+            position: relative;
+        }
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero img {
+            width: 100px;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        .hero .cta-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .hero .cta-buttons a {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 10px rgba(228, 101, 17, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero .cta-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(228, 101, 17, 0.5);
+        }
+        .hero .cta-buttons a:active {
+            transform: scale(0.97);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        .about, .tokenomics, .how-to-buy, .contract-address {
+            padding: 80px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .about h2, .tokenomics h2, .how-to-buy h2, .contract-address h2 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about img {
+            width: 200px;
+            box-shadow: 0 0 25px rgba(228, 101, 17, 0.5);
+        }
+        .about p {
+            font-size: 1.2rem;
+        }
+        .tokenomics {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .tokenomics .chart {
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(var(--primary) 25%, var(--secondary) 25% 50%, #ffc107 50% 75%, #03a9f4 75%);
+            border-radius: 50%;
+            margin: auto;
+            position: relative;
+        }
+        .tokenomics .chart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: var(--bg);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        .how-to-buy {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .how-to-buy .step {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .how-to-buy .step:hover {
+            transform: translateY(-10px);
+        }
+        .how-to-buy .step i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        .how-to-buy .step p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        .contract-address {
+            text-align: center;
+        }
+        .contract-address p {
+            font-size: 1.5rem;
+        }
+        .contract-address button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .contract-address button:hover {
+            transform: scale(1.05);
+        }
+        .contract-address button:active {
+            transform: scale(0.97);
+        }
+        footer {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+        <nav>
+            <a href="#about">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#how-to-buy">How to Buy</a>
+            <a href="https://x.com/DumpStrategy" target="_blank" rel="noopener noreferrer">Twitter</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+        <h1>$DUMPSTR</h1>
+        <p>Dump Strategy causing Bitcoin hard dumps! 📉</p>
+        <div class="cta-buttons">
+            <a href="#buy">Buy Now</a>
+            <a href="#community">Join Community</a>
+        </div>
+        <div class="scroll-indicator">👇</div>
+    </section>
+    <section id="about" class="about">
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+        <div>
+            <h2>About $DUMPSTR</h2>
+            <p>Ser, this is not your average meme coin. We're talking about the ultimate strategy for causing those juicy Bitcoin dumps! Our mission? Pure chaos. If you're in for the fun, you're in for the gains. Probably nothing, but also everything. ngmi if you miss this!</p>
+        </div>
+    </section>
+    <section id="tokenomics" class="tokenomics">
+        <h2>Tokenomics</h2>
+        <div class="chart"></div>
+        <p>Total Supply: 1,000,000,000 $DUMPSTR</p>
+        <p>Liquidity Locked: 69%</p>
+        <p>Tax: 5%</p>
+    </section>
+    <section id="how-to-buy" class="how-to-buy">
+        <h2>How to Buy</h2>
+        <div class="step">
+            <i class="ph ph-currency-circle-dollar"></i>
+            <p>1. Get SOL on any exchange</p>
+        </div>
+        <div class="step">
+            <i class="ph ph-wallet"></i>
+            <p>2. Set up a Solana wallet — Phantom or Solflare</p>
+        </div>
+        <div class="step">
+            <i class="ph ph-planet"></i>
+            <p>3. Go to Jupiter (jup.ag) and search $DUMPSTR</p>
+        </div>
+        <div class="step">
+            <i class="ph ph-swap"></i>
+            <p>4. Swap SOL for $DUMPSTR</p>
+        </div>
+    </section>
+    <section id="contract-address" class="contract-address">
+        <h2>Contract Address</h2>
+        <p>7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump</p>
+        <button onclick="copyAddress()">Copy Address</button>
+        <p id="copy-feedback" style="display:none">Copied!</p>
+        <p>Always verify the contract address.</p>
+    </section>
+    <footer>
+        Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#e46511;font-weight:bold;text-decoration:none">Solauncher</a>
+    </footer>
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        document.querySelectorAll('.about, .tokenomics, .how-to-buy, .contract-address').forEach(section => {
+            observer.observe(section);
+        });
+        function copyAddress() {
+            const address = '7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump';
+            navigator.clipboard.writeText(address).then(() => {
+                const feedbackEl = document.getElementById('copy-feedback');
+                feedbackEl.style.display = 'block';
+                setTimeout(() => feedbackEl.style.display = 'none', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
