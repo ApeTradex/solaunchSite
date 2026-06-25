@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Dump Strategy - $DUMPSTR">
+    <meta property="og:description" content="Dump Strategy causing Bitcoin hard dumps! 📉">
+    <meta property="og:image" content="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu">
+    <title>Dump Strategy - $DUMPSTR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #9945FF;
+            --secondary: #14F195;
+            --bg: #f4f4f9;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg);
+            scroll-behavior: smooth;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        header img {
+            height: 40px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+            text-align: center;
+        }
+        .hero img {
+            width: 100px;
+            animation: float 3s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .hero .cta-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: var(--secondary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .hero .cta-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(20, 241, 149, 0.5);
+        }
+        .hero .cta-buttons a:active {
+            transform: scale(0.97);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        .about, .tokenomics, .how-to-buy, .community, .contract {
+            padding: 60px 20px;
+        }
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff;
+        }
+        .about img {
+            width: 300px;
+            filter: drop-shadow(0 0 10px #9945FF);
+        }
+        .about .text {
+            max-width: 600px;
+        }
+        .about h2, .tokenomics h2, .how-to-buy h2, .community h2, .contract h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .tokenomics {
+            background-color: #f9f9fb;
+        }
+        .tokenomics .chart {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .how-to-buy {
+            background-color: #ffffff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .how-to-buy .step {
+            flex: 1 1 200px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(20, 241, 149, 0.3);
+            transition: transform 0.2s;
+        }
+        .how-to-buy .step:hover {
+            transform: translateY(-10px);
+        }
+        .how-to-buy .step i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .how-to-buy .step p {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .community {
+            text-align: center;
+            background-color: #f9f9fb;
+        }
+        .community a {
+            text-decoration: none;
+            color: #fff;
+            background-color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .community a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(153, 69, 255, 0.5);
+        }
+        .community a:active {
+            transform: scale(0.97);
+        }
+        .contract {
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .contract p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .contract .contract-address {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 20px 0;
+            position: relative;
+        }
+        .contract .contract-address button {
+            position: absolute;
+            right: -40px;
+            top: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+        footer a {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+        <nav>
+            <a href="#about">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#how-to-buy">How to Buy</a>
+            <a href="#community">Community</a>
+            <a href="#contract">Contract</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+        <h1>Dump Strategy</h1>
+        <p>Causing Bitcoin Hard Dumps! 📉</p>
+        <div class="cta-buttons">
+            <a href="#">Buy Now</a>
+            <a href="#">Join Community</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    <section id="about" class="about">
+        <div class="text">
+            <h2>About Dump Strategy</h2>
+            <p>Behold the token that defies conventional paradigms with its hyperbolic deflationary spiral of inverse liquidity. Dump Strategy is here to manifest the ultimate cerebral dominance over the crypto cosmos, ensuring every Bitcoin tremor is felt across the galaxy. With a philosophy rooted in intellectual meme supremacy, we invite you into a world where financial absurdity meets rigorous academia.</p>
+        </div>
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+    </section>
+    <section id="tokenomics" class="tokenomics">
+        <h2>Tokenomics</h2>
+        <div class="chart">
+            <svg viewBox="0 0 32 32" width="200" height="200">
+                <!-- This is a placeholder for an animated pie chart -->
+                <!-- Add custom SVG paths and animations here -->
+            </svg>
+            <p>42% Vibes, 33% Galaxy Brain Reserve, 25% Hyperbolic Inverses</p>
+        </div>
+    </section>
+    <section id="how-to-buy" class="how-to-buy">
+        <h2>How to Buy $DUMPSTR</h2>
+        <div class="step">
+            <i class="fas fa-coins"></i>
+            <p>1. Get SOL on any exchange</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-wallet"></i>
+            <p>2. Set up a Solana wallet — Phantom or Solflare</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-search"></i>
+            <p>3. Go to Jupiter (jup.ag) and search $DUMPSTR</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-exchange-alt"></i>
+            <p>4. Swap SOL for $DUMPSTR</p>
+        </div>
+    </section>
+    <section id="community" class="community">
+        <h2>Join the Community</h2>
+        <a href="https://x.com/DumpStrategy">Follow us on Twitter</a>
+    </section>
+    <section id="contract" class="contract">
+        <h2>Contract Address</h2>
+        <p>Always verify this contract address:</p>
+        <p class="contract-address">
+            7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump
+            <button onclick="copyContractAddress()">Copy</button>
+        </p>
+    </section>
+    <footer>Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer">Solauncher</a></footer>
+    <script>
+        function copyContractAddress() {
+            const textarea = document.createElement('textarea');
+            textarea.value = "7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Copied!');
+        }
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s, transform 0.6s';
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
