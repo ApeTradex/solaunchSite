@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Dump Strategy - The Next Moonshot">
+    <meta property="og:description" content="Dump Strategy causing Bitcoin hard dumps! 📉">
+    <meta property="og:image" content="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu">
+    <title>Dump Strategy - $DUMPSTR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #e46511;
+            --secondary: #b20101;
+            --bg: #030308;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+        header img {
+            height: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary);
+        }
+        #hero {
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 80%), url('https://www.solarsystemscope.com/images/sun_textures/2048/2k_stars_milkyway.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero h1 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            animation: pulse 2s infinite;
+        }
+        #hero .tagline {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.75;
+        }
+        #hero .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(236, 101, 17, 0.5);
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        #about {
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #about img {
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+        }
+        #about .text {
+            max-width: 40%;
+        }
+        #about h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        #tokenomics, #how-to-buy, #contract {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        #tokenomics h2, #how-to-buy h2, #contract h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .step {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 20px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        .step i {
+            font-size: 3rem;
+            color: var(--primary);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #community {
+            padding: 40px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            text-align: center;
+        }
+        #community a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #contract .address {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+        <a href="#contract">Contract</a>
+    </nav>
+</header>
+
+<section id="hero">
+    <h1>Dump Strategy</h1>
+    <p class="tagline">The Next Moonshot: Unstoppable Trajectory to the Stars!</p>
+    <div class="buttons">
+        <button class="btn">Buy Now</button>
+        <button class="btn">Join Community</button>
+    </div>
+</section>
+
+<section id="about">
+    <div class="text">
+        <h2>About Dump Strategy</h2>
+        <p>Brace for impact as we launch $DUMPSTR past any market turbulence. Dump Strategy is designed to cause Bitcoin hard dumps, setting new heights in crypto history! Our mission control is ready for liftoff, are you?</p>
+    </div>
+    <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy Logo">
+</section>
+
+<section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <!-- Add animated pie chart or grid here -->
+    <p>Total Supply: 1,000,000,000 $DUMPSTR</p>
+    <p>Liquidity Locked: 90%</p>
+    <p>Transaction Tax: 5%</p>
+    <p>Holder Rewards: 2%</p>
+</section>
+
+<section id="how-to-buy">
+    <h2>How to Buy $DUMPSTR</h2>
+    <div class="step">
+        <i class="fas fa-exchange-alt"></i>
+        <p>Get SOL on any exchange</p>
+    </div>
+    <div class="step">
+        <i class="fas fa-wallet"></i>
+        <p>Set up a Solana wallet</p>
+    </div>
+    <div class="step">
+        <i class="fas fa-rocket"></i>
+        <p>Go to Jupiter (jup.ag)</p>
+    </div>
+    <div class="step">
+        <i class="fas fa-coins"></i>
+        <p>Swap SOL for $DUMPSTR</p>
+    </div>
+</section>
+
+<section id="community">
+    <h2>Join Our Community</h2>
+    <p><a href="https://x.com/DumpStrategy" target="_blank">Follow us on Twitter/X</a></p>
+</section>
+
+<section id="contract">
+    <h2>Contract Address</h2>
+    <p class="address" onclick="copyToClipboard('7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump')">7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump</p>
+    <p>Always verify the CA before transactions!</p>
+</section>
+
+<footer>
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer">Solauncher</a>
+</footer>
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Copied!');
+        });
+    }
+</script>
+
+</body>
+</html>
