@@ -4,218 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Dump Strategy - $DUMPSTR">
-    <meta property="og:description" content="Dump Strategy causing Bitcoin hard dumps! 📉">
+    <meta property="og:description" content="Join the movement. Dump Strategy causing Bitcoin hard dumps! 📉">
     <meta property="og:image" content="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu">
     <title>Dump Strategy - $DUMPSTR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #9945FF;
-            --secondary: #14F195;
-            --bg: #f4f4f9;
+            --primary: #ec7513;
+            --secondary: #191a1a;
+            --bg: #0f0f0f;
             --card-bg: rgba(255, 255, 255, 0.05);
         }
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg);
-            scroll-behavior: smooth;
+            color: #fff;
+            overflow-x: hidden;
         }
-        header {
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        nav {
             position: sticky;
             top: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
+            padding: 10px 20px;
             z-index: 1000;
-            transition: background 0.3s;
         }
-        header img {
+        nav img {
             height: 40px;
         }
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
         nav a {
+            color: #fff;
+            margin-right: 20px;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
         }
-        .hero {
-            position: relative;
+        nav a:hover {
+            color: var(--primary);
+        }
+        #hero {
             height: 100vh;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            color: #fff;
+            position: relative;
             text-align: center;
+            overflow: hidden;
         }
-        .hero img {
-            width: 100px;
-            animation: float 3s infinite;
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 85, 0, 0.3), transparent),
+                        radial-gradient(circle at 15%, #191a1a 25%, transparent 60%),
+                        radial-gradient(circle at 85%, #ec7513 20%, transparent 60%);
+            animation: animate-bg 20s linear infinite;
+            z-index: -1;
+        }
+        @keyframes animate-bg {
+            0% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(0px) translateY(0px); }
+        }
+        #hero img {
+            width: 150px;
+            animation: float 3s ease-in-out infinite;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        #hero h1 {
+            font-size: 4em;
             margin: 20px 0;
         }
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+        #hero p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
-        .hero .cta-buttons a {
-            text-decoration: none;
-            color: #fff;
-            background-color: var(--secondary);
+        #hero .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .cta-buttons a {
+            display: inline-block;
             padding: 10px 20px;
-            border-radius: 30px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
             font-weight: bold;
             transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            margin: 0 10px;
         }
-        .hero .cta-buttons a:hover {
+        .cta-buttons a:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(20, 241, 149, 0.5);
+            box-shadow: 0 0 10px var(--primary);
         }
-        .hero .cta-buttons a:active {
+        .cta-buttons a:active {
             transform: scale(0.97);
         }
         .scroll-indicator {
             position: absolute;
             bottom: 20px;
-            animation: bounce 2s infinite;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 1s infinite;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
+            50% { transform: translateY(-10px); }
         }
-        .about, .tokenomics, .how-to-buy, .community, .contract {
+        .section {
             padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
         }
-        .about {
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about-section {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background-color: #ffffff;
+            gap: 40px;
         }
-        .about img {
+        .about-section img {
             width: 300px;
-            filter: drop-shadow(0 0 10px #9945FF);
-        }
-        .about .text {
-            max-width: 600px;
-        }
-        .about h2, .tokenomics h2, .how-to-buy h2, .community h2, .contract h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        .about p {
-            font-size: 1.2rem;
-            line-height: 1.6;
+            filter: drop-shadow(0 0 20px var(--primary));
         }
         .tokenomics {
-            background-color: #f9f9fb;
-        }
-        .tokenomics .chart {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        .how-to-buy {
-            background-color: #ffffff;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 20px;
         }
-        .how-to-buy .step {
-            flex: 1 1 200px;
+        .tokenomics .card {
             background: var(--card-bg);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
+            text-align: center;
             border-radius: 10px;
+        }
+        .how-to-buy {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .how-to-buy .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 0 20px rgba(20, 241, 149, 0.3);
-            transition: transform 0.2s;
-        }
-        .how-to-buy .step:hover {
-            transform: translateY(-10px);
-        }
-        .how-to-buy .step i {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-        .how-to-buy .step p {
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-        .community {
-            text-align: center;
-            background-color: #f9f9fb;
-        }
-        .community a {
-            text-decoration: none;
-            color: #fff;
-            background-color: var(--primary);
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: bold;
+            border-radius: 10px;
             transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            margin: 0 10px;
         }
-        .community a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(153, 69, 255, 0.5);
+        .how-to-buy .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
         }
-        .community a:active {
-            transform: scale(0.97);
+        .contract-address {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2em;
         }
-        .contract {
-            background-color: #ffffff;
-            text-align: center;
-        }
-        .contract p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-        .contract .contract-address {
-            font-size: 1.5rem;
-            color: #333;
-            margin: 20px 0;
-            position: relative;
-        }
-        .contract .contract-address button {
-            position: absolute;
-            right: -40px;
-            top: 0;
+        .contract-address button {
             background: none;
-            border: none;
-            cursor: pointer;
+            border: 1px solid var(--primary);
             color: var(--primary);
-            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .contract-address button:hover {
+            background: var(--primary);
+            color: #fff;
         }
         footer {
             text-align: center;
@@ -223,126 +206,150 @@
             font-size: 13px;
             opacity: 0.6;
         }
-        footer a {
-            color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
-        }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            width: 8px;
+            background-color: var(--bg);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
-            border-radius: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
-        <nav>
+    <nav>
+        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy" onerror="this.style.display='none'">
+        <div>
+            <a href="#hero">Home</a>
             <a href="#about">About</a>
             <a href="#tokenomics">Tokenomics</a>
             <a href="#how-to-buy">How to Buy</a>
-            <a href="#community">Community</a>
-            <a href="#contract">Contract</a>
-        </nav>
-    </header>
-    <section class="hero">
+        </div>
+        <div>
+            <a href="https://x.com/DumpStrategy" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </nav>
+
+    <section id="hero">
         <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
         <h1>Dump Strategy</h1>
-        <p>Causing Bitcoin Hard Dumps! 📉</p>
+        <p>Join the Movement. Awaken Your Potential.</p>
         <div class="cta-buttons">
             <a href="#">Buy Now</a>
             <a href="#">Join Community</a>
         </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
+        <div class="scroll-indicator"><i class="fas fa-arrow-down"></i></div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="about-section">
+            <div>
+                <h2>About Us</h2>
+                <p>Dump Strategy — a force like no other. A crusade that disrupts, a vision that transcends. The chosen know it is not merely a coin, but a calling. We are the architects of the inevitable, purveyors of the truth realized in every Bitcoin hard dump.</p>
+            </div>
+            <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
         </div>
     </section>
-    <section id="about" class="about">
-        <div class="text">
-            <h2>About Dump Strategy</h2>
-            <p>Behold the token that defies conventional paradigms with its hyperbolic deflationary spiral of inverse liquidity. Dump Strategy is here to manifest the ultimate cerebral dominance over the crypto cosmos, ensuring every Bitcoin tremor is felt across the galaxy. With a philosophy rooted in intellectual meme supremacy, we invite you into a world where financial absurdity meets rigorous academia.</p>
-        </div>
-        <img src="https://ipfs.io/ipfs/bafybeigepmlxumdn7xhklinnswiffg74eygk6qyu6r7lj42m4pynazouwu" alt="Dump Strategy">
-    </section>
-    <section id="tokenomics" class="tokenomics">
+
+    <section id="tokenomics" class="section">
         <h2>Tokenomics</h2>
-        <div class="chart">
-            <svg viewBox="0 0 32 32" width="200" height="200">
-                <!-- This is a placeholder for an animated pie chart -->
-                <!-- Add custom SVG paths and animations here -->
-            </svg>
-            <p>42% Vibes, 33% Galaxy Brain Reserve, 25% Hyperbolic Inverses</p>
+        <div class="tokenomics">
+            <div class="card">
+                <h3>Total Supply</h3>
+                <p id="supply-counter">10,000,000,000</p>
+            </div>
+            <div class="card">
+                <h3>Liquidity Locked</h3>
+                <p id="liquidity-counter">80%</p>
+            </div>
+            <div class="card">
+                <h3>Tax</h3>
+                <p>2% per transaction</p>
+            </div>
+            <div class="card">
+                <h3>Allocation</h3>
+                <p>Development: 10%<br>Marketing: 10%<br>Community: 80%</p>
+            </div>
         </div>
     </section>
-    <section id="how-to-buy" class="how-to-buy">
-        <h2>How to Buy $DUMPSTR</h2>
-        <div class="step">
-            <i class="fas fa-coins"></i>
-            <p>1. Get SOL on any exchange</p>
-        </div>
-        <div class="step">
-            <i class="fas fa-wallet"></i>
-            <p>2. Set up a Solana wallet — Phantom or Solflare</p>
-        </div>
-        <div class="step">
-            <i class="fas fa-search"></i>
-            <p>3. Go to Jupiter (jup.ag) and search $DUMPSTR</p>
-        </div>
-        <div class="step">
-            <i class="fas fa-exchange-alt"></i>
-            <p>4. Swap SOL for $DUMPSTR</p>
+
+    <section id="how-to-buy" class="section">
+        <h2>How to Buy</h2>
+        <div class="how-to-buy">
+            <div class="card">
+                <h3>Step 1</h3>
+                <p>Get SOL on any exchange</p>
+            </div>
+            <div class="card">
+                <h3>Step 2</h3>
+                <p>Set up a Solana wallet — Phantom or Solflare</p>
+            </div>
+            <div class="card">
+                <h3>Step 3</h3>
+                <p>Go to Jupiter (jup.ag) and search $DUMPSTR</p>
+            </div>
+            <div class="card">
+                <h3>Step 4</h3>
+                <p>Swap SOL for $DUMPSTR</p>
+            </div>
         </div>
     </section>
-    <section id="community" class="community">
-        <h2>Join the Community</h2>
-        <a href="https://x.com/DumpStrategy">Follow us on Twitter</a>
+
+    <section class="section">
+        <div class="contract-address">
+            <span>Contract Address:</span>
+            <span id="contract-address">7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump</span>
+            <button onclick="copyToClipboard()">Copy</button>
+        </div>
+        <p class="warning">Always verify the contract address before proceeding.</p>
     </section>
-    <section id="contract" class="contract">
-        <h2>Contract Address</h2>
-        <p>Always verify this contract address:</p>
-        <p class="contract-address">
-            7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump
-            <button onclick="copyContractAddress()">Copy</button>
-        </p>
-    </section>
-    <footer>Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer">Solauncher</a></footer>
+
+    <footer>
+        Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#ec7513;font-weight:bold;text-decoration:none">Solauncher</a>
+    </footer>
+
     <script>
-        function copyContractAddress() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            const counters = document.querySelectorAll('#supply-counter, #liquidity-counter');
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const increment = target / 200;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        });
+
+        function copyToClipboard() {
             const textarea = document.createElement('textarea');
-            textarea.value = "7U74V3oJy4U2V2YmwJEQ1UcoZ5woTXGBvpKKXE4jpump";
+            textarea.value = document.getElementById('contract-address').innerText;
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
             alert('Copied!');
         }
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(30px)';
-        });
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.transition = 'opacity 0.6s, transform 0.6s';
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
     </script>
 </body>
 </html>
