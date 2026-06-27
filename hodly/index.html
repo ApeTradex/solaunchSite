@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Hodly - The Solana Meme Army">
+    <meta property="og:description" content="A revolutionary Solana meme coin. uwu we're going to make it.">
+    <meta property="og:image" content="https://ipfs.io/ipfs/Qma5khdkJ4F6fjx1Vo66ZJX2Z8ML7G8JpPBiQySdFN7cqC">
+    <title>Hodly - $HODLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ece2c6;
+            --secondary: #171c1a;
+            --bg: #0d0c1d;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+        }
+
+        header img {
+            height: 50px;
+            transition: transform 0.3s;
+            animation: floatLogo 3s infinite alternate;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        header a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ece2c6, #171c1a);
+            opacity: 0.8;
+            animation: gradientBackground 5s infinite alternate;
+        }
+
+        #hero img {
+            position: relative;
+            width: 150px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ece2c6, #171c1a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin: 10px 0 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-buttons a {
+            text-decoration: none;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-buttons a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(236, 226, 198, 0.5);
+        }
+
+        .cta-buttons a:active {
+            transform: scale(0.97);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+        }
+
+        section {
+            padding: 60px 30px;
+            text-align: center;
+        }
+
+        .about, .tokenomics, .how-to-buy, .community {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 40px;
+            padding: 80px 30px;
+        }
+
+        .about img, .tokenomics img, .how-to-buy img, .community img {
+            width: 200px;
+            box-shadow: 0 0 20px rgba(236, 226, 198, 0.3);
+        }
+
+        .about p {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h2 {
+            font-family: 'Fredoka One', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ece2c6, #171c1a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .tokenomics .stats-grid, 
+        .how-to-buy .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .tokenomics .stats-grid div,
+        .how-to-buy .steps-grid div {
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .tokenomics .stats-grid div:hover,
+        .how-to-buy .steps-grid div:hover {
+            transform: translateY(-10px);
+        }
+
+        .tokenomics .stats-grid div::before,
+        .how-to-buy .steps-grid div::before {
+            content: attr(data-icon);
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 2rem;
+        }
+
+        .tokenomics h3,
+        .how-to-buy h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contract-address {
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .contract-address h2 {
+            font-size: 1.8rem;
+        }
+
+        .contract-address button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: var(--secondary);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .contract-address button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(236, 226, 198, 0.5);
+        }
+
+        .contract-address button:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        footer a {
+            color: #ece2c6;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes floatLogo {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(236, 226, 198, 0.4);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 25px rgba(236, 226, 198, 0.6);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://ipfs.io/ipfs/Qma5khdkJ4F6fjx1Vo66ZJX2Z8ML7G8JpPBiQySdFN7cqC" alt="Hodly">
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#tokenomics">Tokenomics</a>
+            <a href="#how-to-buy">How to Buy</a>
+            <a href="https://x.com/hodlydog/status/2070510477923266599" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <img src="https://ipfs.io/ipfs/Qma5khdkJ4F6fjx1Vo66ZJX2Z8ML7G8JpPBiQySdFN7cqC" alt="Hodly">
+        <h1>$HODLY</h1>
+        <p>uwu we're going to make it — WE WILL NOT STOP</p>
+        <div class="cta-buttons">
+            <a href="#how-to-buy">Buy Now</a>
+            <a href="https://doghodly.fun/" target="_blank" rel="noopener noreferrer">Join Community</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-arrow-down"></i>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div>
+            <h2>About Hodly</h2>
+            <p>A revolutionary Solana meme coin that rallies an army of adorable but feral warriors. Our mascot is not just a symbol, it's a god. Together, we are unstoppable.</p>
+        </div>
+        <img src="https://ipfs.io/ipfs/Qma5khdkJ4F6fjx1Vo66ZJX2Z8ML7G8JpPBiQySdFN7cqC" alt="Hodly">
+    </section>
+
+    <section id="tokenomics" class="tokenomics">
+        <h2>Tokenomics</h2>
+        <div class="stats-grid">
+            <div data-icon="🐾">
+                <h3>Total Supply</h3>
+                <p>1 Trillion $HODLY</p>
+            </div>
+            <div data-icon="🔒">
+                <h3>Liquidity Locked</h3>
+                <p>90%</p>
+            </div>
+            <div data-icon="💸">
+                <h3>Tax</h3>
+                <p>1% on buys, 2% on sells</p>
+            </div>
+            <div data-icon="🦁">
+                <h3>Allocation</h3>
+                <p>Community: 70%<br>Development: 20%<br>Marketing: 10%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-buy" class="how-to-buy">
+        <h2>How to Buy</h2>
+        <div class="steps-grid">
+            <div data-icon="1">
+                <h3>Get SOL</h3>
+                <p>on any exchange</p>
+            </div>
+            <div data-icon="2">
+                <h3>Set up a Solana wallet</h3>
+                <p>Phantom or Solflare</p>
+            </div>
+            <div data-icon="3">
+                <h3>Go to Jupiter</h3>
+                <p>search $HODLY</p>
+            </div>
+            <div data-icon="4">
+                <h3>Swap SOL for $HODLY</h3>
+                <p>and join the army</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contract" class="contract-address">
+        <h2>Contract Address</h2>
+        <p>6oPG5q5SPNtQTxeu8RRWvh6mngsauznC2SVVtXqPpump</p>
+        <button onclick="copyContract()">Copy Address</button>
+    </section>
+
+    <footer>
+        Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer">Solauncher</a>
+    </footer>
+
+    <script>
+        function copyContract() {
+            const address = "6oPG5q5SPNtQTxeu8RRWvh6mngsauznC2SVVtXqPpump";
+            navigator.clipboard.writeText(address).then(function() {
+                alert('Copied!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
