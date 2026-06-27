@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="liquititty ($liquititty) — Official Solana Token Site">
+  <meta property="og:description" content="A Solana token.">
+  <meta property="og:image" content="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1">
+  <title>liquititty ($liquititty) — Official Solana Token Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #0f6cc2;
+      --primary-rgb: 15, 108, 194;
+      --secondary: #d9d9d9;
+      --secondary-rgb: 217, 217, 217;
+      --bg: #030308;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242, 242, 242, 0.48);
+      --section-pad: clamp(80px, 12vw, 160px);
+      --text-xs: 10px;
+      --text-sm: 12px;
+      --text-base: 15px;
+      --text-lg: 17px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+      --text-3xl: 30px;
+      --text-4xl: 40px;
+      --text-5xl: 52px;
+      --text-6xl: 68px;
+      --text-7xl: 90px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Exo 2', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding-top: 70px;
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      backdrop-filter: blur(24px) saturate(160%);
+      background: rgba(6, 6, 9, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+
+    #navbar.scrolled {
+      box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-inner {
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-center a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-center a:hover {
+      color: #fff;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-right a.nav-icon {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-right a.nav-icon:hover {
+      color: #fff;
+    }
+
+    .hamburger {
+      display: none !important;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 7px 9px;
+      border-radius: 8px;
+      z-index: 1001;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-overlay a {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .nav-overlay a:hover {
+      color: var(--primary);
+    }
+
+    .nav-overlay-close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 6px 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-overlay-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .nav-overlay-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-overlay .overlay-buy {
+      padding: 13px 32px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(var(--primary-rgb), 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 100%, rgba(var(--secondary-rgb), 0.12) 0%, transparent 55%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: min(800px, 92vw);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .hero-content img {
+      width: 140px;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(56px, 9vw, 96px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      background-image: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(18px, 2.5vw, 24px);
+      max-width: 600px;
+      opacity: 0.75;
+      margin: 24px auto 36px;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 100px;
+      padding: 14px 34px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.35);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 100px;
+      padding: 13px 32px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.08);
+      color: var(--primary);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      font-size: 24px;
+      color: var(--text-muted);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    section {
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      section {
+        padding: clamp(60px, 10vw, 100px) 0;
+      }
+
+      h1 {
+        font-size: clamp(42px, 10vw, 68px);
+      }
+
+      .two-col,
+      .grid-2,
+      .split,
+      .about-grid {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        order: -1;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .step-cards,
+      .steps {
+        flex-direction: column;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tokenomics-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-content {
+        padding: 24px 20px;
+      }
+
+      .hero-content h1 {
+        letter-spacing: -0.02em;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .cta-row a,
+      .cta-row button {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: clamp(36px, 11vw, 52px);
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-brand span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="liquititty Logo">
+        <span>liquititty</span>
+      </a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/cooldevisback/status/2070357562969542778?s=20" class="nav-icon" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://liquititty.fun" class="nav-icon" target="_blank" rel="noopener"><i class="fas fa-globe"></i></a>
+        <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $liquititty</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" class="overlay-buy" target="_blank" rel="noopener">Buy $liquititty</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div id="particleNetwork"></div>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="eyebrow">liquititty · SOLANA</span>
+      <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="liquititty Logo">
+      <h1>The Future is <span style="background-image: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent;">liquititty</span></h1>
+      <p>Prepare for lift-off. $liquititty is breaking the gravitational pull and soaring into the stratosphere.</p>
+      <div class="cta-row">
+        <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue">↓</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">ABOUT $liquititty</span>
+      <h2>Discover the Power of $liquititty</h2>
+      <p>A Solana token that's not just about making waves, it's about creating a tidal force. $liquititty is here to redefine what it means to be a token. With no breaks and no limits, we are pushing boundaries and setting new standards in the crypto cosmos.</p>
+      <blockquote style="border-left: 4px solid var(--primary); background: rgba(var(--primary-rgb), 0.06); padding: 16px 20px; margin: 24px 0; font-style: italic;">"To the moon, and beyond!"</blockquote>
+    </div>
+  </section>
+
+  <section id="tokenomics">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">TOKENOMICS</span>
+      <h2>Mission Stats</h2>
+      <div class="stat-grid" style="display: grid; gap: 24px; grid-template-columns: repeat(2, 1fr);">
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; text-align: center;">
+          <i class="fas fa-coins" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Total Supply</h3>
+          <p data-count="999892699013006">999,892,699,013,006</p>
+        </div>
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; text-align: center;">
+          <i class="fas fa-lock" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Secure & Decentralized</h3>
+          <p>Unrivaled security meets unmatched decentralization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">HOW TO BUY</span>
+      <h2>Embark on the $liquititty Journey</h2>
+      <div class="step-cards" style="display: flex; flex-wrap: wrap; gap: 24px;">
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; position: relative; text-align: center;">
+          <i class="fas fa-coins" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Get SOL</h3>
+          <p>Buy SOL on Coinbase, Binance, or Kraken.</p>
+        </div>
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; position: relative; text-align: center;">
+          <i class="fas fa-wallet" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Create Wallet</h3>
+          <p>Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+        </div>
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; position: relative; text-align: center;">
+          <i class="fas fa-arrows-rotate" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Open Jupiter</h3>
+          <p>Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+        </div>
+        <div class="glass-card" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25); padding: 24px; position: relative; text-align: center;">
+          <i class="fas fa-fire" style="color: var(--primary); font-size: 24px;"></i>
+          <h3>Swap for $liquititty</h3>
+          <p>Paste the contract address and swap SOL for $liquititty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="animate-on-scroll">
+      <span class="eyebrow">COMMUNITY</span>
+      <h2>Join the $liquititty Movement</h2>
+      <div style="display: flex; justify-content: center; gap: 24px;">
+        <a href="https://x.com/cooldevisback/status/2070357562969542778?s=20" target="_blank" rel="noopener" class="btn-primary">Twitter/X</a>
+        <a href="https://liquititty.fun" target="_blank" rel="noopener" class="btn-primary">Website</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="text-align: center; padding: var(--section-pad) 0;">
+    <div class="glass-card" style="max-width: 700px; margin: 0 auto; padding: 24px; background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.2), 0 0 60px rgba(var(--primary-rgb), 0.07);">
+      <span style="font-size: 11px; letter-spacing: 0.18em; color: var(--primary);">CONTRACT ADDRESS</span>
+      <div style="margin: 16px 0; padding: 12px; background: rgba(255, 255, 255, 0.06); border-radius: 6px;">
+        <span style="font-family: monospace; font-size: clamp(10px, 1.5vw, 14px); word-break: break-all;">9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump</span>
+        <button id="copyBtn" style="margin-left: 10px; font-size: 14px; cursor: pointer; border: none; background: none; color: var(--primary);"><i class="fas fa-copy"></i></button>
+      </div>
+      <p style="font-size: 12px; background: rgba(255, 153, 0, 0.1); color: #FF9900; display: inline-block; padding: 6px 12px; border-radius: 50px;">⚠ Always verify the CA before swapping</p>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#0f6cc2;font-weight:bold;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    const hamburger = document.getElementById('hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
+    if (hamburger && navOverlay && navClose) {
+      hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
+      navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+      navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
+    }
+    window.addEventListener('scroll', () => {
+      const nb = document.getElementById('navbar');
+      if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const children = entry.target.children;
+          for (let i = 0; i < children.length; i++) {
+            children[i].style.transitionDelay = (i * 0.1) + 's';
+          }
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => io.observe(el));
+
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const animate = () => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const duration = 1500;
+        let start = performance.now();
+        let from = 0;
+
+        const easeOutQuart = (t) => 1 - (--t) * t * t * t;
+
+        const frame = (time) => {
+          let progress = (time - start) / duration;
+          if (progress > 1) progress = 1;
+          el.innerText = Math.floor(easeOutQuart(progress) * (target - from) + from).toLocaleString();
+          if (progress < 1) {
+            requestAnimationFrame(frame);
+          }
+        };
+
+        requestAnimationFrame(frame);
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animate();
+            obs.unobserve(entry.target);
+          }
+        });
+      });
+
+      observer.observe(el);
+    });
+
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText("9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump")
+          .then(() => {
+            copyBtn.innerHTML = '✓ Copied!';
+            setTimeout(() => {
+              copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+          });
+      });
+    }
+  </script>
+
+</body>
+
+</html>
