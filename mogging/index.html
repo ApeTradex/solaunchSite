@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mogging ($mogging) — Official Solana Token Site</title>
+  <meta property="og:title" content="mogging ($mogging) — Official Solana Token Site">
+  <meta property="og:description" content="mogging the entire internet.">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #9945FF;
+      --secondary: #14F195;
+      --bg: #0a0a0f;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242, 242, 242, 0.48);
+      --section-pad: clamp(80px, 12vw, 160px);
+      --text-xs: 10px;
+      --text-sm: 12px;
+      --text-base: 15px;
+      --text-lg: 17px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+      --text-3xl: 30px;
+      --text-4xl: 40px;
+      --text-5xl: 52px;
+      --text-6xl: 68px;
+      --text-7xl: 90px;
+    }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background-color: var(--primary); }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      color: var(--text);
+      font-family: 'Orbitron', sans-serif;
+      padding-top: 70px;
+    }
+    a { color: inherit; text-decoration: none; }
+    nav#navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 70px; backdrop-filter: blur(24px) saturate(160%);
+      background: rgba(6, 6, 9, 0.85); border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    nav#navbar.scrolled { box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5); }
+    .nav-inner {
+      max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px;
+      height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0;
+      font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em;
+    }
+    .nav-brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+    .nav-center {
+      display: flex; align-items: center; gap: 32px; flex: 1; justify-content: center;
+    }
+    .nav-center a {
+      font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.65); text-decoration: none;
+      white-space: nowrap; transition: color 0.2s ease; letter-spacing: 0.01em;
+    }
+    .nav-center a:hover { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .nav-right a.nav-icon { color: rgba(255, 255, 255, 0.55); font-size: 17px; text-decoration: none; transition: color 0.2s; }
+    .nav-right a.nav-icon:hover { color: #fff; }
+    .hamburger {
+      display: none; background: none; border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff; font-size: 18px; cursor: pointer; padding: 7px 9px;
+      border-radius: 8px; z-index: 1001; position: relative;
+      align-items: center; justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .hamburger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); }
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: var(--bg); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 40px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .nav-overlay a {
+      font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.8);
+      text-decoration: none; letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    .nav-overlay a:hover { color: var(--primary); }
+    .nav-overlay-close {
+      position: absolute; top: 22px; right: 24px;
+      background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6); font-size: 20px; cursor: pointer;
+      border-radius: 8px; padding: 6px 10px; transition: all 0.2s;
+    }
+    .nav-overlay-close:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+    .nav-overlay-divider { width: 40px; height: 1px; background: rgba(255, 255, 255, 0.1); }
+    .nav-overlay .overlay-buy {
+      padding: 13px 32px; border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; font-weight: 700; font-size: 15px;
+      text-decoration: none; letter-spacing: 0.02em;
+    }
+    @media(max-width:768px) {
+      .nav-center, .nav-right { display: none !important; }
+      .hamburger { display: flex !important; }
+    }
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 100svh; display: flex; align-items: center; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-glow {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(153, 69, 255, 0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 40% at 15% 100%, rgba(20, 241, 149, 0.12) 0%, transparent 55%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 40px 24px;
+      max-width: min(800px, 92vw);
+    }
+    .hero-content .eyebrow {
+      font-size: 12px; letter-spacing: 0.2em; font-weight: 700;
+      color: var(--primary); display: block; margin-bottom: 20px;
+    }
+    .hero-content img {
+      width: 130px; animation: float 3.5s ease-in-out infinite;
+    }
+    .hero-content h1 {
+      font-size: clamp(56px, 9vw, 96px); font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text; color: transparent;
+      letter-spacing: -0.03em; line-height: 1.0; margin: 20px 0;
+    }
+    .hero-content p {
+      font-size: clamp(18px, 2.5vw, 24px); max-width: 600px;
+      opacity: 0.75; margin: 24px auto 36px;
+    }
+    .hero-content .cta-row {
+      display: flex; gap: 16px; margin-bottom: 60px;
+    }
+    .hero-content .btn-primary,
+    .hero-content .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 34px; border-radius: 100px;
+      font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .hero-content .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; box-shadow: 0 4px 20px rgba(153, 69, 255, 0.35);
+    }
+    .hero-content .btn-primary:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(153, 69, 255, 0.55), 0 0 0 6px rgba(153, 69, 255, 0.12);
+    }
+    .hero-content .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+    .hero-content .btn-ghost {
+      background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    .hero-content .btn-ghost:hover {
+      border-color: var(--primary); background: rgba(153, 69, 255, 0.08); color: var(--primary);
+    }
+    .scroll-cue {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%); z-index: 1;
+      animation: bounce 2s infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @media(max-width:768px){
+      body { padding-top: 70px; }
+      section { padding: clamp(60px,10vw,100px) 0; }
+      h1 { font-size: clamp(42px,10vw,68px) !important; }
+      .hero-content { padding: 24px 20px; }
+      .cta-row { flex-direction:column; align-items:center; gap:12px; }
+      .cta-row a, .cta-row button { width:100%; max-width:280px; text-align:center; justify-content:center; }
+    }
+    @media(max-width:480px){
+      h1 { font-size: clamp(36px,11vw,52px) !important; }
+      .nav-brand span { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44" alt="mogging logo" onerror="this.style.display='none'">
+        <span>mogging</span>
+      </a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/moggingforever/status/2031852146694537663?s=20" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.moggingforever.com/" target="_blank" rel="noopener" class="nav-icon"><i class="fas fa-globe"></i></a>
+        <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $mogging</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" class="overlay-buy" target="_blank" rel="noopener">Buy $mogging</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="eyebrow">mogging · SOLANA</span>
+      <img src="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44" alt="mogging logo">
+      <h1>Mog the Internet</h1>
+      <p>Step into the mogging universe and dominate the crypto realm. Become the master, one mog at a time.</p>
+      <div class="cta-row">
+        <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue">
+        <i class="fa-solid fa-angle-down" style="font-size:24px;"></i>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="animate-on-scroll">
+    <div style="position:relative;max-width:min(1200px,92vw);margin:0 auto;padding:var(--section-pad) 24px;">
+      <div style="position:relative;z-index:1;">
+        <span class="eyebrow">ABOUT $mogging</span>
+        <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">The Ultimate Game</h2>
+        <p>mogging is not just a token; it's an experience. Dive into a world where every moment is a chance to prove your prowess. Whether you're grinding the levels or fighting the boss, every step is a journey.</p>
+        <div style="background:rgba(var(--primary),0.06);border-left:4px solid var(--primary);padding:16px;margin-top:20px;">
+          <em>"Join the ranks, become a legendary mogger!"</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="animate-on-scroll" style="background:var(--surface);">
+    <div style="position:relative;max-width:min(1200px,92vw);margin:0 auto;padding:var(--section-pad) 24px;">
+      <div class="grid-2" style="display:grid;gap:32px;grid-template-columns:repeat(2,1fr);">
+        <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;position:relative;">
+          <i class="fa-solid fa-coins" style="font-size:32px;color:var(--primary);"></i>
+          <h3 style="font-size:24px;margin:8px 0;color:var(--primary);">Total Supply</h3>
+          <p style="font-size:clamp(14px,1.5vw,18px);">999,803,499,119,986</p>
+        </div>
+        <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;position:relative;">
+          <i class="fa-solid fa-star" style="font-size:32px;color:var(--secondary);"></i>
+          <h3 style="font-size:24px;margin:8px 0;color:var(--secondary);">Community Owned</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy" class="animate-on-scroll">
+    <div style="position:relative;max-width:min(1200px,92vw);margin:0 auto;padding:var(--section-pad) 24px;display:flex;flex-wrap:wrap;gap:40px;">
+      <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;width:calc(50% - 20px);position:relative;">
+        <i class="fa-solid fa-coins" style="font-size:32px;color:var(--primary);"></i>
+        <h3 style="font-size:24px;margin:10px 0;color:var(--primary);">Get SOL</h3>
+        <p style="font-size:clamp(14px,1.5vw,18px);">Buy SOL on Coinbase, Binance, or Kraken.</p>
+      </div>
+      <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;width:calc(50% - 20px);position:relative;">
+        <i class="fa-solid fa-wallet" style="font-size:32px;color:var(--secondary);"></i>
+        <h3 style="font-size:24px;margin:10px 0;color:var(--secondary);">Create Wallet</h3>
+        <p style="font-size:clamp(14px,1.5vw,18px);">Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+      </div>
+      <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;width:calc(50% - 20px);position:relative;">
+        <i class="fa-solid fa-arrows-rotate" style="font-size:32px;color:var(--primary);"></i>
+        <h3 style="font-size:24px;margin:10px 0;color:var(--primary);">Open Jupiter</h3>
+        <p style="font-size:clamp(14px,1.5vw,18px);">Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+      </div>
+      <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;width:calc(50% - 20px);position:relative;">
+        <i class="fa-solid fa-fire" style="font-size:32px;color:var(--secondary);"></i>
+        <h3 style="font-size:24px;margin:10px 0;color:var(--secondary);">Swap for $mogging</h3>
+        <p style="font-size:clamp(14px,1.5vw,18px);">Paste the contract address and swap SOL for $mogging.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="animate-on-scroll">
+    <div style="position:relative;max-width:min(1200px,92vw);margin:0 auto;padding:var(--section-pad) 24px;text-align:center;">
+      <span class="eyebrow">JOIN THE GUILD</span>
+      <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">Connect with the Moggers</h2>
+      <div style="margin-top:30px;">
+        <a href="https://x.com/moggingforever/status/2031852146694537663?s=20" target="_blank" rel="noopener" class="btn-primary" style="margin:0 10px;">Twitter</a>
+        <a href="https://www.moggingforever.com/" target="_blank" rel="noopener" class="btn-primary" style="margin:0 10px;">Website</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contract" class="animate-on-scroll">
+    <div style="position:relative;max-width:700px;margin:0 auto;padding:var(--section-pad) 24px;text-align:center;">
+      <div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:0 0 0 1px rgba(153,69,255,0.2),0 0 60px rgba(153,69,255,0.07);padding:24px;position:relative;display:inline-block;">
+        <span style="font-size:11px;letter-spacing:0.18em;color:var(--primary);font-weight:700;display:block;margin-bottom:10px;">CONTRACT ADDRESS</span>
+        <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;margin-bottom:10px;">
+          <code style="font-family:monospace;font-size:clamp(10px,1.5vw,14px);word-break:break-all;color:var(--text);">5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump</code>
+        </div>
+        <button id="copyCA" style="background:none;border:none;color:var(--primary);font-size:14px;cursor:pointer;"><i class="fa-solid fa-copy"></i> Copy</button>
+        <p style="font-size:12px;color:rgba(255,200,0,0.8);background:rgba(255,200,0,0.1);padding:4px 8px;border-radius:4px;margin-top:10px;display:inline-block;">⚠ Always verify the CA before swapping</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#9945FF;font-weight:bold;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    const hamburger = document.getElementById('hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
+    if (hamburger && navOverlay && navClose) {
+      hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
+      navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+      navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
+    }
+    window.addEventListener('scroll', () => {
+      const nb = document.getElementById('navbar');
+      if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+    });
+    const copyButton = document.getElementById('copyCA');
+    copyButton.addEventListener('click', () => {
+      navigator.clipboard.writeText("5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump").then(() => {
+        copyButton.innerHTML = "✓ Copied!";
+        setTimeout(() => copyButton.innerHTML = '<i class="fa-solid fa-copy"></i> Copy', 2000);
+      });
+    });
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      elements.forEach(el => observer.observe(el));
+    };
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
+  </script>
+</body>
+</html>
