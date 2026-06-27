@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta property="og:title" content="Wolfy ($Wolfy) — Official Solana Token Site">
+  <meta property="og:description" content="Wolfy Solana Token">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafkreih2x4gxwb635rt5oujrlafcj2qtgvrtaed7yf7xn6wwzqibbvjzai">
+  <title>Wolfy ($Wolfy) — Official Solana Token Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #9945FF;
+      --secondary: #14F195;
+      --bg: #0d0d0d;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242, 242, 242, 0.48);
+      --section-pad: clamp(80px, 12vw, 160px);
+      --text-xs: 10px;
+      --text-sm: 12px;
+      --text-base: 15px;
+      --text-lg: 17px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+      --text-3xl: 30px;
+      --text-4xl: 40px;
+      --text-5xl: 52px;
+      --text-6xl: 68px;
+      --text-7xl: 90px;
+    }
+    body {
+      font-family: 'Barlow Condensed', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      padding-top: 70px;
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+    }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      backdrop-filter: blur(24px) saturate(160%);
+      background: rgba(6, 6, 9, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .nav-inner {
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-center a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .nav-center a:hover {
+      color: #fff;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .nav-right a.nav-icon {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a.nav-icon:hover {
+      color: #fff;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 7px 9px;
+      border-radius: 8px;
+      z-index: 1001;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-overlay a {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    .nav-overlay a:hover {
+      color: var(--primary);
+    }
+    .nav-overlay-close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 6px 10px;
+      transition: all 0.2s;
+    }
+    .nav-overlay-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .nav-overlay-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .nav-overlay .overlay-buy {
+      padding: 13px 32px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 768px) {
+      .nav-center,
+      .nav-right {
+        display: none !important;
+      }
+      .hamburger {
+        display: flex !important;
+      }
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(
+          ellipse 70% 50% at 70% 0%,
+          rgba(153, 69, 255, 0.18) 0%,
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse 50% 40% at 15% 100%,
+          rgba(20, 241, 149, 0.12) 0%,
+          transparent 55%
+        );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: min(800px, 92vw);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .hero-content img {
+      width: 130px;
+      animation: float 3.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,
+      100% {
+        transform: translatey(0px);
+      }
+      50% {
+        transform: translatey(-15px);
+      }
+    }
+    h1 {
+      font-size: clamp(56px, 9vw, 96px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+    .hero-content p {
+      font-size: clamp(18px, 2.5vw, 24px);
+      max-width: 600px;
+      opacity: 0.75;
+      margin: 24px auto 36px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 20px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 100px;
+      padding: 14px 34px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(153, 69, 255, 0.35);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(153, 69, 255, 0.55),
+        0 0 0 6px rgba(153, 69, 255, 0.12);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 100px;
+      padding: 13px 32px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      background: rgba(153, 69, 255, 0.08);
+      color: var(--primary);
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    section {
+      padding: var(--section-pad) 0;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      section {
+        padding: clamp(60px, 10vw, 100px) 0;
+      }
+      h1 {
+        font-size: clamp(42px, 10vw, 68px) !important;
+      }
+      .two-col,
+      .grid-2,
+      .split,
+      .about-grid {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+      .about-img {
+        order: -1;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+      .step-cards,
+      .steps {
+        flex-direction: column;
+      }
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tokenomics-inner {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-content {
+        padding: 24px 20px;
+      }
+      .hero-content h1 {
+        letter-spacing: -0.02em;
+      }
+      .cta-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .cta-row a,
+      .cta-row button {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: clamp(36px, 11vw, 52px) !important;
+      }
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-brand span {
+        display: none;
+      }
+      .ca-text {
+        font-size: 11px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand"><img src="https://ipfs.io/ipfs/bafkreih2x4gxwb635rt5oujrlafcj2qtgvrtaed7yf7xn6wwzqibbvjzai" alt="Wolfy Logo"><span>Wolfy</span></a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/WolfySolana_" class="nav-icon" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://t.me/WolfyCoinPortal" class="nav-icon" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://jup.ag/swap/SOL-8j7kvT7xLg8Ramzr3K9KngGLtTKrvgReWNDvKM7gpump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $Wolfy</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-8j7kvT7xLg8Ramzr3K9KngGLtTKrvgReWNDvKM7gpump" class="overlay-buy" target="_blank" rel="noopener">Buy $Wolfy</a>
+  </div>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <!-- Optional canvas or blobs here -->
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="eyebrow">Wolfy · SOLANA</span>
+      <img src="https://ipfs.io/ipfs/bafkreih2x4gxwb635rt5oujrlafcj2qtgvrtaed7yf7xn6wwzqibbvjzai" alt="Wolfy Logo">
+      <h1>Your Path to Glory Starts with $Wolfy</h1>
+      <p>Unleash your inner warrior. Victory is within your grasp.</p>
+      <div class="cta-row">
+        <a href="https://jup.ag/swap/SOL-8j7kvT7xLg8Ramzr3K9KngGLtTKrvgReWNDvKM7gpump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue"><i class="fa-solid fa-chevron-down"></i></div>
+    </div>
+  </section>
+  <section id="about" class="animate-on-scroll">
+    <div class="container">
+      <span class="eyebrow">ABOUT $Wolfy</span>
+      <h2>Join the Pack</h2>
+      <p>As a warrior in the Wolfy clan, you are at the forefront of a revolution. This is not just a token; it's a call to arms against the ordinary. Every $Wolfy holder is a soldier in a battle for excellence.</p>
+      <blockquote><i>"In the world of $Wolfy, mediocrity is the enemy."</i></blockquote>
+    </div>
+  </section>
+  <section id="tokenomics" class="animate-on-scroll">
+    <div class="container">
+      <span class="eyebrow">TOKENOMICS</span>
+      <h2>The Arsenal</h2>
+      <div class="grid-2">
+        <div class="glass-card">
+          <i class="fa-solid fa-coins"></i>
+          <h3>Total Supply</h3>
+          <p data-count="999978387351776">0</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Community-Owned</h3>
+          <p>The power resides with the holders.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-fire"></i>
+          <h3>0% Tax</h3>
+          <p>Trade freely without barriers.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-flag"></i>
+          <h3>Strong Hands</h3>
+          <p>The weak have no place in our camp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="how-to-buy" class="animate-on-scroll">
+    <div class="container">
+      <span class="eyebrow">HOW TO BUY</span>
+      <h2>Your Battle Plan</h2>
+      <div class="steps">
+        <div class="glass-card">
+          <i class="fa-solid fa-coins"></i>
+          <h3>Get SOL</h3>
+          <p>Buy SOL on Coinbase, Binance, or Kraken.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-wallet"></i>
+          <h3>Create Wallet</h3>
+          <p>Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <h3>Open Jupiter</h3>
+          <p>Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+        </div>
+        <div class="glass-card">
+          <i class="fa-solid fa-fire"></i>
+          <h3>Swap for $Wolfy</h3>
+          <p>Paste the contract address and swap SOL for $Wolfy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="community" class="animate-on-scroll">
+    <div class="container">
+      <span class="eyebrow">COMMUNITY</span>
+      <h2>Join the Wolfpack</h2>
+      <div class="social-buttons">
+        <a href="https://x.com/WolfySolana_" class="btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i> Twitter</a>
+        <a href="https://t.me/WolfyCoinPortal" class="btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Telegram</a>
+      </div>
+    </div>
+  </section>
+  <section class="contract-address animate-on-scroll">
+    <div class="glass-card">
+      <span class="eyebrow">CONTRACT ADDRESS</span>
+      <div class="ca-text">
+        <p class="code">8j7kvT7xLg8Ramzr3K9KngGLtTKrvgReWNDvKM7gpump</p>
+        <button id="copyBtn"><i class="fa-solid fa-copy"></i> Copy</button>
+      </div>
+      <p class="warning">⚠ Always verify the CA before swapping</p>
+    </div>
+  </section>
+  <footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#9945FF;font-weight:bold;text-decoration:none">Solauncher</a>
+  </footer>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+      
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+      });
+
+      const hamburger = document.getElementById('hamburger');
+      const navOverlay = document.getElementById('navOverlay');
+      const navClose = document.getElementById('navClose');
+      if (hamburger && navOverlay && navClose) {
+        hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
+        navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+        navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
+      }
+
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('8j7kvT7xLg8Ramzr3K9KngGLtTKrvgReWNDvKM7gpump').then(() => {
+          copyBtn.innerHTML = '✓ Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+
+      const countEls = document.querySelectorAll('[data-count]');
+      countEls.forEach(el => {
+        const start = 0;
+        const end = parseInt(el.getAttribute('data-count'), 10);
+
+        const duration = 1500;
+        const range = end - start;
+
+        let current = start;
+        const increment = end > start ? 25 : -25;
+        const stepTime = Math.abs(Math.floor(duration / range));
+
+        const timer = setInterval(() => {
+          if (end > start) {
+            current += increment;
+            if (current >= end) {
+              el.innerHTML = end;
+              clearInterval(timer);
+              return;
+            }
+          } else {
+            current += increment;
+            if (current <= end) {
+              el.innerHTML = end;
+              clearInterval(timer);
+              return;
+            }
+          }
+          el.innerHTML = current;
+        }, stepTime);
+      });
+    });
+  </script>
+</body>
+</html>
