@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta property="og:title" content="mogging ($mogging) — Official Solana Token Site">
+  <meta property="og:description" content="mogging the entire internet.">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44">
+  <title>mogging ($mogging) — Official Solana Token Site</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #9945FF;
+      --secondary: #14F195;
+      --bg: #0a0a0f;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242, 242, 242, 0.48);
+      --text-xs: 10px;
+      --text-sm: 12px;
+      --text-base: 15px;
+      --text-lg: 17px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+      --text-3xl: 30px;
+      --text-4xl: 40px;
+      --text-5xl: 52px;
+      --text-6xl: 68px;
+      --text-7xl: 90px;
+      --section-pad: clamp(80px, 12vw, 160px);
+    }
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: 70px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+    }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      backdrop-filter: blur(24px) saturate(160%);
+      background: rgba(6, 6, 9, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .nav-inner {
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-center a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .nav-center a:hover {
+      color: #fff;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .nav-right a.nav-icon {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a.nav-icon:hover {
+      color: #fff;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 7px 9px;
+      border-radius: 8px;
+      z-index: 1001;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-overlay a {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    .nav-overlay a:hover {
+      color: var(--primary);
+    }
+    .nav-overlay-close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 6px 10px;
+      transition: all 0.2s;
+    }
+    .nav-overlay-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .nav-overlay-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .nav-overlay .overlay-buy {
+      padding: 13px 32px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 768px) {
+      .nav-center,
+      .nav-right {
+        display: none !important;
+      }
+      .hamburger {
+        display: flex !important;
+      }
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(153, 69, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 100%, rgba(20, 241, 149, 0.12) 0%, transparent 55%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: min(800px, 92vw);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .hero-content img {
+      width: 130px;
+      animation: float 3.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translatey(0px);
+      }
+      50% {
+        transform: translatey(-10px);
+      }
+      100% {
+        transform: translatey(0px);
+      }
+    }
+    h1 {
+      font-size: clamp(56px, 9vw, 96px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-content p {
+      font-size: clamp(18px, 2.5vw, 24px);
+      max-width: 600px;
+      opacity: 0.75;
+      margin: 24px auto 36px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .cta-row a,
+    .cta-row button {
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 100px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 4px 20px rgba(153, 69, 255, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(153, 69, 255, 0.55), 0 0 0 6px rgba(153, 69, 255, 0.12);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.25s ease;
+    }
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      background: rgba(153, 69, 255, 0.08);
+      color: var(--primary);
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+    section {
+      position: relative;
+      padding: var(--section-pad) 0;
+    }
+    section::before,
+    section::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .about-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .about-content {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .about-content .pull-quote {
+      font-style: italic;
+      border-left: 4px solid var(--primary);
+      background: rgba(153, 69, 255, 0.06);
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .tokenomics-inner {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25);
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-cards {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25);
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-card .ghost-step {
+      position: absolute;
+      font-size: 7rem;
+      color: rgba(255, 255, 255, 0.05);
+      z-index: 0;
+      top: 20px;
+      left: 20px;
+    }
+    .step-card .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(153, 69, 255, 0.3);
+    }
+    .icon:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(153, 69, 255, 0.55), 0 0 0 6px rgba(153, 69, 255, 0.12);
+    }
+    .community-content {
+      text-align: center;
+      max-width: min(800px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .disabled-button {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .contract-card {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 1px rgba(153, 69, 255, 0.2), 0 0 60px rgba(153, 69, 255, 0.07);
+      margin: 0 auto;
+      text-align: center;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .contract-card .copy-btn {
+      border: none;
+      background: none;
+      color: var(--text);
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .contract-card .copy-btn:hover {
+      color: var(--primary);
+    }
+    .contract-card .warning {
+      background: rgba(255, 165, 0, 0.1);
+      color: #ffa500;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: var(--text-xs);
+      margin-top: 12px;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+      section {
+        padding: clamp(60px, 10vw, 100px) 0;
+      }
+      h1 {
+        font-size: clamp(42px, 10vw, 68px) !important;
+      }
+      .about-grid,
+      .step-cards {
+        flex-direction: column;
+      }
+      .stat-card {
+        grid-template-columns: 1fr;
+      }
+      .hero-content {
+        padding: 24px 20px;
+      }
+      .cta-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .cta-row a,
+      .cta-row button {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: clamp(36px, 11vw, 52px) !important;
+      }
+      .stat-card {
+        grid-template-columns: 1fr;
+      }
+      .nav-brand span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand"><img src="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44" alt="mogging logo"> <span>mogging</span></a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/moggingforever/status/2031852146694537663?s=20" target="_blank" class="nav-icon"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.moggingforever.com/" target="_blank" class="nav-icon"><i class="fas fa-globe"></i></a>
+        <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $mogging</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" class="overlay-buy" target="_blank" rel="noopener">Buy $mogging</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="eyebrow">mogging · SOLANA</span>
+      <img src="https://ipfs.io/ipfs/bafybeihdqnqwzfyxr43s7kamiu5xrm5jbukz6rxnom43u4yb2j5cyyrc44" alt="Mogging Logo">
+      <h1>Mogging the Entire Internet!</h1>
+      <p>Join the game, level up, and conquer the mogging universe.</p>
+      <div class="cta-row">
+        <a href="https://jup.ag/swap/SOL-5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue"><i class="fas fa-angle-double-down"></i></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-content">
+        <span class="eyebrow">ABOUT $mogging</span>
+        <h2>Conquer the Crypto Game</h2>
+        <p>Mogging is not just a token; it's your gateway to dominate the digital realm. Power up with $mogging and transform how you interact with the online world, one level at a time.</p>
+        <div class="pull-quote">
+          "Mogging the entire internet."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics">
+    <div class="tokenomics-inner">
+      <div class="stat-card">
+        <i class="fas fa-coins fa-2x"></i>
+        <h3>Total Supply</h3>
+        <p data-count="999803499119986">0</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-percent fa-2x"></i>
+        <h3>0% Tax</h3>
+        <p>No hidden fees, just pure mogging.</p>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-users fa-2x"></i>
+        <h3>Community Owned</h3>
+        <p>The power is in the hands of the players.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy">
+    <div class="step-cards">
+      <div class="step-card">
+        <div class="ghost-step">1</div>
+        <div class="icon"><i class="fas fa-coins"></i></div>
+        <h3>Get SOL</h3>
+        <p>Buy SOL on Coinbase, Binance, or Kraken.</p>
+      </div>
+      <div class="step-card">
+        <div class="ghost-step">2</div>
+        <div class="icon"><i class="fas fa-wallet"></i></div>
+        <h3>Create Wallet</h3>
+        <p>Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+      </div>
+      <div class="step-card">
+        <div class="ghost-step">3</div>
+        <div class="icon"><i class="fas fa-arrows-rotate"></i></div>
+        <h3>Open Jupiter</h3>
+        <p>Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+      </div>
+      <div class="step-card">
+        <div class="ghost-step">4</div>
+        <div class="icon"><i class="fas fa-fire"></i></div>
+        <h3>Swap for $mogging</h3>
+        <p>Paste the contract address and swap SOL for $mogging.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="community-content">
+      <span class="eyebrow">JOIN THE GUILD</span>
+      <h2>Connect with Fellow Moggers</h2>
+      <div class="social-buttons">
+        <a href="https://x.com/moggingforever/status/2031852146694537663?s=20" target="_blank" class="btn-primary"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="https://www.moggingforever.com/" target="_blank" class="btn-primary"><i class="fas fa-globe"></i> Website</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contract">
+    <div class="contract-card">
+      <span class="eyebrow">CONTRACT ADDRESS</span>
+      <div class="contract-address">
+        <span style="font-family: monospace;">5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump</span>
+        <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i></button>
+      </div>
+      <div class="warning">⚠ Always verify the CA before swapping</div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#9945FF;font-weight:bold;text-decoration:none">Solauncher</a>
+  </footer>
+
+  <script defer>
+    const hamburger = document.getElementById('hamburger');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
+    if (hamburger && navOverlay && navClose) {
+      hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
+      navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+      navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
+    }
+    window.addEventListener('scroll', () => {
+      const nb = document.getElementById('navbar');
+      if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(40px)';
+      observer.observe(el);
+    });
+
+    const copyBtn = document.getElementById('copyBtn');
+    const contractAddress = "5oq4zKetRkUMMrFtkWH7r1Q6HZJMsTjgCeU6isgYpump";
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(contractAddress).then(() => {
+        copyBtn.innerHTML = "✓ Copied!";
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 2000);
+      });
+    });
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('[data-count]').forEach((elem) => {
+      const target = parseInt(elem.getAttribute('data-count'), 10);
+      animateValue(elem, 0, target, 1500);
+    });
+  </script>
+</body>
+</html>
