@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FarmTown ($FARM) — Official Solana Token Site</title>
+  <meta property="og:title" content="FarmTown ($FARM) — Official Solana Token Site">
+  <meta property="og:description" content="A play-to-earn agriculture simulator where you plow, plant, and harvest, raise livestock, craft goods, and trade using $FARM.">
+  <meta property="og:image" content="https://ipfs.io/ipfs/QmXM1f4t3UJD5E5BReBXhXXok2ByUaG2hjArzeA67653p9">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #ece2c6;
+      --secondary: #6f9ad3;
+      --bg: #0a0a0f;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242,242,242,0.48);
+      --section-pad: clamp(80px,12vw,160px);
+      --text-xs: 10px; --text-sm: 12px; --text-base: 15px;
+      --text-lg: 17px; --text-xl: 20px;
+      --text-2xl: 24px; --text-3xl: 30px;
+      --text-4xl: 40px; --text-5xl: 52px;
+      --text-6xl: 68px; --text-7xl: 90px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { background-color: var(--bg); color: var(--text); font-family: 'Orbitron', sans-serif; scroll-behavior: smooth; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(var(--primary),0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 15% 100%, rgba(var(--secondary),0.12) 0%, transparent 55%); pointer-events: none; z-index: 0; }
+    body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); }
+    nav { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(24px) saturate(160%); background: rgba(var(--bg),0.75); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; }
+    nav .logo { display: flex; align-items: center; font-weight: 800; font-size: var(--text-lg); }
+    nav .logo img { height: 38px; margin-right: 12px; }
+    nav .nav-center a, nav .nav-right-links a { margin: 0 12px; color: var(--text); text-decoration: none; font-weight: 600; font-size: var(--text-sm); }
+    nav .nav-right-links a.primary-pill { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 100px; padding: 10px 20px; color: #fff; box-shadow: 0 4px 20px rgba(var(--primary),0.35); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
+    nav .nav-right-links a.primary-pill:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 35px rgba(var(--primary),0.55), 0 0 0 6px rgba(var(--primary),0.12); }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background: var(--text); margin: 4px 0; }
+    .overlay-nav { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; flex-direction: column; }
+    .overlay-nav.open { display: flex; }
+    .overlay-nav a { color: var(--text); font-size: var(--text-2xl); margin: 16px 0; text-decoration: none; }
+    .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; }
+    .hero .eyebrow-pill { font-size: 12px; letter-spacing: 0.2em; color: var(--primary); margin-bottom: 8px; }
+    .hero img { width: clamp(120px,15vw,140px); animation: float 3.5s ease-in-out infinite; }
+    .hero h1 { font-size: clamp(56px,9vw,96px); font-weight: 900; background: -webkit-linear-gradient(var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 24px 0; }
+    .hero .tagline { max-width: 640px; opacity: 0.75; line-height: 1.5; }
+    .hero .cta-row { display: flex; gap: 16px; margin-top: 32px; }
+    .hero .scroll-cue { position: absolute; bottom: 20px; animation: bounce 1.5s infinite; }
+    .about, .tokenomics, .how-to-buy, .community { padding: var(--section-pad) 0; position: relative; }
+    .about .container, .tokenomics .container, .how-to-buy .container, .community .container { max-width: min(1200px, 92vw); margin: 0 auto; display: flex; align-items: center; gap: 48px; padding: 0 24px; }
+    .about .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 14px; }
+    .about h2 { font-size: clamp(40px,6vw,64px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+    .about .content p { max-width: 600px; margin-bottom: 16px; line-height: 1.5; }
+    .about .quote { font-style: italic; border-left: 4px solid var(--primary); padding-left: 16px; background: rgba(var(--primary),0.06); margin-top: 24px; }
+    .tokenomics .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .tokenomics .stat-card { background: var(--surface); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.06), 0 4px 6px rgba(0,0,0,0.35), 0 24px 48px rgba(0,0,0,0.25); padding: 24px; border-radius: 12px; text-align: center; position: relative; }
+    .tokenomics .stat-card .icon { font-size: 36px; color: var(--primary); margin-bottom: 16px; }
+    .tokenomics .stat-card .label { font-size: var(--text-lg); color: var(--text-muted); margin-bottom: 8px; }
+    .tokenomics .stat-card .value { font-size: var(--text-xl); font-weight: 700; }
+    .how-to-buy .steps { display: flex; gap: 32px; flex-wrap: wrap; }
+    .how-to-buy .step { position: relative; width: 100%; max-width: 280px; background: var(--surface); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.06), 0 4px 6px rgba(0,0,0,0.35), 0 24px 48px rgba(0,0,0,0.25); padding: 24px; border-radius: 12px; text-align: left; }
+    .how-to-buy .step .icon { font-size: 32px; color: var(--primary); position: absolute; top: -20px; left: 20px; }
+    .how-to-buy .step .number { font-size: 80px; color: rgba(var(--primary),0.08); position: absolute; top: 20px; right: 20px; }
+    .how-to-buy .step .title { font-size: var(--text-xl); font-weight: 700; margin-bottom: 16px; }
+    .how-to-buy .step .description { font-size: var(--text-base); line-height: 1.5; }
+    .community .social-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .community .social-button { background: var(--surface); border-radius: 50px; padding: 12px 24px; text-decoration: none; color: var(--text); transition: background 0.3s; display: flex; align-items: center; }
+    .community .social-button i { margin-right: 8px; }
+    .community .social-button:hover { background: rgba(var(--primary),0.08); }
+    .contract-address { max-width: 700px; margin: 0 auto; background: var(--surface); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); box-shadow: 0 0 0 1px rgba(var(--primary),0.2), 0 0 60px rgba(var(--primary),0.07); padding: 24px; border-radius: 12px; text-align: center; margin-top: 48px; }
+    .contract-address .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
+    .contract-address .address { font-family: monospace; font-size: clamp(10px,1.5vw,14px); word-break: break-all; background: rgba(255,255,255,0.04); padding: 12px; border-radius: 6px; display: inline-block; }
+    .contract-address .copy-button { margin-top: 12px; background: var(--surface); border-radius: 50px; padding: 8px 16px; color: var(--text); cursor: pointer; display: inline-flex; align-items: center; transition: background 0.3s; }
+    .contract-address .copy-button:active { background: rgba(var(--primary),0.12); }
+    .contract-address .warning { margin-top: 12px; font-size: var(--text-sm); color: #ffcc00; background: rgba(255,204,0,0.1); padding: 4px 8px; border-radius: 4px; display: inline-block; }
+    @keyframes float { 0%, 100% { transform: translatey(0px); } 50% { transform: translatey(-8px); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @media(max-width:768px){
+      nav .nav-center,.nav-right-links{display:none}
+      .hamburger{display:flex}
+      section{padding:clamp(60px,10vw,100px) 0}
+      h1{font-size:clamp(42px,10vw,68px)!important}
+      .two-col,.grid-2,.split{flex-direction:column;grid-template-columns:1fr}
+      .step-cards{flex-direction:column}
+      .stat-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px){
+      h1{font-size:clamp(36px,11vw,52px)!important}
+      .stat-grid{grid-template-columns:1fr}
+      .cta-row{flex-direction:column;align-items:center}
+      .cta-row a,.cta-row button{width:100%;max-width:300px;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <img src="https://ipfs.io/ipfs/QmXM1f4t3UJD5E5BReBXhXXok2ByUaG2hjArzeA67653p9" alt="FarmTown" onerror="this.style.display='none'">
+    FarmTown
+  </div>
+  <div class="nav-center">
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+  </div>
+  <div class="nav-right-links">
+    <a href="https://x.com/playfarmtown" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://farmtown.online/" target="_blank"><i class="fas fa-globe"></i></a>
+    <a href="https://jup.ag/swap/SOL-yMJPZbnhoHib3ib8n8PfiVcp9yauk1vnaGKLx7epump" target="_blank" class="primary-pill">Buy $FARM</a>
+  </div>
+  <div class="hamburger" onclick="document.querySelector('.overlay-nav').classList.toggle('open')">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</nav>
+<div class="overlay-nav">
+  <a href="#about" onclick="document.querySelector('.overlay-nav').classList.remove('open')">About</a>
+  <a href="#tokenomics" onclick="document.querySelector('.overlay-nav').classList.remove('open')">Tokenomics</a>
+  <a href="#how-to-buy" onclick="document.querySelector('.overlay-nav').classList.remove('open')">How to Buy</a>
+  <a href="#community" onclick="document.querySelector('.overlay-nav').classList.remove('open')">Community</a>
+</div>
+
+<section class="hero">
+  <div class="eyebrow-pill">$FARM · SOLANA</div>
+  <img src="https://ipfs.io/ipfs/QmXM1f4t3UJD5E5BReBXhXXok2ByUaG2hjArzeA67653p9" alt="FarmTown Logo">
+  <h1>Farm Your Way to Riches</h1>
+  <p class="tagline">Plow your path to prosperity, harvest your crypto dreams.</p>
+  <div class="cta-row">
+    <a href="https://jup.ag/swap/SOL-yMJPZbnhoHib3ib8n8PfiVcp9yauk1vnaGKLx7epump" target="_blank" class="primary-pill">Buy Now</a>
+    <a href="#community" class="ghost-pill">Join Community</a>
+  </div>
+  <div class="scroll-cue"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section id="about" class="about">
+  <div class="container">
+    <div class="content">
+      <div class="eyebrow">ABOUT $FARM</div>
+      <h2>Your Farm, Your Adventure</h2>
+      <p>Immerse in the ultimate play-to-earn experience where every day on the farm is a new quest. Cultivate crops, raise livestock, and craft goods to trade. With $FARM, you're not just playing; you're grinding your way to the top.</p>
+      <p class="quote">"In FarmTown, the yield is real, and the future is yours to harvest."</p>
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics" class="tokenomics">
+  <div class="container">
+    <div class="grid">
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-coins"></i></div>
+        <div class="label">Total Supply</div>
+        <div class="value" data-count="994582036595481">994,582,036,595,481</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="label">Secure & Transparent</div>
+        <div class="value">Community Trust</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-heart"></i></div>
+        <div class="label">Player Owned</div>
+        <div class="value">100% Community</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon"><i class="fas fa-fire"></i></div>
+        <div class="label">Zero Tax</div>
+        <div class="value">Maximize Gains</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-to-buy" class="how-to-buy">
+  <div class="container">
+    <div class="steps">
+      <div class="step">
+        <div class="icon"><i class="fas fa-coins"></i></div>
+        <div class="number">1</div>
+        <div class="title">Get SOL</div>
+        <p class="description">Buy SOL on Coinbase, Binance, or Kraken.</p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-wallet"></i></div>
+        <div class="number">2</div>
+        <div class="title">Create Wallet</div>
+        <p class="description">Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-arrows-rotate"></i></div>
+        <div class="number">3</div>
+        <div class="title">Open Jupiter</div>
+        <p class="description">Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-fire"></i></div>
+        <div class="number">4</div>
+        <div class="title">Swap for $FARM</div>
+        <p class="description">Paste the contract address and swap SOL for $FARM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community" class="community">
+  <div class="container">
+    <div class="eyebrow">JOIN THE GUILD</div>
+    <h2>Connect with Fellow Players</h2>
+    <div class="social-buttons">
+      <a href="https://x.com/playfarmtown" target="_blank" class="social-button"><i class="fab fa-x-twitter"></i> Twitter</a>
+      <a href="https://farmtown.online/" target="_blank" class="social-button"><i class="fas fa-globe"></i> Website</a>
+    </div>
+  </div>
+</section>
+
+<div class="contract-address">
+  <div class="label">CONTRACT ADDRESS</div>
+  <div class="address">yMJPZbnhoHib3ib8n8PfiVcp9yauk1vnaGKLx7epump</div>
+  <div class="copy-button" onclick="copyAddress()"><i class="fas fa-copy"></i> Copy</div>
+  <div class="warning">⚠ Always verify the CA before swapping</div>
+</div>
+
+<footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#ece2c6;font-weight:bold;text-decoration:none">Solauncher</a></footer>
+
+<script defer>
+  function copyAddress() {
+    const address = "yMJPZbnhoHib3ib8n8PfiVcp9yauk1vnaGKLx7epump";
+    navigator.clipboard.writeText(address).then(() => {
+      const button = document.querySelector('.copy-button');
+      button.innerHTML = '<i class="fas fa-check"></i> ✓ Copied!';
+      setTimeout(() => button.innerHTML = '<i class="fas fa-copy"></i> Copy', 2000);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = { threshold: 0.1 };
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    const counts = document.querySelectorAll('[data-count]');
+    counts.forEach(count => {
+      const animate = () => {
+        const target = +count.getAttribute('data-count');
+        const speed = 1500;
+        const increment = target / speed;
+        const updateCount = () => {
+          const current = +count.innerText.replace(/,/g, '');
+          if (current < target) {
+            count.innerText = Math.ceil(current + increment).toLocaleString();
+            setTimeout(updateCount, 1);
+          } else {
+            count.innerText = target.toLocaleString();
+          }
+        };
+        updateCount();
+      };
+      animate();
+    });
+  });
+</script>
+
+</body>
+</html>
