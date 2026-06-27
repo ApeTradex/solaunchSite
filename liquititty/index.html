@@ -1,271 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>liquititty ($liquititty) — Official Solana Token Site</title>
-    <meta property="og:title" content="liquititty ($liquititty) — Official Solana Token Site">
-    <meta property="og:description" content="A Solana token. Unleashing meme coin chaos on the blockchain.">
-    <meta property="og:image" content="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
-    <style>
-        :root {
-            --primary: #64abce;
-            --secondary: #fafafa;
-            --bg: #0c0c0f;
-            --surface: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f2f2f2;
-            --text-muted: rgba(242, 242, 242, 0.48);
-            --section-pad: clamp(80px, 12vw, 160px);
-            --text-xs: 10px;
-            --text-sm: 12px;
-            --text-base: 15px;
-            --text-lg: 17px;
-            --text-xl: 20px;
-            --text-2xl: 24px;
-            --text-3xl: 30px;
-            --text-4xl: 40px;
-            --text-5xl: 52px;
-            --text-6xl: 68px;
-            --text-7xl: 90px;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-        body {
-            background-color: var(--bg);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-            color: var(--text);
-            font-family: 'Rubik', sans-serif;
-            line-height: 1.6;
-            padding-top: 70px;
-        }
-
-        #navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            height: 70px; backdrop-filter: blur(24px) saturate(160%);
-            background: rgba(6, 6, 9, 0.85); border-bottom: 1px solid var(--border);
-            transition: box-shadow 0.3s ease;
-        }
-        #navbar.scrolled {
-            box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        .nav-inner {
-            max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px;
-            height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
-        }
-        .nav-brand {
-            display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0;
-            font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em;
-        }
-        .nav-brand img {
-            width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
-        }
-        .nav-center {
-            display: flex; align-items: center; gap: 32px; flex: 1; justify-content: center;
-        }
-        .nav-center a {
-            font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.65); text-decoration: none;
-            white-space: nowrap; transition: color 0.2s ease; letter-spacing: 0.01em;
-        }
-        .nav-center a:hover { color: #fff; }
-        .nav-right {
-            display: flex; align-items: center; gap: 14px; flex-shrink: 0;
-        }
-        .nav-right a.nav-icon {
-            color: rgba(255, 255, 255, 0.55); font-size: 17px; text-decoration: none; transition: color 0.2s;
-        }
-        .nav-right a.nav-icon:hover { color: #fff; }
-        .hamburger {
-            display: none !important; background: none; border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff; font-size: 18px; cursor: pointer; padding: 7px 9px;
-            border-radius: 8px; z-index: 1001; position: relative;
-            align-items: center; justify-content: center;
-            transition: background 0.2s ease, border-color 0.2s ease;
-        }
-        .hamburger:hover {
-            background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3);
-        }
-        .nav-overlay {
-            position: fixed; inset: 0; z-index: 999;
-            background: var(--bg); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 40px;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.28s ease;
-        }
-        .nav-overlay.open {
-            opacity: 1; pointer-events: auto;
-        }
-        .nav-overlay a {
-            font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.8);
-            text-decoration: none; letter-spacing: -0.01em;
-            transition: color 0.2s ease;
-        }
-        .nav-overlay a:hover {
-            color: var(--primary);
-        }
-        .nav-overlay-close {
-            position: absolute; top: 22px; right: 24px;
-            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12);
-            color: rgba(255, 255, 255, 0.6); font-size: 20px; cursor: pointer;
-            border-radius: 8px; padding: 6px 10px; transition: all 0.2s;
-        }
-        .nav-overlay-close:hover {
-            background: rgba(255, 255, 255, 0.12); color: #fff;
-        }
-        .nav-overlay-divider {
-            width: 40px; height: 1px; background: rgba(255, 255, 255, 0.1);
-        }
-        .nav-overlay .overlay-buy {
-            padding: 13px 32px; border-radius: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #fff; font-weight: 700; font-size: 15px;
-            text-decoration: none; letter-spacing: 0.02em;
-        }
-        @media(max-width: 768px) {
-            .nav-center, .nav-right {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-        }
-        .hero {
-            position: relative; overflow: hidden;
-            min-height: 100svh; display: flex; align-items: center; justify-content: center;
-        }
-        .hero-bg {
-            position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
-        }
-        .hero-bg canvas {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-        }
-        .hero-glow {
-            position: absolute; inset: 0; z-index: 0; pointer-events: none;
-            background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(255, 105, 180, 0.18) 0%, transparent 60%),
-                        radial-gradient(ellipse 50% 40% at 15% 100%, rgba(102, 255, 51, 0.12) 0%, transparent 55%);
-        }
-        .hero-content {
-            position: relative; z-index: 1;
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center; padding: 40px 24px;
-            max-width: min(800px, 92vw);
-        }
-        .eyebrow {
-            font-size: 12px; letter-spacing: 0.2em; color: var(--primary); font-weight: 700;
-            display: block; margin-bottom: 20px;
-        }
-        .hero-content h1 {
-            font-size: clamp(56px, 9vw, 96px); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero-content p {
-            font-size: clamp(18px, 2.5vw, 24px); max-width: 600px; opacity: 0.75; margin: 24px auto 36px;
-        }
-        .cta-row {
-            display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 40px;
-        }
-        .btn-primary, .overlay-buy {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none; border-radius: 100px; padding: 14px 34px;
-            font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer;
-            box-shadow: 0 4px 20px rgba(100, 171, 206, 0.35);
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
-            text-decoration: none;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 35px rgba(100, 171, 206, 0.55), 0 0 0 6px rgba(100, 171, 206, 0.12);
-        }
-        .btn-primary:active {
-            transform: translateY(0) scale(0.97);
-        }
-        .btn-ghost {
-            background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.2); border-radius: 100px;
-            padding: 13px 32px; color: #fff; font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
-            transition: all 0.25s ease; text-decoration: none;
-        }
-        .btn-ghost:hover {
-            border-color: var(--primary); background: rgba(100, 171, 206, 0.08); color: var(--primary);
-        }
-        .scroll-cue {
-            position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-            font-size: 16px; color: var(--text-muted); pointer-events: none;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: none; }
-        }
-        .animate-on-scroll {
-            opacity: 0; transform: translateY(40px);
-        }
-        .visible {
-            opacity: 1; transform: none;
-            transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @media(max-width: 768px) {
-            body { padding-top: 70px; }
-            section { padding: clamp(60px, 10vw, 100px) 0; }
-            h1 { font-size: clamp(42px, 10vw, 68px) !important; }
-            .two-col, .grid-2, .split, .about-grid { flex-direction: column; grid-template-columns: 1fr; }
-            .about-img { order: -1; max-width: 200px; margin: 0 auto; }
-            .step-cards, .steps { flex-direction: column; }
-            .stat-grid { grid-template-columns: 1fr 1fr; }
-            .tokenomics-inner { flex-direction: column; align-items: center; }
-            .hero-content { padding: 24px 20px; }
-            .hero-content h1 { letter-spacing: -0.02em; }
-            .cta-row { flex-direction: column; align-items: center; gap: 12px; }
-            .cta-row a, .cta-row button { width: 100%; max-width: 280px; text-align: center; justify-content: center; }
-        }
-        @media(max-width: 480px) {
-            h1 { font-size: clamp(36px, 11vw, 52px) !important; }
-            .stat-grid { grid-template-columns: 1fr; }
-            .nav-brand span { display: none; }
-            .ca-text { font-size: 11px !important; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>liquititty ($liquititty) — Official Solana Token Site</title>
+  <meta property="og:title" content="liquititty ($liquititty) — Official Solana Token Site">
+  <meta property="og:description" content="A Solana token. Maximum unhinged degen chaos. This is not financial advice but also it is.">
+  <meta property="og:image" content="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #64abce;
+      --secondary: #fafafa;
+      --bg: #0b0c10;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
+      --text: #f2f2f2;
+      --text-muted: rgba(242,242,242,0.48);
+      --text-xs: 10px;
+      --text-sm: 12px;
+      --text-base: 15px;
+      --text-lg: 17px;
+      --text-xl: 20px;
+      --text-2xl: 24px;
+      --text-3xl: 30px;
+      --text-4xl: 40px;
+      --text-5xl: 52px;
+      --text-6xl: 68px;
+      --text-7xl: 90px;
+      --section-pad: clamp(80px, 12vw, 160px);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+    }
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      padding-top: 70px;
+    }
+    section {
+      position: relative;
+      padding: var(--section-pad) 0;
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: none;
+    }
+    /* Navbar */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      backdrop-filter: blur(24px) saturate(160%);
+      background: rgba(6, 6, 9, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 1px 0 var(--border), 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .nav-inner {
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-center a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .nav-center a:hover {
+      color: #fff;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .nav-right a.nav-icon {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a.nav-icon:hover {
+      color: #fff;
+    }
+    .hamburger {
+      display: none !important;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 7px 9px;
+      border-radius: 8px;
+      z-index: 1001;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    /* Mobile Overlay */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .nav-overlay a {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    .nav-overlay a:hover {
+      color: var(--primary);
+    }
+    .nav-overlay-close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 6px 10px;
+      transition: all 0.2s;
+    }
+    .nav-overlay-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .nav-overlay-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .nav-overlay .overlay-buy {
+      padding: 13px 32px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    @media(max-width:768px) {
+      .nav-center, .nav-right {
+        display: none !important;
+      }
+      .hamburger {
+        display: flex !important;
+      }
+    }
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 70% 50% at 70% 0%, rgba(var(--primary), 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 100%, rgba(var(--secondary), 0.12) 0%, transparent 55%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: min(800px, 92vw);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 20px;
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 100px;
+      padding: 14px 34px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(100, 171, 206, 0.35);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 35px rgba(100, 171, 206, 0.55), 0 0 0 6px rgba(100, 171, 206, 0.12);
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.97);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 100px;
+      padding: 13px 32px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      background: rgba(100, 171, 206, 0.08);
+      color: var(--primary);
+    }
+    /* About */
+    #about {
+      background-color: var(--surface);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+    .about-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: min(800px, 92vw);
+      margin: 0 auto;
+    }
+    .pull-quote {
+      position: relative;
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(var(--primary), 0.06);
+      border-left: 3px solid var(--primary);
+      font-style: italic;
+    }
+    /* Tokenomics */
+    #tokenomics {
+      background-color: var(--surface);
+    }
+    .tokenomics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .tokenomics-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      text-align: center;
+      color: var(--text);
+    }
+    /* How to Buy */
+    #how-to-buy {
+      background-color: var(--surface);
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 4px 6px rgba(0, 0, 0, 0.35), 0 24px 48px rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      color: var(--text);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      margin-bottom: 40px;
+    }
+    .step-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 35px rgba(100, 171, 206, 0.55);
+    }
+    /* Community */
+    #community {
+      background-color: var(--surface);
+    }
+    .community-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .community-img {
+      max-width: 100%;
+      margin: 20px 0;
+    }
+    .social-btns a {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin: 10px;
+      text-decoration: none;
+      transition: background 0.25s ease;
+    }
+    .social-btns a:hover {
+      background: var(--secondary);
+    }
+    /* Contract Address */
+    .contract-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 1px rgba(100, 171, 206, 0.2), 0 0 60px rgba(100, 171, 206, 0.07);
+    }
+    .contract-card button {
+      margin-top: 10px;
+      background: var(--surface);
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 5px;
+      transition: background 0.25s ease;
+    }
+    .contract-card button:hover {
+      background: rgba(var(--primary), 0.1);
+    }
+    .cta-row {
+      display: flex;
+      gap: 20px;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
-<nav id="navbar">
+  <nav id="navbar">
     <div class="nav-inner">
-        <a href="#" class="nav-brand">
-            <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="Liquititty Logo" onerror="this.style.display='none'">
-            <span>liquititty</span>
+      <a href="#" class="nav-brand">
+        <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="">
+        <span>liquititty</span>
+      </a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/i/communities/2033361508042780851" target="_blank" class="nav-icon" aria-label="Twitter/X" rel="noopener">
+          <i class="fab fa-twitter"></i>
         </a>
-        <div class="nav-center">
-            <a href="#about">About</a>
-            <a href="#tokenomics">Tokenomics</a>
-            <a href="#how-to-buy">How to Buy</a>
-            <a href="#community">Community</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://x.com/i/communities/2033361508042780851" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-twitter"></i></a>
-            <a href="https://t.me/WolfyCoinPortal" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-telegram"></i></a>
-            <a href="https://liquititty.fun" target="_blank" rel="noopener" class="nav-icon"><i class="fas fa-globe"></i></a>
-            <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $liquititty</a>
-        </div>
-        <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <a href="https://t.me/WolfyCoinPortal" target="_blank" class="nav-icon" aria-label="Telegram" rel="noopener">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://liquititty.fun" target="_blank" class="nav-icon" aria-label="Website" rel="noopener">
+          <i class="fas fa-globe"></i>
+        </a>
+        <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;">Buy $liquititty</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
-</nav>
-<div class="nav-overlay" id="navOverlay">
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
     <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
     <a href="#about">About</a>
     <a href="#tokenomics">Tokenomics</a>
@@ -273,172 +497,154 @@
     <a href="#community">Community</a>
     <div class="nav-overlay-divider"></div>
     <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" class="overlay-buy" target="_blank" rel="noopener">Buy $liquititty</a>
-</div>
+  </div>
 
-<section class="hero">
+  <!-- HERO SECTION -->
+  <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-        <canvas id="heroCanvas"></canvas>
+      <div class="hero-glow"></div>
     </div>
-    <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content">
-        <span class="eyebrow">liquititty · SOLANA</span>
-        <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="Liquititty Logo" style="width: 130px; animation: float 3.5s ease-in-out infinite;">
-        <h1>Join the Meme Revolution!</h1>
-        <p>Unleashing chaos on the Solana blockchain. <br> This is not financial advice, but it is.</p>
-        <div class="cta-row">
-            <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
-            <a href="#community" class="btn-ghost">Join Community</a>
-        </div>
-        <div class="scroll-cue animate-on-scroll">👇</div>
+      <span class="eyebrow">liquititty · SOLANA</span>
+      <img src="https://desperate-moccasin-minnow.myfilebase.com/ipfs/QmevtbDnmWnRcQ6eELNMavMVxtg1WU2hGBaTtT4Mm61oi1" alt="liquititty Logo" style="width: 130px; animation: float 3.5s ease-in-out infinite;">
+      <h1 style="font-size:clamp(56px,9vw,96px);font-weight:900;background:linear-gradient(90deg,var(--primary),var(--secondary));-webkit-background-clip:text;color:transparent;">👀 Seriously 🤯??</h1>
+      <p style="font-size:clamp(18px,2.5vw,24px);max-width:600px;opacity:0.75;margin:24px auto 36px;">This is not financial advice but it is. Probably nothing. Join the chaos, ser!</p>
+      <div class="cta-row">
+        <a href="https://jup.ag/swap/SOL-9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump" target="_blank" rel="noopener" class="btn-primary">Buy Now</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue">
+        <i class="fas fa-angle-double-down" style="font-size:24px;"></i>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="about" class="animate-on-scroll">
-    <div class="container">
-        <div style="position:relative;z-index:1">
-            <span class="eyebrow">ABOUT $liquititty</span>
-            <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">Unleashing Chaos on Solana</h2>
-            <p>liquititty, the Solana token that defies logic and embraces the meme culture. We’re here to take over the blockchain, ser. GM. Probably nothing, but also everything.</p>
-            <blockquote style="border-left: 4px solid var(--primary); background: rgba(100, 171, 206, 0.06); padding: 10px 20px; font-style: italic;">
-                "This is not financial advice, but it is."
-            </blockquote>
-        </div>
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-content animate-on-scroll">
+      <span class="eyebrow">ABOUT $liquititty</span>
+      <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">Join the Revolution</h2>
+      <p>A Solana token like no other. Embrace the meme lord chaos and ride the wave, ser. This is the token where dreams are meme'd into reality. Don't just take our word for it, see for yourself!</p>
+      <div class="pull-quote">"NGMI if you miss this opportunity!"</div>
     </div>
-</section>
+  </section>
 
-<section id="tokenomics" class="animate-on-scroll" style="background:var(--surface);padding:var(--section-pad) 0;">
-    <div class="container">
-        <div class="stat-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;">
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;">
-                <i class="fas fa-globe" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Total Supply</h3>
-                <p data-count="999893051237231" style="font-size:var(--text-xl);font-weight:900;">999,893,051,237,231</p>
-            </div>
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;">
-                <i class="fas fa-bullhorn" style="font-size:36px;color:var(--primary);"></i>
-                <h3>0% Tax</h3>
-                <p style="font-size:var(--text-xl);font-weight:900;">0% Tax</p>
-            </div>
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;display:flex;flex-direction:column;align-items:center;text-align:center;">
-                <i class="fas fa-users" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Community Owned</h3>
-                <p style="font-size:var(--text-xl);font-weight:900;">Community Power</p>
-            </div>
-        </div>
+  <!-- TOKENOMICS SECTION -->
+  <section id="tokenomics">
+    <div class="tokenomics-grid animate-on-scroll">
+      <div class="tokenomics-card">
+        <i class="fas fa-cubes" style="font-size: 30px; margin-bottom: 10px; color: var(--primary);"></i>
+        <h3>Total Supply</h3>
+        <p>999,893,051,237,231</p>
+      </div>
+      <div class="tokenomics-card">
+        <i class="fas fa-percent" style="font-size: 30px; margin-bottom: 10px; color: var(--primary);"></i>
+        <h3>0% Tax</h3>
+        <p>No taxes, just memes.</p>
+      </div>
+      <div class="tokenomics-card">
+        <i class="fas fa-users" style="font-size: 30px; margin-bottom: 10px; color: var(--primary);"></i>
+        <h3>Community Owned</h3>
+        <p>A token for the people, by the memes.</p>
+      </div>
+      <div class="tokenomics-card">
+        <i class="fas fa-unlock" style="font-size: 30px; margin-bottom: 10px; color: var(--primary);"></i>
+        <h3>Renounced</h3>
+        <p>Safety first, memes second.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="how-to-buy" class="animate-on-scroll">
-    <div class="container">
-        <div class="step-cards" style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;flex:1;text-align:center;position:relative;z-index:1;">
-                <div style="position:absolute;top:-20px;left:-20px;font-size:80px;color:rgba(100,171,206,0.05);">1</div>
-                <i class="fas fa-coins" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Get SOL</h3>
-                <p>Buy SOL on Coinbase, Binance, or Kraken.</p>
-            </div>
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;flex:1;text-align:center;position:relative;z-index:1;">
-                <div style="position:absolute;top:-20px;left:-20px;font-size:80px;color:rgba(100,171,206,0.05);">2</div>
-                <i class="fas fa-wallet" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Create Wallet</h3>
-                <p>Install <a href="https://phantom.app" target="_blank" style="color:var(--primary);">Phantom</a> or <a href="https://solflare.com" target="_blank" style="color:var(--primary);">Solflare</a>.</p>
-            </div>
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;flex:1;text-align:center;position:relative;z-index:1;">
-                <div style="position:absolute;top:-20px;left:-20px;font-size:80px;color:rgba(100,171,206,0.05);">3</div>
-                <i class="fas fa-arrows-rotate" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Open Jupiter</h3>
-                <p>Go to <a href="https://jup.ag" target="_blank" style="color:var(--primary);">jup.ag</a> and connect your wallet.</p>
-            </div>
-            <div class="glass-card" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:24px;flex:1;text-align:center;position:relative;z-index:1;">
-                <div style="position:absolute;top:-20px;left:-20px;font-size:80px;color:rgba(100,171,206,0.05);">4</div>
-                <i class="fas fa-fire" style="font-size:36px;color:var(--primary);"></i>
-                <h3>Swap for $liquititty</h3>
-                <p>Paste the contract address and swap SOL for $liquititty.</p>
-            </div>
-        </div>
+  <!-- HOW TO BUY SECTION -->
+  <section id="how-to-buy">
+    <div class="steps animate-on-scroll">
+      <div class="step-card">
+        <i class="fas fa-coins" style="font-size: 30px; color: var(--primary);"></i>
+        <h3>Get SOL</h3>
+        <p>Buy SOL on Coinbase, Binance, or Kraken.</p>
+      </div>
+      <div class="step-card">
+        <i class="fas fa-wallet" style="font-size: 30px; color: var(--primary);"></i>
+        <h3>Create Wallet</h3>
+        <p>Install <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a>.</p>
+      </div>
+      <div class="step-card">
+        <i class="fas fa-arrows-rotate" style="font-size: 30px; color: var(--primary);"></i>
+        <h3>Open Jupiter</h3>
+        <p>Go to <a href="https://jup.ag" target="_blank">jup.ag</a> and connect your wallet.</p>
+      </div>
+      <div class="step-card">
+        <i class="fas fa-fire" style="font-size: 30px; color: var(--primary);"></i>
+        <h3>Swap for $liquititty</h3>
+        <p>Paste the contract address and swap SOL for $liquititty.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="community" class="animate-on-scroll" style="text-align:center;">
-    <div class="container">
-        <span class="eyebrow">JOIN THE CHAOS</span>
-        <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">Connect with Us!</h2>
-        <div style="display:flex;justify-content:center;gap:20px;margin-top:40px;">
-            <a href="https://x.com/i/communities/2033361508042780851" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="https://t.me/WolfyCoinPortal" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;"><i class="fab fa-telegram"></i> Telegram</a>
-            <a href="https://liquititty.fun" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;"><i class="fas fa-globe"></i> Website</a>
-        </div>
+  <!-- COMMUNITY SECTION -->
+  <section id="community">
+    <div class="community-content animate-on-scroll">
+      <span class="eyebrow">JOIN THE CHAOS</span>
+      <h2 style="font-size:clamp(40px,6vw,64px);font-weight:800;">Community of Degens</h2>
+      <img src="https://raw.githubusercontent.com/ApeTradex/solaunchSite/main/assets/liquititty/1782586003166-img-1.jpg" alt="community" class="community-img">
+      <div class="social-btns">
+        <a href="https://x.com/i/communities/2033361508042780851" target="_blank" rel="noopener">Twitter/X</a>
+        <a href="https://t.me/WolfyCoinPortal" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://liquititty.fun" target="_blank" rel="noopener">Website</a>
+      </div>
     </div>
-</section>
+  </section>
 
-<section style="text-align:center;padding:var(--section-pad) 0;">
-    <div class="container" style="max-width:700px;margin:0 auto;">
-        <div class="glass-card" style="position:relative;background:rgba(255,255,255,0.04);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.08);box-shadow:inset 0 1px 0 0 rgba(255,255,255,0.06),0 4px 6px rgba(0,0,0,0.35),0 24px 48px rgba(0,0,0,0.25);padding:20px;text-align:left;">
-            <div style="margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:0.18em;color:var(--primary);">CONTRACT ADDRESS</div>
-            <div style="background:rgba(255,255,255,0.06);padding:16px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-family:monospace;font-size:clamp(10px,1.5vw,14px);word-break:break-all;color:#fff;">9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump</span>
-                <button id="copyCA" style="background:none;border:none;cursor:pointer;color:var(--primary);"><i class="fas fa-copy"></i></button>
-            </div>
-            <div style="margin-top:8px;padding:4px 12px;background:rgba(255,204,0,0.1);color:rgba(255,204,0,0.8);border-radius:20px;display:inline-block;">
-                ⚠ Always verify the CA before swapping
-            </div>
-        </div>
+  <!-- CONTRACT ADDRESS -->
+  <section>
+    <div class="contract-card animate-on-scroll">
+      <h3 style="text-transform:uppercase;font-size:11px;letter-spacing:0.18em;color:var(--primary);">CONTRACT ADDRESS</h3>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:10px 20px;border-radius:8px;width:100%;max-width:600px;word-break:break-all;margin-top:10px;">
+        9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump
+      </div>
+      <button id="copyButton" style="margin-top:20px;">Copy Address</button>
+      <div style="margin-top:20px;font-size:14px;background:rgba(255,165,0,0.1);color:orange;padding:5px 10px;border-radius:50px;">⚠ Always verify the CA before swapping</div>
     </div>
-</section>
+  </section>
 
-<footer style="text-align:center;padding:24px;font-size:13px;opacity:0.6">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#64abce;font-weight:bold;text-decoration:none">Solauncher</a></footer>
+  <!-- FOOTER -->
+  <footer>
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener noreferrer" style="color:#64abce;font-weight:bold;text-decoration:none">Solauncher</a>
+  </footer>
 
-<script defer>
+  <script defer>
     const hamburger = document.getElementById('hamburger');
     const navOverlay = document.getElementById('navOverlay');
     const navClose = document.getElementById('navClose');
     if (hamburger && navOverlay && navClose) {
-        hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
-        navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
-        navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
+      hamburger.addEventListener('click', () => navOverlay.classList.add('open'));
+      navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+      navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navOverlay.classList.remove('open')));
     }
     window.addEventListener('scroll', () => {
-        const nb = document.getElementById('navbar');
-        if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+      const nb = document.getElementById('navbar');
+      if (nb) nb.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    const copyBtn = document.getElementById('copyCA');
-    if (copyBtn) {
-        copyBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText("9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump").then(() => {
-                copyBtn.innerHTML = "<i class='fas fa-check' style='color: #28a745;'> ✓ Copied!</i>";
-                setTimeout(() => copyBtn.innerHTML = "<i class='fas fa-copy'></i>", 2000);
-            });
+    const copyButton = document.getElementById('copyButton');
+    if (copyButton) {
+      copyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText('9Cn7or8TVicZYjSUEmgRk4A9XdXFzkBS8vn1ebt6pump').then(() => {
+          copyButton.textContent = '✓ Copied!';
+          setTimeout(() => copyButton.textContent = 'Copy Address', 2000);
         });
+      });
     }
 
-    const animateOnScroll = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    animateOnScroll.forEach(el => observer.observe(el));
-
-    function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-    document.querySelectorAll('[data-count]').forEach(el => {
-        el.dataset.count && animateValue(el, 0, parseInt(el.dataset.count), 1500);
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
     });
-</script>
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
