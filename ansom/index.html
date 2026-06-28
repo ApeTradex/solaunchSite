@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ansom ($ANSOM) — Official Site</title>
   <meta property="og:title" content="ansom">
   <meta property="og:image" content="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #f59a19;
@@ -17,50 +17,110 @@
       --secondary: #3492ea;
       --secondary-rgb: 52, 146, 234;
       --bg: #090909;
-      --surface: rgba(255,255,255,0.03);
-      --border: rgba(255,255,255,0.07);
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.07);
       --text: #f0f0f0;
-      --muted: rgba(240,240,240,0.5);
+      --muted: rgba(240, 240, 240, 0.5);
     }
     html { scroll-behavior: smooth; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; padding-top: 70px; }
-    section { position: relative; overflow: hidden; padding: clamp(120px,16vw,200px) 0; }
-    .hero { display: flex; align-items: center; justify-content: center; min-height: 100svh; text-align: center; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px,8vw,80px) clamp(24px,5vw,80px); }
-    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(110px,18vw,220px); line-height: 1.1; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; overflow: hidden; }
-    .hero img { width: 120px; animation: spin 10s linear infinite; }
-    .hero .tagline { margin: 20px 0; font-size: 18px; line-height: 1.5; display: inline-block; animation: marquee 10s linear infinite; }
-    .hero .cta-buttons { margin-top: 40px; display: flex; gap: 20px; justify-content: center; }
-    .hero .cta-buttons a { text-decoration: none; color: inherit; }
-    .scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 1; font-size: 20px; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-    .btn-primary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb),0.4), 0 0 0 1px rgba(var(--primary-rgb),0.15); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
-    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb),0.55), 0 0 0 6px rgba(var(--primary-rgb),0.12); }
-    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
-    .btn-ghost { display: inline-flex; align-items: center; text-decoration: none; background: transparent; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255,255,255,0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
-    .btn-ghost:hover { border-color: rgba(var(--primary-rgb),0.55); background: rgba(var(--primary-rgb),0.08); color: var(--primary); }
-    .nav-overlay, .nav-overlay.open { transition: opacity 0.25s ease; }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    .reveal[data-d="1"] { transition-delay: 0.1s; }
-    .reveal[data-d="2"] { transition-delay: 0.2s; }
-    .reveal[data-d="3"] { transition-delay: 0.3s; }
-    .nav-icon { color: rgba(255,255,255,0.5); font-size: 17px; }
-    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: rgba(255,255,255,0.35); }
-    @media(max-width:768px) {
-      body { padding-top: 70px; }
-      section { padding: clamp(72px,12vw,110px) 0!important; }
-      h1 { font-size: clamp(40px,11vw,64px)!important; line-height: 1.1!important; }
-      [class*="hero-content"] { padding: 36px 20px!important; text-align: center!important; align-items: center!important; }
+    body { padding-top: 70px; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+    .rv { transition: opacity 0.6s ease, transform 0.6s ease; }
+    .rv.h { opacity: 0; transform: translateY(22px); }
+    .rv.in { opacity: 1 !important; transform: none !important; }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      background: rgba(5, 5, 8, 0.9);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: box-shadow 0.3s ease;
     }
-    @media(max-width:480px) {
-      h1 { font-size: clamp(34px,12vw,50px)!important; }
-      .nav-brand span { display: none; }
+    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 32px rgba(0, 0, 0, 0.55); }
+    .nav-inner { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; gap: 20px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap; }
+    .nav-center { display: flex; align-items: center; gap: 28px; flex: 1; justify-content: center; }
+    .nav-center a { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.58); text-decoration: none; white-space: nowrap; transition: color 0.2s ease; }
+    .nav-center a:hover, .nav-center a:focus { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-icon { color: rgba(255, 255, 255, 0.5); font-size: 17px; text-decoration: none; line-height: 1; transition: color 0.2s ease; }
+    .nav-icon:hover { color: #fff; }
+    .nav-buy-btn { display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease, transform 0.2s ease; }
+    .nav-buy-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: 1px solid rgba(255, 255, 255, 0.18); color: #fff; font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1; transition: background 0.2s, border-color 0.2s; }
+    .hamburger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.32); }
+    .nav-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg, #06060a); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; -webkit-transition: opacity 0.25s ease; }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .nav-overlay>a { font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.82); text-decoration: none; transition: color 0.18s ease; }
+    .nav-overlay>a:hover { color: var(--primary); }
+    .nav-overlay-close { position: absolute; top: 18px; right: 20px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.65); font-size: 19px; cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1; transition: background 0.2s, color 0.2s; }
+    .nav-overlay-close:hover { background: rgba(255, 255, 255, 0.13); color: #fff; }
+    .nav-overlay-divider { width: 44px; height: 1px; background: rgba(255, 255, 255, 0.12); }
+    .nav-overlay-buy { padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap; }
+    .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; justify-content: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px,8vw,80px) clamp(24px,5vw,80px); text-align: center; }
+    .hero-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(110px, 18vw, 220px); line-height: 1.1; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-content .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); }
+    .hero-content .tagline { font-size: 18px; margin: 20px 0; animation: marquee 10s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(var(--primary-rgb), 0.15); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease; }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12); }
+    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+    .btn-ghost { display: inline-flex; align-items: center; text-decoration: none; background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255, 255, 255, 0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
+    .btn-ghost:hover { border-color: rgba(var(--primary-rgb), 0.55); background: rgba(var(--primary-rgb), 0.08); color: var(--primary); }
+    #about { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
+    #about::before { content: ''; position: absolute; width: 8px; top: 0; bottom: 0; left: 0; background: var(--primary); }
+    #about .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 24px; }
+    #about .about-block { padding: 24px; border-left: 4px solid; }
+    #about .about-block:nth-child(odd) { text-align: right; }
+    #about .about-block:nth-child(even) { text-align: left; }
+    #tokenomics { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
+    #tokenomics::before { content: ''; position: absolute; width: 8px; top: 0; bottom: 0; left: 0; background: var(--secondary); }
+    #tokenomics .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    #tokenomics .stat-card { padding: 24px; border: 3px solid; border-radius: 8px; transition: border-color 0.25s ease; }
+    #tokenomics .stat-card:nth-child(1) { border-color: var(--primary); }
+    #tokenomics .stat-card:nth-child(2) { border-color: var(--secondary); }
+    #tokenomics .stat-card:nth-child(3) { border-color: #ff2d55; }
+    #how-to-buy { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
+    #how-to-buy::before { content: ''; position: absolute; width: 8px; top: 0; bottom: 0; left: 0; background: #ffe600; }
+    #how-to-buy .step { position: relative; padding: 40px; border-left: 4px solid #00e5ff; }
+    #how-to-buy .step::before { content: attr(data-step); position: absolute; top: 0; left: 0; font-family: 'Bebas Neue', sans-serif; font-size: 80px; opacity: 0.08; }
+    #community { position: relative; padding: clamp(120px, 16vw, 200px) 0; text-align: center; }
+    #community::before { content: ''; position: absolute; width: 8px; top: 0; bottom: 0; left: 0; background: #00e5ff; }
+    #community .btn-social { margin: 0 10px; padding: 12px 20px; border-radius: 50px; font-size: 16px; font-weight: bold; color: #fff; text-decoration: none; transition: transform 0.2s ease; }
+    #community .btn-social:hover { transform: rotate(5deg); }
+    #ca { padding: 48px; max-width: 680px; margin: 0 auto; text-align: center; backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 0 80px rgba(var(--primary-rgb), 0.08), 0 24px 48px rgba(0, 0, 0, 0.4); border-radius: 16px; background: var(--surface); }
+    #ca .label { font-size: 10px; letter-spacing: 0.22em; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }
+    #ca .address { font-family: monospace; font-size: clamp(10px, 1.4vw, 13px); word-break: break-all; }
+    #ca .copy-btn { cursor: pointer; color: var(--primary); }
+    #ca .warning { background: #ffd700; color: #000; padding: 5px 10px; border-radius: 50px; display: inline-block; margin-top: 20px; font-size: 12px; }
+    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
+    footer a { color: #f59a19; font-weight: 700; text-decoration: none; }
+    @media(max-width:768px){
+      body{padding-top:70px!important}
+      section{padding:clamp(64px,12vw,100px) 0!important}
+      h1{font-size:clamp(38px,10vw,62px)!important;line-height:1.1!important}
+      .hero-content{padding:40px 20px!important}
+      [class*="two-col"],[class*="split"],[class*="grid-2"],[class*="flex-row"],[class*="about-grid"]{flex-direction:column!important;grid-template-columns:1fr!important}
+      .cta-row,.cta-buttons,.hero-actions{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+      .cta-row a,.cta-buttons a,.hero-actions a{width:100%!important;text-align:center!important;justify-content:center!important;display:flex!important}
+      [class*="step-cards"],[class*="steps-row"]{flex-direction:column!important}
+      .stat-grid,.stats-grid{grid-template-columns:1fr 1fr!important}
+      [class*="tokenomics-inner"]{flex-direction:column!important;align-items:stretch!important}
+    }
+    @media(max-width:480px){
+      h1{font-size:clamp(32px,11vw,48px)!important}
+      .stat-grid,.stats-grid{grid-template-columns:1fr!important}
+      .nav-brand span{display:none!important}
     }
   </style>
 </head>
@@ -68,124 +128,119 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-brand">
-        <img src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+        <img src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0" onerror="this.style.display='none'">
         <span>ansom</span>
       </a>
       <div class="nav-center">
-        <a href="#about">About</a>
-        <a href="#tokenomics">Tokenomics</a>
-        <a href="#how-to-buy">How to Buy</a>
-        <a href="#community">Community</a>
+        <a href="#about">THE PROGRAM</a>
+        <a href="#tokenomics">CONCESSION STAND</a>
+        <a href="#how-to-buy">INSTRUCTIONS</a>
+        <a href="#community">THE AUDIENCE</a>
       </div>
       <div class="nav-right">
-        <a href="https://x.com/ANSOMONSOL_" target="_blank" class="nav-icon"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://t.me/ansomcoinportal" target="_blank" class="nav-icon"><i class="fa-brands fa-telegram"></i></a>
-        <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;border-radius:100px">Buy $ANSOM</a>
+        <a href="https://x.com/ANSOMONSOL_" class="nav-icon" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/ansomcoinportal" class="nav-icon" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
+        <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="nav-buy-btn">Buy $ANSOM</a>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </nav>
   <div class="nav-overlay" id="navOverlay">
     <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
-    <a href="#about">About</a>
-    <a href="#tokenomics">Tokenomics</a>
-    <a href="#how-to-buy">How to Buy</a>
-    <a href="#community">Community</a>
-    <div style="height:1px;width:48px;background:rgba(255,255,255,0.12)"></div>
-    <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" style="padding:14px 40px;border-radius:100px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:16px;text-decoration:none">Buy $ANSOM</a>
+    <a href="#about">THE PROGRAM</a>
+    <a href="#tokenomics">CONCESSION STAND</a>
+    <a href="#how-to-buy">INSTRUCTIONS</a>
+    <a href="#community">THE AUDIENCE</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $ANSOM</a>
   </div>
-  
-  <section id="hero" class="hero reveal" data-d="1">
+
+  <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" alt="Logo" style="animation: spin 10s linear infinite;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:800px;color:rgba(255,255,255,0.03);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">CIRCUS</div>
+      <div style="font-family:'Bebas Neue';font-size:800px;opacity:0.03;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);">CIRCUS</div>
     </div>
     <div class="hero-content">
-      <div class="eyebrow" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);">$ANSOM · SOLANA</div>
-      <h1>Welcome to the Carnival of Chaos</h1>
-      <div class="tagline">Experience the Spectacle<br>Join the Performance</div>
-      <div class="cta-buttons">
-        <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="btn-primary">Buy $ANSOM</a>
-        <a href="#community" class="btn-ghost">Join Community</a>
+      <div class="eyebrow">$ANSOM · SOLANA</div>
+      <h1>Roll Up, Roll Up!</h1>
+      <p class="tagline">Join the Spectacle of the Century!<br>Absolute Carnival Mayhem Awaits!</p>
+      <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="btn-primary">Buy $ANSOM</a>
+      <a href="#community" class="btn-ghost">Join Community</a>
+    </div>
+    <img src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" alt="" style="width:80px;height:80px;position:absolute;top:20px;left:20px;animation:spin 10s linear infinite;" onerror="this.style.display='none'">
+  </section>
+
+  <section id="about" class="rv" data-d="1">
+    <div class="about-grid">
+      <div class="about-block">
+        <p>Welcome to the program where everything is a spectacle and nothing makes sense. Join us in the organized chaos.</p>
+        <p class="pull-quote">"The community is both audience and performer."</p>
       </div>
-      <div class="scroll-cue"><i class="fa-solid fa-chevron-down"></i></div>
+      <div class="about-block">
+        <p>Immerse yourself in the carnival mayhem that is the ansom experience. Expect the unexpected at every turn.</p>
+      </div>
+      <div class="about-block">
+        <p>Participate in the performance of a lifetime, where you are the star of your own show. Step right up!</p>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="reveal" data-d="2">
-    <div style="border-left:8px solid var(--primary);padding-left:20px;">
-      <h2 style="font-family:'Bebas Neue', sans-serif;font-size:52px;line-height:1.1;">THE PROGRAM</h2>
-      <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:20px;">
-        <div style="text-align:left;">Ansom is the circus without boundaries. A spectacle in the world of digital currency. It's not just a token—it's a performance.</div>
-        <div style="text-align:right;">Enter the show with ansom, where community is both the audience and the performer. A true carnival experience.</div>
-        <div style="text-align:left;">Step into the chaos, where ansom is your ticket to the greatest show on Earth. Experience the thrill of the unexpected.</div>
+  <section id="tokenomics" class="rv" data-d="2">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <h3>Total Supply</h3>
+        <p data-count="999997241654569"></p>
       </div>
-    </div>
-  </section>
-  
-  <section id="tokenomics" class="reveal" data-d="3">
-    <div style="border-left:8px solid var(--secondary);padding-left:20px;">
-      <h2 style="font-family:'Bebas Neue', sans-serif;font-size:52px;line-height:1.1;">CONCESSION STAND</h2>
-      <div class="stat-grid" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:30px;">
-        <div style="background:var(--surface);padding:20px;border:2px solid var(--primary);border-radius:8px;">
-          <strong>Total Supply</strong>: <span data-count="999997241654569">0</span>
-        </div>
-        <div style="background:var(--surface);padding:20px;border:2px solid #ff2d55;border-radius:8px;">
-          <strong>0% Tax</strong>
-        </div>
-        <div style="background:var(--surface);padding:20px;border:2px solid #ffe600;border-radius:8px;">
-          <strong>Community Owned</strong>
-        </div>
+      <div class="stat-card">
+        <h3>Community Owned</h3>
+        <p>100%</p>
       </div>
-    </div>
-  </section>
-  
-  <section id="how-to-buy" class="reveal" data-d="1">
-    <div style="border-left:8px solid #00e5ff;padding-left:20px;">
-      <h2 style="font-family:'Bebas Neue', sans-serif;font-size:52px;line-height:1.1;">INSTRUCTIONS</h2>
-      <div class="step-grid" style="display:grid;gap:30px;">
-        <div class="step" style="position:relative;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(255,255,255,0.08);position:absolute;top:0;left:10px;">1.</div>
-          <p>Get SOL — Buy on Coinbase, Binance, or Kraken</p>
-        </div>
-        <div class="step" style="position:relative;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(255,255,255,0.08);position:absolute;top:0;left:10px;">2.</div>
-          <p>Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
-        </div>
-        <div class="step" style="position:relative;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(255,255,255,0.08);position:absolute;top:0;left:10px;">3.</div>
-          <p>Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
-        </div>
-        <div class="step" style="position:relative;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(255,255,255,0.08);position:absolute;top:0;left:10px;">4.</div>
-          <p>Swap for $ANSOM — paste contract, swap SOL</p>
-        </div>
+      <div class="stat-card">
+        <h3>No Tax</h3>
+        <p>0%</p>
       </div>
-    </div>
-  </section>
-  
-  <section id="community" class="reveal" data-d="2">
-    <div style="border-left:8px solid #ffe600;padding-left:20px;">
-      <h2 style="font-family:'Bebas Neue', sans-serif;font-size:52px;line-height:1.1;">THE AUDIENCE</h2>
-      <div class="social-buttons" style="display:flex;gap:20px;justify-content:center;">
-        <a href="https://x.com/ANSOMONSOL_" target="_blank" class="btn-primary" style="background:#1DA1F2;padding:10px 20px;border-radius:6px;transform:rotate(0deg);transition:transform 0.3s;"><i class="fa-brands fa-twitter"></i> Twitter</a>
-        <a href="https://t.me/ansomcoinportal" target="_blank" class="btn-primary" style="background:#0088cc;padding:10px 20px;border-radius:6px;transform:rotate(0deg);transition:transform 0.3s;"><i class="fa-brands fa-telegram"></i> Telegram</a>
-      </div>
-    </div>
-  </section>
-  
-  <section id="ca" class="reveal" data-d="3">
-    <div style="max-width:680px;margin:0 auto;padding:40px;background:var(--surface);backdrop-filter:blur(20px);border-radius:12px;text-align:center;box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18),0 0 80px rgba(var(--primary-rgb),0.08),0 24px 48px rgba(0,0,0,0.4);">
-      <div style="font-size:10px;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;">CONTRACT ADDRESS</div>
-      <div style="font-family:monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:6px;display:inline-block;">8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump</div>
-      <button id="copyBtn" style="margin-top:10px;padding:8px 16px;background:var(--primary);border:none;border-radius:6px;color:#fff;font-size:14px;cursor:pointer;">Copy</button>
-      <div style="margin-top:16px;background:#ffe600;color:#000;padding:4px 12px;border-radius:20px;font-size:12px;">⚠ Always verify the CA before swapping</div>
     </div>
   </section>
 
-  <footer>Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#f59a19;font-weight:700;text-decoration:none">Solauncher</a></footer>
+  <section id="how-to-buy" class="rv" data-d="3">
+    <div class="step" data-step="1">
+      <h2>Get SOL</h2>
+      <p>Buy on Coinbase, Binance, or Kraken</p>
+    </div>
+    <div class="step" data-step="2">
+      <h2>Create Wallet</h2>
+      <p><a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+    </div>
+    <div class="step" data-step="3">
+      <h2>Open Jupiter</h2>
+      <p><a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+    </div>
+    <div class="step" data-step="4">
+      <h2>Swap for $ANSOM</h2>
+      <p>Paste contract, swap SOL</p>
+    </div>
+  </section>
+
+  <section id="community" class="rv" data-d="1">
+    <h2>Join THE AUDIENCE</h2>
+    <a href="https://x.com/ANSOMONSOL_" class="btn-social" style="background-color: var(--primary);">Twitter</a>
+    <a href="https://t.me/ansomcoinportal" class="btn-social" style="background-color: var(--secondary);">Telegram</a>
+  </section>
+
+  <section id="ca" class="rv">
+    <div class="label">CONTRACT ADDRESS</div>
+    <div class="address">8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump</div>
+    <div id="copyBtn" class="copy-btn">Copy Address</div>
+    <div class="warning">⚠ Always verify the CA before swapping</div>
+  </section>
+
+  <footer>
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener">Solauncher</a>
+  </footer>
 
   <script defer>
+    // ① NAV — paste this block EXACTLY, IDs must match HTML: hamburger / navOverlay / navClose
     (function(){
       var h=document.getElementById('hamburger');
       var o=document.getElementById('navOverlay');
@@ -201,18 +256,36 @@
       });
     })();
 
-    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1});
-    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    // ② SCROLL REVEAL — safe pattern that NEVER causes blank pages
+    // CSS must include: .rv{transition:opacity 0.6s ease,transform 0.6s ease} .rv.h{opacity:0;transform:translateY(22px)} .rv.in{opacity:1!important;transform:none!important}
+    (function(){
+      var els=document.querySelectorAll('.rv');
+      if(!els.length)return;
+      if('IntersectionObserver' in window){
+        els.forEach(function(el){el.classList.add('h')});
+        var ob=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){e.target.classList.remove('h');e.target.classList.add('in');ob.unobserve(e.target)}
+          });
+        },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+        els.forEach(function(el){ob.observe(el)});
+      }else{
+        els.forEach(function(el){el.classList.add('in')});
+      }
+    })();
 
-    document.querySelectorAll('[data-count]').forEach(el=>{
-      new IntersectionObserver(([e])=>{if(e.isIntersecting){
-        const t=+el.dataset.count,d=1400,s=performance.now();
-        const f=n=>n<.5?2*n*n:(1-(2-2*n)*n/2);
-        requestAnimationFrame(function tick(){const p=Math.min((performance.now()-s)/d,1);el.textContent=Math.round(f(p)*t).toLocaleString();if(p<1)requestAnimationFrame(tick)});
-      }},{threshold:0.3}).observe(el)});
+    // ③ COUNTER — data-count="N" on stat number elements
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          var t=+el.dataset.count,d=1400,s=performance.now();
+          (function tick(){var p=Math.min((performance.now()-s)/d,1),e=p<.5?2*p*p:1-(Math.pow(-2*p+2,2)/2);el.textContent=Math.round(e*t).toLocaleString();if(p<1)requestAnimationFrame(tick)})();
+        }
+      },{threshold:0.4}).observe(el);
+    });
 
-    const cb=document.getElementById('copyBtn');
-    if(cb)cb.onclick=function(){navigator.clipboard.writeText('8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump').then(()=>{const o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(()=>{cb.innerHTML=o;cb.style.color=''},2000)});
+    // ④ CA COPY
+    (function(){var cb=document.getElementById('copyBtn');if(cb)cb.onclick=function(){navigator.clipboard.writeText('8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump').then(function(){var o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)})};})();
   </script>
 </body>
 </html>
