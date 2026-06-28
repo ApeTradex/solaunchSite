@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spurdo ($spurdo) — Official Site</title>
+    <meta property="og:title" content="Spurdo">
+    <meta property="og:image" content="https://ipfs.io/ipfs/QmbFhigYnZsxqBEZ155o4KajYz2shGPXoodzyvrLJ8EHQ5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#9945FF; 
+            --primary-rgb:153, 69, 255;
+            --secondary:#14F195; 
+            --secondary-rgb:20, 241, 149;
+            --bg:#0a0008;
+            --surface:rgba(255,255,255,0.03);
+            --border:rgba(255,255,255,0.07);
+            --text:#f0f0f0; 
+            --muted:rgba(240,240,240,0.5);
+        }
+        html { scroll-behavior: smooth; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+        body { padding-top: 70px; background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; }
+
+        /* Navbar */
+        #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 70px; backdrop-filter: blur(20px) saturate(180%); background: rgba(5, 5, 8, 0.88); border-bottom: 1px solid rgba(255, 255, 255, 0.06); transition: box-shadow 0.3s ease; }
+        #navbar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07), 0 4px 40px rgba(0, 0, 0, 0.6); }
+        .nav-inner { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .nav-center { display: flex; align-items: center; gap: 28px; flex: 1; justify-content: center; }
+        .nav-center a { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.6); text-decoration: none; white-space: nowrap; transition: color 0.2s ease; }
+        .nav-center a:hover { color: #fff; }
+        .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .nav-icon { color: rgba(255, 255, 255, 0.5); font-size: 17px; text-decoration: none; transition: color 0.2s; }
+        .nav-icon:hover { color: #fff; }
+        .hamburger { display: none!important; background: none; border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; font-size: 18px; cursor: pointer; padding: 7px 10px; border-radius: 8px; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+        .hamburger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); }
+        .nav-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+        .nav-overlay.open { opacity: 1; pointer-events:auto; }
+        .nav-overlay>a { font-size: 24px; font-weight: 700; color: rgba(255, 255, 255, 0.85); text-decoration: none; transition: color 0.2s; }
+        .nav-overlay>a:hover { color: var(--primary); }
+        .nav-overlay-close { position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.7); font-size: 20px; cursor: pointer; border-radius: 8px; padding: 7px 12px; transition: background 0.2s, color 0.2s; }
+        .nav-overlay-close:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+        @media (max-width: 768px) { .nav-center, .nav-right { display: none!important; } .hamburger { display: flex!important; } }
+
+        /* Hero */
+        .hero { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px); }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .hero-content { position: relative; z-index: 1; width: 100%; text-align: left; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(90px, 15vw, 180px); line-height: 1.1; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; overflow: hidden; white-space: nowrap; }
+        .hero p { font-size: 18px; line-height: 1.75; color: var(--muted); margin-top: 16px; font-family: 'Comic Sans MS', 'Comic Sans', cursive; }
+        .hero .btn-primary { margin-top: 36px; }
+        .hero .btn-ghost { margin-left: 16px; }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 100px;
+            padding: 15px 36px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 15px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(var(--primary-rgb), 0.15);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12); }
+        .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            border-radius: 100px;
+            padding: 14px 34px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            font-size: 15px;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+        .btn-ghost:hover { border-color: rgba(var(--primary-rgb), 0.55); background: rgba(var(--primary-rgb), 0.08); color: var(--primary); }
+
+        /* Section styles */
+        section { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
+        .container { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+        
+        /* Specific section styles */
+        /* Add specific styles per section such as THE LORE, CERTIFIED NUMBERS, INSTRUCTIONS ser, and community */
+        .the-lore { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .the-lore .quote { font-size: 50px; opacity: 0.2; font-family: 'Bebas Neue', sans-serif; }
+        .certified-numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .certified-numbers .stat { border: 3px solid var(--primary); padding: 20px; text-align: center; }
+        .certified-numbers .stat h2 { font-size: 80px; margin-bottom: 10px; }
+        .certified-numbers .stat p { font-size: 10px; text-transform: uppercase; }
+        .instructions-ser { display: flex; flex-direction: column; gap: 20px; }
+        .instructions-ser .step { position: relative; padding-left: 60px; }
+        .instructions-ser .step::before { content: attr(data-step); position: absolute; left: 0; top: 0; font-size: 120px; opacity: 0.08; }
+        .community { text-align: center; }
+        
+        /* Contract Address */
+        #ca { max-width: 680px; margin: 0 auto; background: var(--surface); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 0 80px rgba(var(--primary-rgb), 0.08), 0 24px 48px rgba(0, 0, 0, 0.4); padding: 40px; border-radius: 12px; text-align: center; }
+        #ca .label { font-size: 10px; letter-spacing: 0.22em; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }
+        #ca .address { font-family: 'Courier New', Courier, monospace; font-size: clamp(10px, 1.4vw, 13px); word-break: break-all; user-select: all; }
+        #ca .copy-btn { margin-top: 20px; cursor: pointer; color: var(--primary); }
+        #ca .warning { color: #ffcc00; font-size: 12px; margin-top: 10px; }
+        
+        /* Hero glitch animation */
+        @keyframes glitch {
+            0%, 100% { clip-path: inset(0% 0 0% 0); }
+            10%, 20% { clip-path: inset(0% 0 10% 0); }
+            30%, 40% { clip-path: inset(10% 0 0% 0); }
+            50% { clip-path: inset(0% 0 0% 0); }
+            60% { clip-path: inset(0% 0 10% 0); }
+            70%, 80% { clip-path: inset(10% 0 0% 0); }
+            90% { clip-path: inset(0% 0 0% 0); }
+        }
+        .hero h1 { animation: glitch 5s infinite; }
+
+        @media (max-width: 768px){
+            body { padding-top: 70px; }
+            section { padding: clamp(72px, 12vw, 110px) 0!important; }
+            h1 { font-size: clamp(40px, 11vw, 64px)!important; line-height: 1.1!important; }
+            [class*="grid"], [class*="two-col"], [class*="split"], [class*="flex-row"] { flex-direction: column!important; grid-template-columns: 1fr!important; }
+            [class*="hero-content"] { padding: 36px 20px!important; text-align: center!important; align-items: center!important; }
+            .cta-row, .cta-buttons { flex-direction: column; align-items: stretch; gap: 12px; }
+            .cta-row a, .cta-buttons a { width: 100%; text-align: center; justify-content: center; }
+            [class*="step"] { flex-direction: column!important; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px){
+            h1 { font-size: clamp(34px, 12vw, 50px)!important; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .nav-brand span { display: none; }
+            [class*="ca-addr"] { font-size: 11px!important; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <img src="https://ipfs.io/ipfs/QmbFhigYnZsxqBEZ155o4KajYz2shGPXoodzyvrLJ8EHQ5" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+                <span>Spurdo</span>
+            </a>
+            <div class="nav-center">
+                <a href="#about">THE LORE</a>
+                <a href="#tokenomics">CERTIFIED NUMBERS</a>
+                <a href="#how-to-buy">INSTRUCTIONS ser</a>
+                <a href="#community">Community</a>
+            </div>
+            <div class="nav-right">
+                <a href="https://jup.ag/swap/SOL-991L48va9rMiysu3fCpeg5p9bN4NLzhujojzmFtkgacE" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;border-radius:100px">Buy $spurdo</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#about">THE LORE</a>
+        <a href="#tokenomics">CERTIFIED NUMBERS</a>
+        <a href="#how-to-buy">INSTRUCTIONS ser</a>
+        <a href="#community">Community</a>
+        <div style="height:1px;width:48px;background:rgba(255,255,255,0.12)"></div>
+        <a href="https://jup.ag/swap/SOL-991L48va9rMiysu3fCpeg5p9bN4NLzhujojzmFtkgacE" target="_blank" rel="noopener" style="padding:14px 40px;border-radius:100px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:16px;text-decoration:none">Buy $spurdo</a>
+    </div>
+
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div style="position:absolute;top:15%;left:10%;width:200px;height:200px;background:rgba(var(--primary-rgb),0.07);"></div>
+            <div style="position:absolute;top:40%;left:50%;width:300px;height:300px;background:rgba(255,224,0,0.07);"></div>
+            <div style="position:absolute;top:70%;left:20%;width:180px;height:180px;background:rgba(var(--primary-rgb),0.07);"></div>
+            <div style="position:absolute;top:30%;left:80%;width:220px;height:220px;background:rgba(255,224,0,0.07);"></div>
+        </div>
+        <div class="hero-content">
+            <img src="https://ipfs.io/ipfs/QmbFhigYnZsxqBEZ155o4KajYz2shGPXoodzyvrLJ8EHQ5" width="64" height="64" alt="Logo" style="position:absolute;top:20px;left:20px;border-radius:50%;object-fit:cover;flex-shrink:0">
+            <div class="eyebrow" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);"> $spurdo · SOLANA </div>
+            <h1>Free fuggs erryone!</h1>
+            <p>Unleash the meme revolution with Spurdo. Probably nothing, but maybe everything. GM.</p>
+            <a href="https://jup.ag/swap/SOL-991L48va9rMiysu3fCpeg5p9bN4NLzhujojzmFtkgacE" target="_blank" rel="noopener" class="btn-primary">Buy $spurdo</a>
+            <a href="#community" class="btn-ghost">Join Community</a>
+        </div>
+    </section>
+
+    <section id="about" class="reveal">
+        <div class="container the-lore">
+            <div>
+                <h2>THE LORE</h2>
+                <p>Spurdo is not just a token, it's an ideology. Embrace the chaos and let the memes guide you.</p>
+                <p>With Spurdo, every transaction is a step closer to meme domination. GM to all the degens!</p>
+            </div>
+            <div class="quote">"ser, ngmi"</div>
+        </div>
+    </section>
+
+    <section id="tokenomics" class="reveal">
+        <div class="container certified-numbers">
+            <div class="stat">
+                <h2 data-count="999683733641716">999,683,733,641,716</h2>
+                <p>Total Supply</p>
+            </div>
+            <div class="stat">
+                <h2>0%</h2>
+                <p>Tax</p>
+            </div>
+            <div class="stat">
+                <h2>∞</h2>
+                <p>Community Owned</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-buy" class="reveal">
+        <div class="container instructions-ser">
+            <div class="step" data-step="1">
+                <h3>Get SOL</h3>
+                <p>Buy on Coinbase, Binance, or Kraken</p>
+            </div>
+            <div class="step" data-step="2">
+                <h3>Create Wallet</h3>
+                <p><a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+            </div>
+            <div class="step" data-step="3">
+                <h3>Open Jupiter</h3>
+                <p><a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+            </div>
+            <div class="step" data-step="4">
+                <h3>Swap for $spurdo</h3>
+                <p>Paste contract, swap SOL</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="community" class="reveal">
+        <div class="container community">
+            <h2>Community</h2>
+            <p>Coming Soon</p>
+            <div class="btn-ghost" style="pointer-events:none;opacity:0.6;">Social Links Coming Soon</div>
+        </div>
+    </section>
+
+    <section id="ca" class="reveal">
+        <div class="label">CONTRACT ADDRESS</div>
+        <div class="address">991L48va9rMiysu3fCpeg5p9bN4NLzhujojzmFtkgacE</div>
+        <div class="copy-btn" id="copyBtn">Copy Address</div>
+        <div class="warning">⚠ Always verify the CA before swapping</div>
+    </section>
+
+    <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">
+        Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#9945FF;font-weight:700;text-decoration:none">Solauncher</a>
+    </footer>
+
+    <script defer>
+        (function(){
+            var h=document.getElementById('hamburger');
+            var o=document.getElementById('navOverlay');
+            var c=document.getElementById('navClose');
+            if(h&&o&&c){
+                h.onclick=function(){o.classList.add('open')};
+                c.onclick=function(){o.classList.remove('open')};
+                o.querySelectorAll('a').forEach(function(a){a.onclick=function(){o.classList.remove('open')}});
+            }
+            window.addEventListener('scroll',function(){
+                var n=document.getElementById('navbar');
+                if(n)n.classList.toggle('scrolled',window.scrollY>60);
+            });
+        })();
+
+        const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1});
+        document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+        document.querySelectorAll('[data-count]').forEach(el=>{
+            new IntersectionObserver(([e])=>{if(e.isIntersecting){
+                const t=+el.dataset.count,d=1400,s=performance.now();
+                const f=n=>n<.5?2*n*n:(1-(2-2*n)*n/2);
+                requestAnimationFrame(function tick(){const p=Math.min((performance.now()-s)/d,1);el.textContent=Math.round(f(p)*t).toLocaleString();if(p<1)requestAnimationFrame(tick)});
+            }},{threshold:0.3}).observe(el)});
+
+        const cb=document.getElementById('copyBtn');
+        if(cb)cb.onclick=function(){navigator.clipboard.writeText('991L48va9rMiysu3fCpeg5p9bN4NLzhujojzmFtkgacE').then(()=>{const o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(()=>{cb.innerHTML=o;cb.style.color=''},2000)})};
+    </script>
+</body>
+</html>
