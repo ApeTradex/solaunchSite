@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ansom ($ANSOM) — Official Site</title>
+  <meta property="og:title" content="ansom">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #f59a19;
+      --primary-rgb: 245, 154, 25;
+      --secondary: #3492ea;
+      --secondary-rgb: 52, 146, 234;
+      --bg: #090909;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #f0f0f0;
+      --muted: rgba(240, 240, 240, 0.5);
+    }
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+    body { background-color: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; padding-top: 70px; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Bebas Neue', sans-serif; letter-spacing: -0.02em; }
+    nav, footer { background-color: var(--bg); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: 0.1s; }
+    .reveal[data-d="2"] { transition-delay: 0.2s; }
+    .reveal[data-d="3"] { transition-delay: 0.3s; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 100px;
+      padding: 15px 36px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 15px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(var(--primary-rgb), 0.15);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12);
+    }
+    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      border-radius: 100px;
+      padding: 14px 34px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 15px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(var(--primary-rgb), 0.55);
+      background: rgba(var(--primary-rgb), 0.08);
+      color: var(--primary);
+    }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 70px;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(5, 5, 8, 0.88);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07), 0 4px 40px rgba(0, 0, 0, 0.6); }
+    .nav-inner {
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-center a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+    .nav-center a:hover { color: #fff; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .nav-icon {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 17px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-icon:hover { color: #fff; }
+    .hamburger {
+      display: none!important;
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 7px 10px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .nav-overlay>a {
+      font-size: 24px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-overlay>a:hover { color: var(--primary); }
+    .nav-overlay-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 7px 12px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-overlay-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    @media(max-width:768px) {
+      .nav-center, .nav-right { display: none!important; }
+      .hamburger { display: flex!important; }
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: clamp(40px, 8vw, 80px) 0;
+      background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.3), rgba(var(--secondary-rgb), 0.3));
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background-image: url('https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom');
+      background-size: 800px;
+      background-position: center;
+      opacity: 0.03;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: min(1200px, 92vw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .hero-logo {
+      animation: spin 10s linear infinite;
+    }
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      animation: marquee 15s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @media(max-width:768px) {
+      body { padding-top: 70px; }
+      section { padding: clamp(72px, 12vw, 110px) 0!important; }
+      h1 { font-size: clamp(40px, 11vw, 64px)!important; line-height: 1.1!important; }
+      [class*="grid"], [class*="two-col"], [class*="split"], [class*="flex-row"] { flex-direction: column!important; grid-template-columns: 1fr!important; }
+      [class*="hero-content"] { padding: 36px 20px!important; text-align: center!important; align-items: center!important; }
+      .cta-row, .cta-buttons { flex-direction: column; align-items: stretch; gap: 12px; }
+      .cta-row a, .cta-buttons a { width: 100%; text-align: center; justify-content: center; }
+      [class*="step"] { flex-direction: column!important; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:480px) {
+      h1 { font-size: clamp(34px, 12vw, 50px)!important; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .nav-brand span { display: none; }
+      [class*="ca-addr"] { font-size: 11px!important; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+        <span>ansom</span>
+      </a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://x.com/ANSOMONSOL_" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-twitter"></i></a>
+        <a href="https://t.me/ansomcoinportal" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-telegram"></i></a>
+        <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="btn-primary" style="padding:10px 22px;font-size:13px;border-radius:100px">Buy $ANSOM</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div style="height:1px;width:48px;background:rgba(255,255,255,0.12)"></div>
+    <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" style="padding:14px 40px;border-radius:100px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;font-weight:700;font-size:16px;text-decoration:none">Buy $ANSOM</a>
+  </div>
+
+  <section id="hero" class="hero reveal">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <img class="hero-logo" src="https://ipfs.io/ipfs/bafkreieds64vtsyahfw2rsxup2lrjcevinl3ndl7rs3aexqq53mll5dfom" width="120" alt="">
+      <div class="marquee" style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--primary);letter-spacing:0.18em;">$ANSOM · SOLANA · $ANSOM · SOLANA</div>
+      <h1 style="font-size:clamp(110px,18vw,220px);background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;color:transparent;">CIRCUS MODE</h1>
+      <p style="font-size:18px;line-height:1.7;margin:20px 0;color:var(--muted);">The stage is set. Join the chaos that <br>defines the ansom carnival.</p>
+      <div>
+        <a href="https://jup.ag/swap/SOL-8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump" target="_blank" rel="noopener" class="btn-primary">Buy $ANSOM</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="reveal" style="padding:clamp(120px,16vw,200px) 0;border-left:8px solid var(--primary);">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 24px;">
+      <h2 style="font-size:12px;color:var(--primary);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:40px;">THE PROGRAM</h2>
+      <div style="column-count:2;column-gap:40px;">
+        <div style="break-inside:avoid;align-items:flex-start;display:flex;flex-direction:column;margin-bottom:40px;">
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Welcome to ansom, a world where chaos meets community. A decentralized carnival where everyone has a role.</p>
+        </div>
+        <div style="break-inside:avoid;align-items:flex-end;display:flex;flex-direction:column;margin-bottom:40px;">
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);text-align:right;">Each token is your ticket to participate in the grand spectacle. Perform, engage, and enjoy the ride.</p>
+        </div>
+        <div style="break-inside:avoid;margin-bottom:40px;">
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">An innovative approach to community-driven engagement. The circus is yours, the show never ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="reveal" style="padding:clamp(120px,16vw,200px) 0;border-left:8px solid var(--secondary);">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 24px;">
+      <h2 style="font-size:clamp(38px,5.5vw,62px);color:var(--text);margin-bottom:40px;">CONCESSION STAND</h2>
+      <div class="stat-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px;">
+        <div class="reveal" data-d="1" style="background:var(--surface);padding:30px;border:2px solid #ffe600;">
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Total Supply</h3>
+          <p data-count="999997241654569" style="font-size:24px;font-weight:700;line-height:1.2;"></p>
+        </div>
+        <div class="reveal" data-d="2" style="background:var(--surface);padding:30px;border:2px solid #ff2d55;">
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">0% Tax</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Join the carnival, no strings attached.</p>
+        </div>
+        <div class="reveal" data-d="3" style="background:var(--surface);padding:30px;border:2px solid #00e5ff;">
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Community Owned</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">The circus is for all, governed by none.</p>
+        </div>
+        <div class="reveal" data-d="4" style="background:var(--surface);padding:30px;border:2px solid var(--primary);">
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Renounced</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Our contracts are set in stone, immutable as the show.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy" class="reveal" style="padding:clamp(120px,16vw,200px) 0;border-left:8px solid #ff2d55;">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 24px;">
+      <h2 style="font-size:clamp(38px,5.5vw,62px);color:var(--text);margin-bottom:40px;">INSTRUCTIONS</h2>
+      <div style="display:flex;flex-direction:column;gap:40px;">
+        <div style="position:relative;padding:20px;background:var(--surface);">
+          <span style="position:absolute;left:10px;top:10px;font-size:80px;opacity:0.08;">1</span>
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Get SOL</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Buy on Coinbase, Binance, or Kraken</p>
+        </div>
+        <div style="position:relative;padding:20px;background:var(--surface);">
+          <span style="position:absolute;left:10px;top:10px;font-size:80px;opacity:0.08;">2</span>
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Create Wallet</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Use <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+        </div>
+        <div style="position:relative;padding:20px;background:var(--surface);">
+          <span style="position:absolute;left:10px;top:10px;font-size:80px;opacity:0.08;">3</span>
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Open Jupiter</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Go to <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+        </div>
+        <div style="position:relative;padding:20px;background:var(--surface);">
+          <span style="position:absolute;left:10px;top:10px;font-size:80px;opacity:0.08;">4</span>
+          <h3 style="font-size:20px;color:var(--text);margin-bottom:16px;">Swap for $ANSOM</h3>
+          <p style="font-size:16px;line-height:1.75;color:var(--muted);">Paste contract, swap SOL</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="reveal" style="padding:clamp(120px,16vw,200px) 0;border-left:8px solid #ffe600;">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 24px;text-align:center;">
+      <h2 style="font-size:clamp(38px,5.5vw,62px);color:var(--text);margin-bottom:40px;">THE AUDIENCE</h2>
+      <div style="display:flex;justify-content:center;gap:20px;">
+        <a href="https://x.com/ANSOMONSOL_" target="_blank" rel="noopener" class="btn-primary" style="background-color:rgba(var(--primary-rgb),0.9);rotate:5deg;">Twitter</a>
+        <a href="https://t.me/ansomcoinportal" target="_blank" rel="noopener" class="btn-primary" style="background-color:rgba(var(--secondary-rgb),0.9);rotate:-5deg;">Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ca" class="reveal" style="padding:clamp(120px,16vw,200px) 0;text-align:center;background:var(--surface);border-radius:8px;max-width:680px;margin:80px auto;box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18),0 0 80px rgba(var(--primary-rgb),0.08),0 24px 48px rgba(0,0,0,0.4);backdrop-filter:blur(20px);">
+    <p style="font-size:10px;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;margin-bottom:16px;">CONTRACT ADDRESS</p>
+    <p style="font-family:monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;">8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump</p>
+    <button id="copyBtn" style="margin-top:16px;padding:10px 20px;border:none;background:var(--primary);color:#fff;border-radius:50px;cursor:pointer;">Copy Address</button>
+    <p style="margin-top:16px;color:#ff2d55;">⚠ Always verify the CA before swapping</p>
+  </section>
+
+  <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#f59a19;font-weight:700;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    (function(){
+      var h=document.getElementById('hamburger');
+      var o=document.getElementById('navOverlay');
+      var c=document.getElementById('navClose');
+      if(h&&o&&c){
+        h.onclick=function(){o.classList.add('open')};
+        c.onclick=function(){o.classList.remove('open')};
+        o.querySelectorAll('a').forEach(function(a){a.onclick=function(){o.classList.remove('open')}});
+      }
+      window.addEventListener('scroll',function(){
+        var n=document.getElementById('navbar');
+        if(n)n.classList.toggle('scrolled',window.scrollY>60);
+      });
+    })();
+    
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    document.querySelectorAll('[data-count]').forEach(el=>{
+      new IntersectionObserver(([e])=>{if(e.isIntersecting){
+        const t=+el.dataset.count,d=1400,s=performance.now();
+        const f=n=>n<.5?2*n*n:(1-(2-2*n)*n/2);
+        requestAnimationFrame(function tick(){const p=Math.min((performance.now()-s)/d,1);el.textContent=Math.round(f(p)*t).toLocaleString();if(p<1)requestAnimationFrame(tick)});
+      }},{threshold:0.3}).observe(el)});
+
+    const cb=document.getElementById('copyBtn');
+    if(cb)cb.onclick=function(){navigator.clipboard.writeText('8RzLtzrucoKMoYAFUtfu6Tcg7LZSAGar78VWREeGpump').then(()=>{const o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(()=>{cb.innerHTML=o;cb.style.color=''},2000)});
+  </script>
+</body>
+</html>
