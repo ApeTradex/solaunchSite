@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Are Ya Winning, Son? ($SON) — Official Site</title>
+  <meta property="og:title" content="Are Ya Winning, Son?">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafkreiex7tnnvtalrnuanc5bpgjvagtaoz6mam6sppf24nwxgdgkw37s6i">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e8e3e3;
+      --primary-rgb: 232, 227, 227;
+      --secondary: #050505;
+      --secondary-rgb: 5, 5, 5;
+      --bg: #050810;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #f0f0f0;
+      --muted: rgba(240, 240, 240, 0.5);
+    }
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+    body { padding-top: 70px; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 70px; background: rgba(5, 5, 8, 0.9); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-bottom: 1px solid rgba(255, 255, 255, 0.07); transition: box-shadow 0.3s ease; }
+    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 32px rgba(0, 0, 0, 0.55); }
+    .nav-inner { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; gap: 20px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap; }
+    .nav-center { display: flex; align-items: center; gap: 28px; flex: 1; justify-content: center; }
+    .nav-center a { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.58); text-decoration: none; white-space: nowrap; transition: color 0.2s ease; }
+    .nav-center a:hover, .nav-center a:focus { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-icon { color: rgba(255, 255, 255, 0.5); font-size: 17px; text-decoration: none; line-height: 1; transition: color 0.2s ease; }
+    .nav-icon:hover { color: #fff; }
+    .nav-buy-btn { display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease, transform 0.2s ease; }
+    .nav-buy-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: 1px solid rgba(255, 255, 255, 0.18); color: #fff; font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1; transition: background 0.2s, border-color 0.2s; }
+    .hamburger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.32); }
+    .nav-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; -webkit-transition: opacity 0.25s ease; }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .nav-overlay>a { font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.82); text-decoration: none; transition: color 0.18s ease; }
+    .nav-overlay>a:hover { color: var(--primary); }
+    .nav-overlay-close { position: absolute; top: 18px; right: 20px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.65); font-size: 19px; cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1; transition: background 0.2s, color 0.2s; }
+    .nav-overlay-close:hover { background: rgba(255, 255, 255, 0.13); color: #fff; }
+    .nav-overlay-divider { width: 44px; height: 1px; background: rgba(255, 255, 255, 0.12); }
+    .nav-overlay-buy { padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap; }
+    @media(max-width: 768px){
+      .nav-center { display: none!important; }
+      .nav-right { display: none!important; }
+      .hamburger { display: flex!important; align-items: center; justify-content: center; }
+    }
+    section { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
+    .rv { transition: opacity 0.6s ease, transform 0.6s ease; }
+    .rv.h { opacity: 0; transform: translateY(22px); }
+    .rv.in { opacity: 1!important; transform: none!important; }
+    .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: radial-gradient(at bottom, rgba(var(--primary-rgb), 0.08), transparent), white; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); opacity: 0.03; }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero-content img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+    .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 11vw, 140px); letter-spacing: 0.06em; font-weight: normal; line-height: 1.1; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-weight: 300; font-size: 16px; line-height: 1.8; margin: 20px 0; }
+    .hero-actions { display: flex; gap: 20px; align-items: center; }
+    .btn-primary, .btn-ghost { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; color: #fff; box-shadow: 0 4px 24px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(var(--primary-rgb), 0.15); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease; }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12); }
+    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+    .btn-ghost { background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255, 255, 255, 0.85); transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
+    .btn-ghost:hover { border-color: rgba(var(--primary-rgb), 0.55); background: rgba(var(--primary-rgb), 0.08); color: var(--primary); }
+    .scroll-cue { position: absolute; bottom: 28px; z-index: 1; }
+    @media(max-width: 768px){
+      body { padding-top: 70px!important; }
+      section { padding: clamp(64px, 12vw, 100px) 0!important; }
+      h1 { font-size: clamp(38px, 10vw, 62px)!important; line-height: 1.1!important; }
+      .hero-content { padding: 40px 20px!important; }
+      [class*="two-col"], [class*="split"], [class*="grid-2"], [class*="flex-row"], [class*="about-grid"] { flex-direction: column!important; grid-template-columns: 1fr!important; }
+      .cta-row, .cta-buttons, .hero-actions { flex-direction: column!important; align-items: stretch!important; gap: 12px!important; }
+      .cta-row a, .cta-buttons a, .hero-actions a { width: 100%!important; text-align: center!important; justify-content: center!important; display: flex!important; }
+      [class*="step-cards"], [class*="steps-row"] { flex-direction: column!important; }
+      .stat-grid, .stats-grid { grid-template-columns: 1fr 1fr!important; }
+      [class*="tokenomics-inner"] { flex-direction: column!important; align-items: stretch!important; }
+    }
+    @media(max-width: 480px){
+      h1 { font-size: clamp(32px, 11vw, 48px)!important; }
+      .stat-grid, .stats-grid { grid-template-columns: 1fr!important; }
+      .nav-brand span { display: none!important; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://ipfs.io/ipfs/bafkreiex7tnnvtalrnuanc5bpgjvagtaoz6mam6sppf24nwxgdgkw37s6i" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+        <span>Are Ya Winning, Son?</span>
+      </a>
+      <div class="nav-center">
+        <a href="#about">About</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#how-to-buy">How to Buy</a>
+        <a href="#community">Community</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://jup.ag/swap/SOL-ACpzkGJV3DDU8HXy8yjab7RL9qNmDGym2GwLkzNppump" target="_blank" rel="noopener" class="nav-buy-btn">Buy $SON</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-ACpzkGJV3DDU8HXy8yjab7RL9qNmDGym2GwLkzNppump" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $SON</a>
+  </div>
+
+  <section id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <img src="https://ipfs.io/ipfs/bafkreiex7tnnvtalrnuanc5bpgjvagtaoz6mam6sppf24nwxgdgkw37s6i" alt="Are Ya Winning, Son? Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjOTk0NUZGIi8+CiAgICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtc2l6ZT0iNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfmoA8L3RleHQ+CiAgPC9zdmc+'">
+      <div class="hero-eyebrow">$SON · SOLANA</div>
+      <h1>HOLD FOREVER</h1>
+      <p>Been staring at the screen since 2014.<br>Yes dad. we’re winning.</p>
+      <div class="hero-actions">
+        <a href="https://jup.ag/swap/SOL-ACpzkGJV3DDU8HXy8yjab7RL9qNmDGym2GwLkzNppump" target="_blank" rel="noopener" class="btn-primary">Buy $SON</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+    </div>
+    <div class="scroll-cue">↓</div>
+  </section>
+
+  <section id="about" class="rv">
+    <div class="about-content" style="position:relative;max-width:1200px;margin:0 auto;">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:200px;color:rgba(255,255,255,0.05);pointer-events:none;">HOLD</div>
+      <h2 class="section-heading">THE CONVICTION</h2>
+      <p style="font-weight:300;font-size:16px;line-height:1.8;color:var(--muted);">In a world full of distractions and price fluctuations, $SON stands firm. We embody the true spirit of crypto: a dedication untethered by market whims. Each holder is a pillar of strength within our tightly knit community.</p>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="rv">
+    <div class="tokenomics-content" style="position:relative;max-width:1200px;margin:0 auto;">
+      <h2 class="section-heading">THE VAULT</h2>
+      <div style="display:flex;flex-direction:column;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:40px;">
+        <div style="padding:20px 0;border-bottom:1px solid var(--border);">Total Supply: <span data-count="999936624314603">0</span></div>
+        <div style="padding:20px 0;border-bottom:1px solid var(--border);">0% Tax</div>
+        <div style="padding:20px 0;border-bottom:1px solid var(--border);">Community Owned</div>
+        <div style="padding:20px 0;">Renounced</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy" class="rv">
+    <div class="how-to-buy-content" style="position:relative;max-width:1200px;margin:0 auto;">
+      <h2 class="section-heading">PROTOCOL</h2>
+      <ol style="list-style:none;margin:40px 0;padding:0;">
+        <li style="padding:20px 0;border-bottom:1px solid var(--border);">1. Get SOL — Buy on Coinbase, Binance, or Kraken</li>
+        <li style="padding:20px 0;border-bottom:1px solid var(--border);">2. Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></li>
+        <li style="padding:20px 0;border-bottom:1px solid var(--border);">3. Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</li>
+        <li style="padding:20px 0;">4. Swap for $SON — paste contract, swap SOL</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="community" class="rv">
+    <div class="community-content" style="display:flex;justify-content:space-between;max-width:1200px;margin:0 auto;">
+      <div>
+        <h2 class="section-heading">COMMUNITY</h2>
+        <p style="font-size:16px;line-height:1.8;color:var(--muted);">Join the loyal and unwavering family of $SON holders.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://x.com/WinningSon_" target="_blank" class="btn-primary" style="padding:12px 24px;text-align:center;">Twitter</a>
+        <div class="btn-ghost" style="padding:12px 24px;text-align:center;pointer-events:none;opacity:0.5;">Coming Soon</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ca" class="rv" style="display:flex;justify-content:center;">
+    <div style="background:var(--surface);backdrop-filter:blur(20px);padding:40px;border-radius:12px;box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18), 0 0 80px rgba(var(--primary-rgb),0.08), 0 24px 48px rgba(0,0,0,0.4);text-align:center;max-width:680px;">
+      <div style="font-size:10px;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;margin-bottom:8px;">CONTRACT ADDRESS</div>
+      <div style="font-family:monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;">ACpzkGJV3DDU8HXy8yjab7RL9qNmDGym2GwLkzNppump</div>
+      <button id="copyBtn" style="margin-top:12px;padding:8px 16px;border:none;border-radius:8px;background:rgba(var(--primary-rgb),0.1);color:var(--primary);cursor:pointer;">Copy</button>
+      <div style="margin-top:12px;color:rgba(255,200,0,0.9);font-size:12px;">⚠ Always verify the CA before swapping</div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#e8e3e3;font-weight:700;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    (function(){
+      var h=document.getElementById('hamburger');
+      var o=document.getElementById('navOverlay');
+      var c=document.getElementById('navClose');
+      if(h&&o&&c){
+        h.onclick=function(){o.classList.add('open')};
+        c.onclick=function(){o.classList.remove('open')};
+        o.querySelectorAll('a').forEach(function(a){a.onclick=function(){o.classList.remove('open')}});
+      }
+      window.addEventListener('scroll',function(){
+        var n=document.getElementById('navbar');
+        if(n)n.classList.toggle('scrolled',window.scrollY>60);
+      });
+    })();
+
+    (function(){
+      var els=document.querySelectorAll('.rv');
+      if(!els.length)return;
+      if('IntersectionObserver' in window){
+        els.forEach(function(el){el.classList.add('h')});
+        var ob=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){e.target.classList.remove('h');e.target.classList.add('in');ob.unobserve(e.target)}
+          });
+        },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+        els.forEach(function(el){ob.observe(el)});
+      }else{
+        els.forEach(function(el){el.classList.add('in')});
+      }
+    })();
+
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          var t=+el.dataset.count,d=1400,s=performance.now();
+          (function tick(){var p=Math.min((performance.now()-s)/d,1),e=p<.5?2*p*p:1-(Math.pow(-2*p+2,2)/2);el.textContent=Math.round(e*t).toLocaleString();if(p<1)requestAnimationFrame(tick)})();
+        }
+      },{threshold:0.4}).observe(el);
+    });
+
+    (function(){var cb=document.getElementById('copyBtn');if(cb)cb.onclick=function(){navigator.clipboard.writeText('ACpzkGJV3DDU8HXy8yjab7RL9qNmDGym2GwLkzNppump').then(function(){var o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)})};})();
+  </script>
+</body>
+</html>
