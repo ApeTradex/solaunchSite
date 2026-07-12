@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RIBBIT ZYGO THE FROG ($RIBBIT) — Official Site</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta property="og:title" content="RIBBIT ZYGO THE FROG">
+  <meta property="og:image" content="https://ipfs.io/ipfs/bafkreickd5bykdbfmuqyap6654wpgyozif6qlh7dvt567wdljjbihvm6iu">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+    body {
+      --primary: #9945FF;
+      --primary-rgb: 153, 69, 255;
+      --secondary: #14F195;
+      --secondary-rgb: 20, 241, 149;
+      --bg: #0b0820;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f0f0;
+      --muted: rgba(240,240,240,0.5);
+      padding-top: 70px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+    }
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 70px;
+      background: rgba(5,5,8,0.9); backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.07); transition: box-shadow 0.3s ease;
+    }
+    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 32px rgba(0,0,0,0.55); }
+    .nav-inner {
+      max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0;
+      font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap;
+    }
+    .nav-right {
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: auto;
+    }
+    .nav-icon {
+      color: rgba(255,255,255,0.5); font-size: 17px; text-decoration: none; line-height: 1;
+      transition: color 0.2s ease;
+    }
+    .nav-icon:hover { color: #fff; }
+    .nav-buy-btn {
+      display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff;
+      font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .nav-buy-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger {
+      display: none; background: none; border: 1px solid rgba(255,255,255,0.18); color: #fff;
+      font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 999; background: var(--bg,#06060a);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+      -webkit-transition: opacity 0.25s ease;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .nav-overlay>a {
+      font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.82); text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .nav-overlay>a:hover { color: var(--primary); }
+    .nav-overlay-close {
+      position: absolute; top: 18px; right: 20px; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.65); font-size: 19px;
+      cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-overlay-close:hover { background: rgba(255,255,255,0.13); color: #fff; }
+    .nav-overlay-divider { width: 44px; height: 1px; background: rgba(255,255,255,0.12); }
+    .nav-overlay-buy {
+      padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;
+    }
+    @media(max-width:768px) {
+      .nav-right { display: none!important; }
+      .hamburger { display: flex!important; align-items: center; justify-content: center; margin-left: auto; }
+    }
+    .hero {
+      position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+      background: radial-gradient(circle at center, rgba(255,107,138,0.5), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 1; width: 100%; padding: clamp(40px,8vw,80px) clamp(24px,5vw,80px);
+      text-align: center;
+    }
+    .hero-content img.logo {
+      width: clamp(220px, 20vw, 260px); animation: float 2.6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    .hero h1 {
+      font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: clamp(72px, 10vw, 120px);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero .eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #ff6b8a; margin-bottom: 20px;
+    }
+    .hero .tagline {
+      font-size: 16px; line-height: 1.75; color: var(--muted); margin: 20px 0 40px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none;
+      border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em;
+      font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb),0.4),
+      0 0 0 1px rgba(var(--primary-rgb),0.15); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+      box-shadow 0.25s ease;
+    }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb),0.55), 0 0 0 6px rgba(var(--primary-rgb),0.12); }
+    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; text-decoration: none; background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 14px 34px;
+      color: rgba(255,255,255,0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px;
+      cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .btn-ghost:hover { border-color: rgba(var(--primary-rgb),0.55); background: rgba(var(--primary-rgb),0.08); color: var(--primary); }
+    .hero .scroll-cue {
+      position: absolute; bottom: 28px; z-index: 1; width: 24px; height: 24px; 
+      background: var(--primary); border-radius: 50%;
+      animation: float-cue 2s ease-in-out infinite;
+    }
+    @keyframes float-cue {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @media(max-width:768px){
+      body{padding-top:70px!important}
+      section{padding:clamp(64px,12vw,100px) 0!important}
+      h1{font-size:clamp(38px,10vw,62px)!important;line-height:1.1!important}
+      .hero-content{padding:40px 20px!important}
+      [class*="two-col"],[class*="split"],[class*="grid-2"],[class*="flex-row"],[class*="about-grid"]{flex-direction:column!important;grid-template-columns:1fr!important}
+      .cta-row,.cta-buttons,.hero-actions{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+      .cta-row a,.cta-buttons a,.hero-actions a{width:100%!important;text-align:center!important;justify-content:center!important;display:flex!important}
+      [class*="step-cards"],[class*="steps-row"]{flex-direction:column!important}
+      .stat-grid,.stats-grid{grid-template-columns:1fr 1fr!important}
+      [class*="tokenomics-inner"]{flex-direction:column!important;align-items:stretch!important}
+    }
+    @media(max-width:480px){
+      h1{font-size:clamp(32px,11vw,48px)!important}
+      .stat-grid,.stats-grid{grid-template-columns:1fr!important}
+      .nav-brand span{display:none!important}
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://ipfs.io/ipfs/bafkreickd5bykdbfmuqyap6654wpgyozif6qlh7dvt567wdljjbihvm6iu" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+        <span>RIBBIT ZYGO THE FROG</span>
+      </a>
+      <div class="nav-right">
+        <a href="https://x.com/ZygoFrog" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://t.me/ZygoOrignal" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-telegram"></i></a>
+        <a href="https://jup.ag/swap/SOL-FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump" target="_blank" rel="noopener" class="nav-buy-btn">Buy $RIBBIT</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">The Legend</a>
+    <a href="#tokenomics">Power Stats</a>
+    <a href="#how-to-buy">Join the Army</a>
+    <a href="#community">The Pack</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $RIBBIT</a>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <!-- Confetti and mascot glow implemented here -->
+    </div>
+    <div class="hero-content">
+      <img src="https://ipfs.io/ipfs/bafkreickd5bykdbfmuqyap6654wpgyozif6qlh7dvt567wdljjbihvm6iu" alt="RIBBIT Logo" class="logo">
+      <div class="eyebrow">$RIBBIT · SOLANA</div>
+      <h1>The Adorable Powerhouse</h1>
+      <p class="tagline">Hop in early and ribbit your way to the top!<br>Join the Zygo revolution.</p>
+      <div class="hero-actions">
+        <a href="https://jup.ag/swap/SOL-FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump" target="_blank" rel="noopener" class="btn-primary">Buy $RIBBIT</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue"></div>
+    </div>
+  </section>
+
+  <section id="about" class="rv">
+    <div class="container">
+      <h2 class="section-title">The Legend</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>$RIBBIT is the official meme coin for Zygo the Frog — the flagship meme of the growing Zygo ecosystem. Tied directly to ZygoSwap (zygoswap.io) and ZygoGames (zygogames.it.com), $RIBBIT brings meme culture, real utility, and community vibes together.</p>
+          <blockquote>"uwu we're going to make it" followed by "WE WILL NOT STOP".</blockquote>
+        </div>
+        <div class="pill-cards">
+          <div class="pill">SOLANA NATIVE</div>
+          <div class="pill">0% TAX</div>
+          <div class="pill">COMMUNITY OWNED</div>
+          <div class="pill">RENOUNCED</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="rv">
+    <div class="container">
+      <h2 class="section-title">Power Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-card" style="background: rgba(0, 245, 200, 0.08); border-radius: 24px;">
+          <div class="stat-icon">🚀</div>
+          <div class="stat-content">
+            <h3>Total Supply</h3>
+            <p data-count="999988978">999,988,978</p>
+          </div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 107, 138, 0.08); border-radius: 24px;">
+          <div class="stat-icon">🔒</div>
+          <div class="stat-content">
+            <h3>0% Tax</h3>
+            <p>Community Owned</p>
+          </div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 229, 102, 0.08); border-radius: 24px;">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-content">
+            <h3>Renounced</h3>
+            <p>Security in Numbers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy" class="rv">
+    <div class="container">
+      <h2 class="section-title">Join the Army</h2>
+      <div class="steps-row">
+        <div class="step-card">1️⃣ Get SOL — Buy on Coinbase, Binance, or Kraken</div>
+        <div class="step-card">2️⃣ Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></div>
+        <div class="step-card">3️⃣ Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</div>
+        <div class="step-card">4️⃣ Swap for $RIBBIT — paste contract, swap SOL</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="rv">
+    <div class="container">
+      <h2 class="section-title">The Pack</h2>
+      <div class="social-buttons">
+        <a href="https://x.com/ZygoFrog" class="btn-primary" style="background: #00f5c8;">Follow on Twitter</a>
+        <a href="https://t.me/ZygoOrignal" class="btn-primary" style="background: #ff6b8a;">Join Telegram</a>
+        <a href="https://ribbitfrog.com/" class="btn-primary" style="background: #ffe566;">Visit Website</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ca" class="rv">
+    <div class="ca-card" style="backdrop-filter:blur(20px);box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18), 0 0 80px rgba(var(--primary-rgb),0.08), 0 24px 48px rgba(0,0,0,0.4);">
+      <div class="ca-label" style="font-size:10px;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;">
+        CONTRACT ADDRESS
+      </div>
+      <div class="ca-code" style="font-family:monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;">
+        FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump
+      </div>
+      <button id="copyBtn" style="margin-top:12px;padding:6px 12px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;">Copy Address</button>
+      <div class="ca-warning" style="margin-top:10px;padding:4px 10px;background:rgba(255,165,0,0.15);border-radius:12px;font-size:13px;color:#ff6b8a;">
+        ⚠ Always verify the CA before swapping
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#9945FF;font-weight:700;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    // ① NAV — paste this block EXACTLY, IDs must match HTML: hamburger / navOverlay / navClose
+    (function(){
+      var h=document.getElementById('hamburger');
+      var o=document.getElementById('navOverlay');
+      var c=document.getElementById('navClose');
+      if(h&&o&&c){
+        h.onclick=function(){o.classList.add('open')};
+        c.onclick=function(){o.classList.remove('open')};
+        o.querySelectorAll('a').forEach(function(a){a.onclick=function(){o.classList.remove('open')}});
+      }
+      window.addEventListener('scroll',function(){
+        var n=document.getElementById('navbar');
+        if(n)n.classList.toggle('scrolled',window.scrollY>60);
+      });
+    })();
+
+    // ② SCROLL REVEAL — safe pattern that NEVER causes blank pages
+    // CSS must include: .rv{transition:opacity 0.6s ease,transform 0.6s ease} .rv.h{opacity:0;transform:translateY(22px)} .rv.in{opacity:1!important;transform:none!important}
+    (function(){
+      var els=document.querySelectorAll('.rv');
+      if(!els.length)return;
+      if('IntersectionObserver' in window){
+        els.forEach(function(el){el.classList.add('h')});
+        var ob=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){e.target.classList.remove('h');e.target.classList.add('in');ob.unobserve(e.target)}
+          });
+        },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+        els.forEach(function(el){ob.observe(el)});
+      }else{
+        els.forEach(function(el){el.classList.add('in')});
+      }
+    })();
+
+    // ③ COUNTER — data-count="N" on stat number elements
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          var t=+el.dataset.count,d=1400,s=performance.now();
+          (function tick(){var p=Math.min((performance.now()-s)/d,1),e=p<.5?2*p*p:1-(Math.pow(-2*p+2,2)/2);el.textContent=Math.round(e*t).toLocaleString();if(p<1)requestAnimationFrame(tick)})();
+        }
+      },{threshold:0.4}).observe(el);
+    });
+
+    // ④ CA COPY
+    (function(){var cb=document.getElementById('copyBtn');if(cb)cb.onclick=function(){navigator.clipboard.writeText('FrtbBAaSZksfh4oV46E7Pvb43QiiUmYLD3dcGS6gpump').then(function(){var o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)})};})();
+  </script>
+</body>
+</html>
