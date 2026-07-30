@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Source+Serif+4:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #9945FF;
@@ -22,215 +22,49 @@
       --text: #f0f0f0;
       --muted: rgba(240, 240, 240, 0.5);
     }
-    body {
-      padding-top: 70px;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Source Serif 4', serif;
+    html {scroll-behavior: smooth;}
+    *, *::before, *::after {box-sizing: border-box; margin: 0; padding: 0;}
+    ::-webkit-scrollbar {width: 5px;}
+    ::-webkit-scrollbar-thumb {background: var(--primary); border-radius: 3px;}
+    body {padding-top: 70px; background: var(--bg); color: var(--text);}
+    #navbar {position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 70px; background: rgba(5, 5, 8, 0.9); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-bottom: 1px solid rgba(255, 255, 255, 0.07); transition: box-shadow 0.3s ease;}
+    #navbar.scrolled {box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 32px rgba(0, 0, 0, 0.55);}
+    .nav-inner {max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; gap: 20px;}
+    .nav-brand {display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap;}
+    .nav-right {display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: auto;}
+    .nav-icon {color: rgba(255, 255, 255, 0.5); font-size: 17px; text-decoration: none; line-height: 1; transition: color 0.2s ease;}
+    .nav-icon:hover {color: #fff;}
+    .nav-buy-btn {display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease, transform 0.2s ease;}
+    .nav-buy-btn:hover {opacity: 0.88; transform: translateY(-1px);}
+    .hamburger {display: none; background: none; border: 1px solid rgba(255, 255, 255, 0.18); color: #fff; font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1; transition: background 0.2s, border-color 0.2s;}
+    .hamburger:hover {background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.32);}
+    .nav-overlay {position: fixed; inset: 0; z-index: 999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; -webkit-transition: opacity 0.25s ease;}
+    .nav-overlay.open {opacity: 1; pointer-events: auto;}
+    .nav-overlay > a {font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.82); text-decoration: none; transition: color 0.18s ease;}
+    .nav-overlay > a:hover {color: var(--primary);}
+    .nav-overlay-close {position: absolute; top: 18px; right: 20px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.65); font-size: 19px; cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1; transition: background 0.2s, color 0.2s;}
+    .nav-overlay-close:hover {background: rgba(255, 255, 255, 0.13); color: #fff;}
+    .nav-overlay-divider {width: 44px; height: 1px; background: rgba(255, 255, 255, 0.12);}
+    .nav-overlay-buy {padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;}
+    .rv {transition: opacity 0.6s ease, transform 0.6s ease;}
+    .rv.h {opacity: 0; transform: translateY(22px);}
+    .rv.in {opacity: 1 !important; transform: none !important;}
+    @media(max-width:768px){
+      body {padding-top: 70px !important;}
+      section {padding: clamp(64px, 12vw, 100px) 0 !important;}
+      h1 {font-size: clamp(38px, 10vw, 62px) !important; line-height: 1.1 !important;}
+      .hero-content {padding: 40px 20px !important;}
+      [class*="two-col"], [class*="split"], [class*="grid-2"], [class*="flex-row"], [class*="about-grid"] {flex-direction: column !important; grid-template-columns: 1fr !important;}
+      .cta-row, .cta-buttons, .hero-actions {flex-direction: column !important; align-items: stretch !important; gap: 12px !important;}
+      .cta-row a, .cta-buttons a, .hero-actions a {width: 100% !important; text-align: center !important; justify-content: center !important; display: flex !important;}
+      [class*="step-cards"], [class*="steps-row"] {flex-direction: column !important;}
+      .stat-grid, .stats-grid {grid-template-columns: 1fr 1fr !important;}
+      [class*="tokenomics-inner"] {flex-direction: column !important; align-items: stretch !important;}
     }
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      height: 70px;
-      background: rgba(5, 5, 8, 0.9);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      transition: box-shadow 0.3s ease;
-    }
-    #navbar.scrolled {
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 32px rgba(0, 0, 0, 0.55);
-    }
-    .nav-inner {
-      max-width: min(1200px,92vw);
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-      margin-left: auto;
-    }
-    .nav-icon {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 17px;
-      text-decoration: none;
-      line-height: 1;
-      transition: color 0.2s ease;
-    }
-    .nav-icon:hover {
-      color: #fff;
-    }
-    .nav-buy-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 9px 20px;
-      border-radius: 100px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      font-weight: 700;
-      font-size: 13px;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .nav-buy-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
-    .hamburger {
-      display: none;
-      background: none;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #fff;
-      font-size: 17px;
-      cursor: pointer;
-      padding: 8px 11px;
-      border-radius: 8px;
-      line-height: 1;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .hamburger:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.32);
-    }
-    .nav-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: var(--bg, #06060a);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      -webkit-transition: opacity 0.25s ease;
-    }
-    .nav-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .nav-overlay > a {
-      font-size: 22px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.82);
-      text-decoration: none;
-      transition: color 0.18s ease;
-    }
-    .nav-overlay > a:hover {
-      color: var(--primary);
-    }
-    .nav-overlay-close {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 19px;
-      cursor: pointer;
-      border-radius: 8px;
-      padding: 7px 12px;
-      line-height: 1;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-overlay-close:hover {
-      background: rgba(255, 255, 255, 0.13);
-      color: #fff;
-    }
-    .nav-overlay-divider {
-      width: 44px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-    .nav-overlay-buy {
-      padding: 14px 38px;
-      border-radius: 100px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      font-weight: 700;
-      font-size: 16px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    @media(max-width:768px) {
-      .nav-right { display: none !important; }
-      .hamburger { display: flex !important; align-items: center; justify-content: center; margin-left: auto; }
-    }
-    .rv { transition: opacity 0.6s ease, transform 0.6s ease; }
-    .rv.h { opacity: 0; transform: translateY(22px); }
-    .rv.in { opacity: 1 !important; transform: none !important; }
-    section { position: relative; padding: clamp(120px, 16vw, 200px) 0; }
-    .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; text-align: center; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background-color: #0d0c12; }
-    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px); }
-    .cta-row { display: flex; gap: 12px; justify-content: center; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb), 0.4), 0 0 0 1px rgba(var(--primary-rgb), 0.15); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease; }
-    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.55), 0 0 0 6px rgba(var(--primary-rgb), 0.12); }
-    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
-    .btn-ghost { display: inline-flex; align-items: center; text-decoration: none; background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255, 255, 255, 0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
-    .btn-ghost:hover { border-color: rgba(var(--primary-rgb), 0.55); background: rgba(var(--primary-rgb), 0.08); color: var(--primary); }
-    .about { background-color: #f5f2ec; color: #0a0a0f; }
-    .about::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 0; }
-    .about .container { display: flex; max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-    .about .left { flex: 1; padding-right: 20px; }
-    .about .right { flex: 1; background-color: rgba(var(--primary-rgb), 0.04); padding: 20px; border-left: 4px solid var(--primary); }
-    .about blockquote { font-style: italic; margin-top: 24px; border-left: 4px solid var(--primary); padding-left: 16px; }
-    .tokenomics .container, .methodology .container, .community .container { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-    .tokenomics .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .tokenomics .stat { background-color: var(--surface); padding: 20px; text-align: center; border-radius: 8px; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(var(--primary-rgb), 0.1); }
-    .tokenomics .stat h3 { font-size: clamp(38px, 5.5vw, 62px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
-    .tokenomics .footnotes { font-size: 10px; text-align: center; margin-top: 20px; }
-    .methodology .steps { display: flex; flex-direction: column; gap: 16px; }
-    .methodology .step { background-color: var(--surface); padding: 20px; border-radius: 8px; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(var(--primary-rgb), 0.1); }
-    .community .socials { display: flex; justify-content: center; gap: 20px; }
-    .community .socials a { color: var(--text); font-size: 24px; transition: color 0.25s ease; }
-    .community .socials a:hover { color: var(--primary); }
-    #ca { max-width: 680px; margin: 0 auto; padding: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 12px; backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 0 80px rgba(var(--primary-rgb), 0.08), 0 24px 48px rgba(0, 0, 0, 0.4); text-align: center; }
-    #ca .contract-address { font-family: monospace; font-size: clamp(10px, 1.4vw, 13px); word-break: break-all; cursor: pointer; }
-    .warning-pill { display: inline-block; background: #ff9800; color: #fff; padding: 5px 10px; border-radius: 20px; font-size: 12px; margin-top: 16px; }
-    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: rgba(255, 255, 255, 0.35); }
-    footer a { color: #9945FF; font-weight: 700; text-decoration: none; }
-    @media(max-width:768px) {
-      body { padding-top:70px!important }
-      section { padding:clamp(64px,12vw,100px) 0!important }
-      h1 { font-size:clamp(38px,10vw,62px)!important; line-height:1.1!important; }
-      .hero-content { padding:40px 20px!important }
-      [class*="two-col"], [class*="split"], [class*="grid-2"], [class*="flex-row"], [class*="about-grid"] { flex-direction:column!important; grid-template-columns:1fr!important }
-      .cta-row, .cta-buttons, .hero-actions { flex-direction:column!important; align-items:stretch!important; gap:12px!important }
-      .cta-row a, .cta-buttons a, .hero-actions a { width:100%!important; text-align:center!important; justify-content:center!important; display:flex!important }
-      [class*="step-cards"], [class*="steps-row"] { flex-direction:column!important }
-      .stat-grid, .stats-grid { grid-template-columns:1fr 1fr!important }
-      [class*="tokenomics-inner"] { flex-direction:column!important; align-items:stretch!important }
-    }
-    @media(max-width:480px) {
-      h1 { font-size:clamp(32px,11vw,48px)!important }
-      .stat-grid, .stats-grid { grid-template-columns:1fr!important }
-      .nav-brand span { display:none!important }
+    @media(max-width:480px){
+      h1 {font-size: clamp(32px, 11vw, 48px) !important;}
+      .stat-grid, .stats-grid {grid-template-columns: 1fr !important;}
+      .nav-brand span {display: none !important;}
     }
   </style>
 </head>
@@ -238,11 +72,11 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-brand">
-        <img src="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0" id="navbar-logo">
+        <img src="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW" id="navbar-logo" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0">
         <span>SOLO</span>
       </a>
       <div class="nav-right">
-        <a href="https://x.com/solaunchertool" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://x.com/solaunchertool" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-twitter"></i></a>
         <a href="https://t.me/SolauncherTool" target="_blank" rel="noopener" class="nav-icon"><i class="fab fa-telegram"></i></a>
         <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="nav-buy-btn">Buy $SOLO</a>
       </div>
@@ -254,113 +88,111 @@
   <div class="nav-overlay" id="navOverlay">
     <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
     <a href="#about">About</a>
-    <a href="#tokenomics">Certified Analysis</a>
-    <a href="#how-to-buy">Methodology</a>
-    <a href="#community">Further Research Required</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
     <div class="nav-overlay-divider"></div>
     <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $SOLO</a>
   </div>
 
-  <section class="hero" id="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-content">
-      <img src="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW" id="hero-logo" alt="SOLO Logo" width="100" height="100">
-      <div style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);margin-bottom:10px;">$SOLO · SOLANA</div>
-      <h1 style="font-family:'Playfair Display', serif;font-size:clamp(90px,14vw,180px);line-height:1.1;margin-bottom:20px;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Intellectual Meme Supremacy</h1>
-      <div style="font-size:12px;font-family:monospace;color:var(--muted);margin-bottom:20px;">doi: 10.0000/sol.token.2024.001</div>
-      <p style="margin-bottom:40px;">Explore the hyperbolic deflationary spiral. Peer-reviewed absurdity meets crypto intellect.</p>
-      <div class="cta-row">
+  <section id="hero" class="hero rv">
+    <div class="hero-bg" aria-hidden="true" style="background-color:#0d0c12;"></div>
+    <div class="hero-content" style="text-align:center;">
+      <div class="eyebrow" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--primary);">PUBLISHED ON SOLANA · PEER REVIEWED</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(90px,12vw,180px);line-height:1.1;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">SOLO Token</h1>
+      <div style="font-family:'Courier New',monospace;font-size:12px;">doi: 10.0000/sol.token.2024.001</div>
+      <p style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;margin-top:24px;">The tokenomics create a hyperbolic deflationary spiral of inverse liquidity.</p>
+      <div class="hero-actions" style="margin-top:32px;display:flex;justify-content:center;gap:16px;">
         <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="btn-primary">Buy $SOLO</a>
         <a href="#community" class="btn-ghost">Join Community</a>
       </div>
     </div>
   </section>
 
-  <section class="about" id="about">
-    <div class="container">
-      <div class="left">
-        <h2 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;">Published Research Findings</h2>
-        <p>SOLO is the epitome of intellectual supremacy on the Solana blockchain. Its tokenomics design creates a hyperbolic deflationary spiral of inverse liquidity.</p>
-        <blockquote>"The token is designed to be everything and nothing at once." [4]</blockquote>
+  <section id="about" class="rv" style="background-color:#f5f2ec;position:relative;padding:clamp(120px,16vw,200px) 0;">
+    <div class="about-grid" style="display:grid;grid-template-columns:2fr 1fr;max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);align-items:start;gap:48px;position:relative;z-index:1;">
+      <div style="color:#0a0a0f;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,62px);font-style:italic;letter-spacing:-0.02em;text-align:center;">Galactic Overview</h2>
+        <p style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;margin-top:24px;">SOLO is designed for the intellectual crypto enthusiast with a penchant for complex yet humorous undertakings. Its ecosystem thrives on paradoxes that entertain as they bewilder.</p>
+        <p style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;margin-top:16px;">In this cosmos of cryptocurrency, SOLO stands as a beacon of nonsensical enlightenment, offering pathways to prosperity that only the truly open-minded can navigate.</p>
+        <blockquote style="border-left:3px solid var(--primary);padding-left:16px;font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;margin-top:24px;">“The sublime absurdity of SOLO is its most profound truth.”</blockquote>
       </div>
-      <div class="right">
-        <h3 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;">Key Findings</h3>
-        <ul>
-          <li>SOLO operates on a non-linear supply curve.</li>
-          <li>The token has achieved zero-point volatility.</li>
-          <li>It demonstrates quantum entanglement properties.</li>
+      <div style="color:#0a0a0f;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,46px);font-style:italic;letter-spacing:-0.02em;text-align:center;">Key Findings</h3>
+        <ul style="list-style:none;padding:0;margin-top:24px;font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;">
+          <li>• Paradoxical liquidity mechanics.</li>
+          <li>• Scholarly meme consolidation.</li>
+          <li>• Hyperbolic deflationary spiral.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="tokenomics" id="tokenomics">
-    <div class="container">
-      <h2 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;text-align:center;">Certified Analysis</h2>
-      <div class="stats-grid">
-        <div class="stat">
-          <h3>Total Supply</h3>
-          <p style="font-size:24px;font-weight:700;" data-count="1000000000">1,000,000,000</p>
+  <section id="tokenomics" class="rv" style="background-color:var(--bg);position:relative;padding:clamp(120px,16vw,200px) 0;">
+    <div class="tokenomics-inner" style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);display:flex;flex-direction:column;align-items:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,62px);font-style:italic;letter-spacing:-0.02em;text-align:center;">Certified Analysis</h2>
+      <div class="stat-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;width:100%;">
+        <div style="text-align:center;color:var(--text);">
+          <div style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;font-weight:700;margin-bottom:8px;">Total Supply</div>
+          <div style="font-family:'Courier New',monospace;font-size:24px;line-height:1.1;" data-count="1000000000">1,000,000,000</div>
         </div>
-        <div class="stat">
-          <h3>Vibes</h3>
-          <p style="font-size:24px;font-weight:700;">Unquantifiable</p>
+        <div style="text-align:center;color:var(--text);">
+          <div style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;font-weight:700;margin-bottom:8px;">Galaxy Brain Reserve</div>
+          <div style="font-family:'Courier New',monospace;font-size:24px;line-height:1.1;">∞</div>
         </div>
-        <div class="stat">
-          <h3>Galaxy Brain Reserve</h3>
-          <p style="font-size:24px;font-weight:700;">∞</p>
+        <div style="text-align:center;color:var(--text);">
+          <div style="font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;font-weight:700;margin-bottom:8px;">Vibes</div>
+          <div style="font-family:'Courier New',monospace;font-size:24px;line-height:1.1;">Immeasurable</div>
         </div>
       </div>
-      <div class="footnotes">[1] Source: Nowhere | [2] Verified by: No one</div>
+      <div style="margin-top:32px;font-family:'Courier New',monospace;font-size:10px;text-align:center;color:rgba(255,255,255,0.5);">[1] This sentence is a placeholder for an academic footnote.</div>
+      <div style="font-family:'Courier New',monospace;font-size:10px;text-align:center;color:rgba(255,255,255,0.5);">[2] Placeholder for another profound footnote.</div>
     </div>
   </section>
 
-  <section class="methodology" id="how-to-buy">
-    <div class="container">
-      <h2 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;text-align:center;">Methodology</h2>
-      <div class="steps">
-        <div class="step">
-          <span>1. Get SOL</span>
-          <p>Buy on Coinbase, Binance, or Kraken</p>
-        </div>
-        <div class="step">
-          <span>2. Create Wallet</span>
-          <p><a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
-        </div>
-        <div class="step">
-          <span>3. Open Jupiter</span>
-          <p><a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
-        </div>
-        <div class="step">
-          <span>4. Swap for $SOLO</span>
-          <p>Paste contract, swap SOL</p>
-        </div>
-      </div>
+  <section id="how-to-buy" class="rv" style="background-color:var(--bg);position:relative;padding:clamp(120px,16vw,200px) 0;">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,62px);font-style:italic;letter-spacing:-0.02em;text-align:center;">Methodology</h2>
+      <ol style="list-style: none; padding: 0; margin-top: 48px; counter-reset: step-counter; font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75;color:var(--text);">
+        <li style="counter-increment: step-counter; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-weight: 700;">Step <span style="font-family:'Courier New',monospace;">1</span>:</span> Get SOL — Buy on Coinbase, Binance, or Kraken
+        </li>
+        <li style="counter-increment: step-counter; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-weight: 700;">Step <span style="font-family:'Courier New',monospace;">2</span>:</span> Create Wallet — <a href="https://phantom.app" target="_blank" style="color:var(--primary);text-decoration:none;">Phantom</a> or <a href="https://solflare.com" target="_blank" style="color:var(--primary);text-decoration:none;">Solflare</a>
+        </li>
+        <li style="counter-increment: step-counter; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-weight: 700;">Step <span style="font-family:'Courier New',monospace;">3</span>:</span> Open Jupiter — <a href="https://jup.ag" target="_blank" style="color:var(--primary);text-decoration:none;">jup.ag</a>, connect wallet
+        </li>
+        <li style="counter-increment: step-counter; display: flex; align-items: center; gap: 12px;">
+          <span style="font-weight: 700;">Step <span style="font-family:'Courier New',monospace;">4</span>:</span> Swap for $SOLO — paste contract, swap SOL
+        </li>
+      </ol>
+      <div style="margin-top:32px;font-family:'Courier New',monospace;font-size:10px;text-align:center;color:rgba(255,255,255,0.5);">* Placeholder for methodological references.</div>
     </div>
   </section>
 
-  <section class="community" id="community">
-    <div class="container">
-      <h2 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;text-align:center;">Further Research Required</h2>
-      <div class="socials">
-        <a href="https://x.com/solaunchertool" target="_blank" class="nav-icon"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://t.me/SolauncherTool" target="_blank" class="nav-icon"><i class="fab fa-telegram"></i></a>
+  <section id="community" class="rv" style="background-color:var(--bg);position:relative;padding:clamp(120px,16vw,200px) 0;">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,62px);font-style:italic;letter-spacing:-0.02em;">Further Research Required</h2>
+      <div style="margin-top:48px;display:flex;justify-content:center;gap:24px;">
+        <a href="https://x.com/solaunchertool" target="_blank" rel="noopener" class="btn-primary">Follow on Twitter</a>
+        <a href="https://t.me/SolauncherTool" target="_blank" rel="noopener" class="btn-primary">Join Telegram</a>
       </div>
     </div>
   </section>
 
-  <section id="ca">
-    <div>
-      <h3 style="font-family:'Playfair Display', serif;font-size:clamp(38px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;text-align:center;">Contract Address</h3>
-      <div class="contract-address" id="copyBtn">HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN</div>
-      <div class="warning-pill">⚠ Always verify the CA before swapping</div>
+  <section id="ca" style="background-color:var(--bg);position:relative;padding:clamp(120px,16vw,200px) 0;">
+    <div style="max-width:680px;margin:0 auto;padding:32px;background:var(--surface);backdrop-filter:blur(20px);box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18),0 0 80px rgba(var(--primary-rgb),0.08),0 24px 48px rgba(0,0,0,0.4);position:relative;z-index:1;border-radius:12px;text-align:center;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;">Contract Address</div>
+      <div style="font-family:'Courier New',monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;margin:16px 0;color:var(--text);">HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN</div>
+      <button id="copyBtn" style="background:none;border:none;color:var(--primary);font-weight:700;cursor:pointer;">Copy</button>
+      <div style="margin-top:8px;font-size:12px;font-family:'Courier New',monospace;color:var(--text);">⚠ Always verify the CA before swapping</div>
     </div>
   </section>
 
-  <footer>Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener">Solauncher</a></footer>
+  <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#9945FF;font-weight:700;text-decoration:none">Solauncher</a></footer>
 
   <script defer>
-    // ① NAV — paste this block EXACTLY, IDs must match HTML: hamburger / navOverlay / navClose
     (function(){
       var h=document.getElementById('hamburger');
       var o=document.getElementById('navOverlay');
@@ -376,8 +208,6 @@
       });
     })();
 
-    // ② SCROLL REVEAL — safe pattern that NEVER causes blank pages
-    // CSS must include: .rv{transition:opacity 0.6s ease,transform 0.6s ease} .rv.h{opacity:0;transform:translateY(22px)} .rv.in{opacity:1!important;transform:none!important}
     (function(){
       var els=document.querySelectorAll('.rv');
       if(!els.length)return;
@@ -394,7 +224,6 @@
       }
     })();
 
-    // ③ COUNTER — data-count="N" on stat number elements
     document.querySelectorAll('[data-count]').forEach(function(el){
       new IntersectionObserver(function(entries){
         if(entries[0].isIntersecting){
@@ -404,10 +233,8 @@
       },{threshold:0.4}).observe(el);
     });
 
-    // ④ CA COPY
     (function(){var cb=document.getElementById('copyBtn');if(cb)cb.onclick=function(){navigator.clipboard.writeText('HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN').then(function(){var o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)})};})();
 
-    // ⑤ IMAGE FALLBACK — hides broken logo images gracefully (onerror attributes are stripped by the server)
     (function(){var PFALLBACK='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjOTk0NUZGIi8+CiAgICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtc2l6ZT0iNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfmoA8L3RleHQ+CiAgPC9zdmc+';['navbar-logo','hero-logo'].forEach(function(id){var img=document.getElementById(id);if(!img)return;img.addEventListener('error',function(){if(id==='hero-logo'){img.src=PFALLBACK}else{img.style.display='none'}});});})();
   </script>
 </body>
