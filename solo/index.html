@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SOLO ($SOLO) — Official Site</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta property="og:title" content="SOLO">
   <meta property="og:image" content="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW">
+  <title>SOLO ($SOLO) — Official Site</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,99 +17,92 @@
       --secondary: #14F195;
       --secondary-rgb: 20, 241, 149;
       --bg: #08080d;
-      --surface: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.07);
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.07);
       --text: #f0f0f0;
-      --muted: rgba(240, 240, 240, 0.5);
+      --muted: rgba(240,240,240,0.5);
     }
     html { scroll-behavior: smooth; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
     body { padding-top: 70px; background: var(--bg); color: var(--text); }
-    /* GLOBAL STYLES */
-    .container { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
-    h1, h2, h3, h4, h5, h6, p, a { text-align: center; }
-    /* NAVIGATION */
     #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 70px; background: rgba(5,5,8,0.9); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-bottom: 1px solid rgba(255,255,255,0.07); transition: box-shadow 0.3s ease; }
-    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 32px rgba(0, 0, 0, 0.55); }
-    .nav-inner { max-width: min(1200px, 92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; gap: 20px; }
+    #navbar.scrolled { box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 32px rgba(0,0,0,0.55); }
+    .nav-inner { max-width: min(1200px,92vw); margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; gap: 20px; }
     .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; white-space: nowrap; }
     .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; margin-left: auto; }
-    .nav-buy-btn { display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease, transform 0.2s ease; }
+    .nav-icon { color: rgba(255,255,255,0.5); font-size: 17px; text-decoration: none; line-height: 1; transition: color 0.2s ease; }
+    .nav-icon:hover { color: #fff; }
+    .nav-buy-btn { display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 100px; background: linear-gradient(135deg,var(--primary),var(--secondary)); color: #fff; font-weight: 700; font-size: 13px; text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease, transform 0.2s ease; }
     .nav-buy-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .hamburger { display: none; background: none; border: 1px solid rgba(255, 255, 255, 0.18); color: #fff; font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1; transition: background 0.2s, border-color 0.2s; }
-    .hamburger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.32); }
-    .nav-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg, #06060a); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; -webkit-transition: opacity 0.25s ease; }
+    .hamburger { display: none; background: none; border: 1px solid rgba(255,255,255,0.18); color: #fff; font-size: 17px; cursor: pointer; padding: 8px 11px; border-radius: 8px; line-height: 1; transition: background 0.2s, border-color 0.2s; }
+    .hamburger:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); }
+    .nav-overlay { position: fixed; inset: 0; z-index: 999; background: var(--bg,#06060a); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; -webkit-transition: opacity 0.25s ease; }
     .nav-overlay.open { opacity: 1; pointer-events: auto; }
-    .nav-overlay>a { font-size: 22px; font-weight: 700; color: rgba(255, 255, 255, 0.82); text-decoration: none; transition: color 0.18s ease; }
-    .nav-overlay>a:hover { color: var(--primary); }
-    .nav-overlay-close { position: absolute; top: 18px; right: 20px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.65); font-size: 19px; cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1; transition: background 0.2s, color 0.2s; }
-    .nav-overlay-close:hover { background: rgba(255, 255, 255, 0.13); color: #fff; }
-    .nav-overlay-divider { width: 44px; height: 1px; background: rgba(255, 255, 255, 0.12); }
-    .nav-overlay-buy { padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap; }
-    /* HERO */
-    .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; background: radial-gradient(circle, rgba(var(--primary-rgb),0.09) 700px, transparent); text-align: left; }
+    .nav-overlay > a { font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.18s ease; }
+    .nav-overlay > a:hover { color: var(--primary); }
+    .nav-overlay-close { position: absolute; top: 18px; right: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.65); font-size: 19px; cursor: pointer; border-radius: 8px; padding: 7px 12px; line-height: 1; transition: background 0.2s, color 0.2s; }
+    .nav-overlay-close:hover { background: rgba(255,255,255,0.13); color: #fff; }
+    .nav-overlay-divider { width: 44px; height: 1px; background: rgba(255,255,255,0.12); }
+    .nav-overlay-buy { padding: 14px 38px; border-radius: 100px; background: linear-gradient(135deg,var(--primary),var(--secondary)); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap; }
+    .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; background: linear-gradient(90deg, rgba(var(--primary-rgb),0.09), transparent), linear-gradient(rgba(var(--secondary-rgb),0.09), transparent); }
     .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px); }
-    .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(64px, 9vw, 110px); line-height: 1.1; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; }
-    .hero-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
-    .hero-actions { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
-    .trending-card { position: absolute; right: 5%; background: var(--surface); padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(var(--primary-rgb),0.1); border-radius: 12px; }
-    .scroll-cue { position: absolute; bottom: 28px; z-index: 1; }
-    /* ABOUT */
-    .about { display: flex; justify-content: space-between; align-items: center; padding: clamp(120px, 16vw, 200px) 0; position: relative; }
-    .about-content { max-width: 60%; }
-    .about-metrics { display: flex; flex-direction: column; gap: 20px; max-width: 35%; }
-    .metric-card { background: var(--surface); padding: 20px; text-align: center; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(var(--primary-rgb),0.1); border-radius: 8px; }
-    /* TOKENOMICS */
-    .tokenomics { padding: clamp(120px, 16vw, 200px) 0; position: relative; }
-    .tokenomics-stats { display: flex; justify-content: space-around; gap: 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
-    .tokenomics-stat { text-align: center; }
-    .tokenomics-stat-divider { width: 1px; height: 100%; background: var(--border); }
-    /* HOW TO BUY */
-    .how-to-buy { padding: clamp(120px, 16vw, 200px) 0; position: relative; }
-    .steps { display: flex; justify-content: space-around; align-items: center; text-align: center; gap: 20px; }
-    .step { position: relative; }
-    .step-circle { background: var(--surface); border: 3px solid var(--primary); border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 18px; color: var(--primary); }
-    .step-line { position: absolute; top: 50%; left: 60px; width: calc(100% - 120px); height: 3px; background: var(--primary); }
-    /* COMMUNITY */
-    .community { padding: clamp(120px, 16vw, 200px) 0; position: relative; text-align: center; }
-    .community-buttons { display: flex; justify-content: center; gap: 20px; }
-    .btn-disabled { background: var(--surface); color: var(--muted); cursor: not-allowed; pointer-events: none; }
-    /* CONTRACT ADDRESS */
-    .contract-address { max-width: 680px; margin: 0 auto; text-align: center; padding: 40px; background: var(--surface); backdrop-filter: blur(20px); box-shadow: 0 0 0 1px rgba(var(--primary-rgb),0.18), 0 0 80px rgba(var(--primary-rgb),0.08), 0 24px 48px rgba(0,0,0,0.4); border-radius: 12px; }
-    .contract-warning { background: rgba(255, 165, 0, 0.1); color: #ffa500; padding: 8px 16px; border-radius: 8px; font-size: 12px; }
-    /* FOOTER */
-    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: rgba(255,255,255,0.35); }
-    /* BUTTONS */
-    .btn-primary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb),0.4), 0 0 0 1px rgba(var(--primary-rgb),0.15); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
-    .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb),0.55), 0 0 0 6px rgba(var(--primary-rgb),0.12); }
-    .btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
-    .btn-ghost { display: inline-flex; align-items: center; text-decoration: none; background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255, 255, 255, 0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease; }
-    .btn-ghost:hover { border-color: rgba(var(--primary-rgb),0.55); background: rgba(var(--primary-rgb),0.08); color: var(--primary); }
-    /* MEDIA QUERIES */
-    @media(max-width:768px){
-      body { padding-top: 70px!important; }
-      section { padding: clamp(64px, 12vw, 100px) 0!important; }
-      h1 { font-size: clamp(38px, 10vw, 62px)!important; line-height: 1.1!important; }
-      .hero-content { padding: 40px 20px!important; }
-      [class*="two-col"], [class*="split"], [class*="grid-2"], [class*="flex-row"], [class*="about-grid"] { flex-direction: column!important; grid-template-columns: 1fr!important; }
-      .cta-row, .cta-buttons, .hero-actions { flex-direction: column!important; align-items: stretch!important; gap: 12px!important; }
-      .cta-row a, .cta-buttons a, .hero-actions a { width: 100%!important; text-align: center!important; justify-content: center!important; display: flex!important; }
-      [class*="step-cards"], [class*="steps-row"] { flex-direction: column!important; }
-      .stat-grid, .stats-grid { grid-template-columns: 1fr 1fr!important; }
-      [class*="tokenomics-inner"] { flex-direction: column!important; align-items: stretch!important; }
-    }
-    @media(max-width:480px) {
-      h1 { font-size: clamp(32px, 11vw, 48px)!important; }
-      .stat-grid, .stats-grid { grid-template-columns: 1fr!important; }
-      .nav-brand span { display: none!important; }
-    }
-    /* SCROLL REVEAL */
-    .rv { transition: opacity 0.6s ease, transform 0.6s ease; }
+    .hero-content { position: relative; z-index: 1; width: 100%; padding: clamp(40px,8vw,80px) clamp(24px,5vw,80px); display: flex; flex-direction: column; justify-content: center; text-align: center; max-width: min(1200px, 92vw); margin: 0 auto; }
+    .hero img { max-width: 100px; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(64px,9vw,110px); background: linear-gradient(135deg,var(--primary),var(--secondary)); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .hero p { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.75; color: var(--muted); margin-top: 20px; }
+    .hero .actions { margin-top: 36px; display: flex; gap: 16px; justify-content: center; }
+    .hero a.btn-primary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; background: linear-gradient(135deg,var(--primary),var(--secondary)); border: none; border-radius: 100px; padding: 15px 36px; font-weight: 700; letter-spacing: 0.04em; font-size: 15px; color: #fff; cursor: pointer; box-shadow: 0 4px 24px rgba(var(--primary-rgb),0.4),0 0 0 1px rgba(var(--primary-rgb),0.15); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s ease; }
+    .hero a.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 40px rgba(var(--primary-rgb),0.55),0 0 0 6px rgba(var(--primary-rgb),0.12); }
+    .hero a.btn-primary:active { transform: scale(0.97); transition-duration: 0.08s; }
+    .hero a.btn-ghost { display: inline-flex; align-items: center; text-decoration: none; background: transparent; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 14px 34px; color: rgba(255,255,255,0.85); font-weight: 600; letter-spacing: 0.03em; font-size: 15px; cursor: pointer; transition: border-color 0.2s ease,background 0.2s ease,color 0.2s ease; }
+    .hero a.btn-ghost:hover { border-color: rgba(var(--primary-rgb),0.55); background: rgba(var(--primary-rgb),0.08); color: var(--primary); }
+    .scroll-cue { position: absolute; bottom: 28px; width: 100%; text-align: center; z-index: 1; }
+    .scroll-cue svg { opacity: 0.6; }
+    section { padding: clamp(120px,16vw,200px) 0; position: relative; }
+    .section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: clamp(38px,5.5vw,62px); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); text-align: center; margin-bottom: 40px; }
+    .rv { transition: opacity 0.6s ease,transform 0.6s ease; }
     .rv.h { opacity: 0; transform: translateY(22px); }
     .rv.in { opacity: 1!important; transform: none!important; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .metric-card { background: var(--surface); padding: 24px; border-radius: 12px; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(var(--primary-rgb),0.1); }
+    .metric-card h3 { font-size: 36px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .metric-card p { font-size: 14px; color: var(--muted); }
+    .tokenomics-strip { display: flex; justify-content: space-around; align-items: center; gap: 32px; padding: 16px; }
+    .tokenomics-stat { text-align: center; }
+    .tokenomics-stat h3 { font-size: 36px; font-weight: 800; color: var(--primary); }
+    .tokenomics-stat p { font-size: 14px; color: var(--muted); }
+    .steps { display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+    .step { flex: 1; text-align: center; }
+    .step-number { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; margin: 0 auto 16px; font-weight: 700; }
+    .step p { font-size: 14px; color: var(--muted); }
+    .community-placeholder { display: flex; justify-content: space-around; align-items: center; gap: 32px; margin-top: 40px; }
+    .community-btn { background: rgba(255,255,255,0.06); padding: 12px 24px; border-radius: 8px; color: rgba(255,255,255,0.65); font-weight: 600; text-transform: uppercase; cursor: not-allowed; }
+    #ca { display: block; max-width: 680px; margin: 0 auto; padding: 20px; text-align: center; background: var(--surface); backdrop-filter: blur(20px); border-radius: 12px; box-shadow: 0 0 0 1px rgba(var(--primary-rgb),0.18), 0 0 80px rgba(var(--primary-rgb),0.08), 0 24px 48px rgba(0,0,0,0.4); }
+    #ca-label { font-size: 10px; letter-spacing: 0.22em; color: var(--primary); text-transform: uppercase; margin-bottom: 8px; }
+    #contract-address { font-family: monospace; font-size: clamp(10px,1.4vw,13px); word-break: break-all; color: var(--text); }
+    #copyBtn { background: none; border: none; color: rgba(255,255,255,0.6); cursor: pointer; font-size: 12px; margin-top: 10px; }
+    #warning-pill { background: rgba(255, 165, 0, 0.1); color: rgba(255, 165, 0, 0.9); padding: 8px 16px; border-radius: 8px; margin-top: 12px; display: inline-block; }
+    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: rgba(255,255,255,0.35); }
+    footer a { color: var(--primary); font-weight: 700; text-decoration: none; }
+    @media(max-width:768px){
+      body { padding-top: 70px!important; }
+      section { padding: clamp(64px,12vw,100px) 0!important; }
+      h1 { font-size: clamp(38px,10vw,62px)!important; line-height: 1.1!important; }
+      .hero-content { padding: 40px 20px!important; }
+      [class*="two-col"],[class*="split"],[class*="grid-2"],[class*="flex-row"],[class*="about-grid"] { flex-direction: column!important; grid-template-columns: 1fr!important; }
+      .cta-row,.cta-buttons,.hero-actions { flex-direction: column!important; align-items: stretch!important; gap: 12px!important; }
+      .cta-row a,.cta-buttons a,.hero-actions a { width: 100%!important; text-align: center!important; justify-content: center!important; display: flex!important; }
+      [class*="step-cards"],[class*="steps-row"] { flex-direction: column!important; }
+      .stat-grid,.stats-grid { grid-template-columns: 1fr 1fr!important; }
+      [class*="tokenomics-inner"] { flex-direction: column!important; align-items: stretch!important; }
+    }
+    @media(max-width:480px){
+      h1 { font-size: clamp(32px,11vw,48px)!important; }
+      .stat-grid,.stats-grid { grid-template-columns: 1fr!important; }
+      .nav-brand span { display: none!important; }
+    }
   </style>
 </head>
 <body>
@@ -137,121 +130,113 @@
     <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $SOLO</a>
   </div>
 
+  <!-- HERO SECTION -->
   <section class="hero" id="hero">
     <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-content container">
-      <img src="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW" alt="SOLO Logo" class="hero-img" id="hero-logo">
-      <div class="hero-text">
-        <p class="eyebrow" style="font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--primary);">$SOLO · SOLANA</p>
-        <h1>Unleash. Share. Repeat.</h1>
-        <p style="margin-top:16px;font-size:18px;color:var(--muted)">Instantly viral. Join the revolution.</p>
-        <div class="hero-actions">
-          <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="btn-primary">Buy $SOLO</a>
-          <a href="#community" class="btn-ghost">Join Community</a>
-        </div>
-      </div>
-      <div class="trending-card">
-        <h4 style="font-size:16px;font-weight:700;margin-bottom:8px;color:var(--text)">Trending</h4>
-        <p style="font-size:14px;color:var(--muted)">Likes: 20.1K · Shares: 15.3K · Views: 98.7K</p>
+    <div class="hero-content">
+      <img src="https://ipfs.io/ipfs/QmWUsRBvemBPHe27J3qbWiobp7pxEMhq3qSSNsThTKcXXW" alt="SOLO Logo" id="hero-logo">
+      <div class="eyebrow" style="font-family: 'Plus Jakarta Sans', sans-serif;font-weight: 700;font-size: 11px;letter-spacing: 0.14em;color: var(--primary);text-transform: uppercase;">$SOLO · SOLANA</div>
+      <h1>Join the Wave</h1>
+      <p>The next viral sensation. Built for the feed.</p>
+      <div class="actions">
+        <a href="https://jup.ag/swap/SOL-HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN" target="_blank" rel="noopener" class="btn-primary">Buy $SOLO</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
       </div>
     </div>
-    <div class="scroll-cue"><i class="fa-solid fa-chevron-down"></i></div>
+    <div class="scroll-cue">
+      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 16.5l6-6h-4V3h-4v7.5H6z" fill="currentColor"></path></svg>
+    </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="container about-grid">
-      <div class="about-content">
-        <h2 class="rv">THE SIGNAL</h2>
-        <p class="rv" data-d="1">SOLO is built to spread. Short sentences. Quick reads. Instant impact.</p>
-        <p class="rv" data-d="2">The crypto landscape decoded in seconds — that's SOLO.</p>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="rv" data-d="1">
+    <div class="section-title">THE SIGNAL</div>
+    <div class="two-col">
+      <div>
+        <p>SOLO is designed to capture the attention of the masses. With a total supply of 1 billion tokens, it's built to spread like wildfire across social media. Every stat is meant to be a shareable, viral moment.</p>
+        <blockquote style="font-family: 'Plus Jakarta Sans', sans-serif;font-weight: 700;font-size: 22px;color: var(--text);margin-top: 16px;">"The next viral sensation." </blockquote>
       </div>
-      <div class="about-metrics">
-        <div class="metric-card rv" data-d="1">
-          <h3>Impact</h3>
-          <p>∞% viral growth</p>
-        </div>
-        <div class="metric-card rv" data-d="2">
-          <h3>Engagement</h3>
-          <p>Millions reached daily</p>
-        </div>
+      <div class="metric-card">
+        <h3>100M+</h3>
+        <p>Potential Reach</p>
+      </div>
+      <div class="metric-card">
+        <h3>∞%</h3>
+        <p>Growth Rate</p>
       </div>
     </div>
   </section>
 
-  <section id="tokenomics" class="tokenomics">
-    <div class="container">
-      <h2 class="rv">BY THE NUMBERS</h2>
-      <div class="tokenomics-stats rv" data-d="1">
-        <div class="tokenomics-stat">
-          <h3 data-count="1000000000">0</h3>
-          <p>Total Supply</p>
-        </div>
-        <div class="tokenomics-stat">
-          <h3>0% Tax</h3>
-          <p>Zero tax on transactions</p>
-        </div>
-        <div class="tokenomics-stat">
-          <h3>Community Owned</h3>
-          <p>100% decentralized</p>
-        </div>
-        <div class="tokenomics-stat">
-          <h3>Renounced</h3>
-          <p>No control, pure community</p>
-        </div>
+  <!-- TOKENOMICS SECTION -->
+  <section id="tokenomics" class="rv" data-d="2">
+    <div class="section-title">BY THE NUMBERS</div>
+    <div class="tokenomics-strip">
+      <div class="tokenomics-stat">
+        <h3 data-count="1000000000">1,000,000,000</h3>
+        <p>Total Supply</p>
+      </div>
+      <div class="tokenomics-stat">
+        <h3>0%</h3>
+        <p>Tax</p>
+      </div>
+      <div class="tokenomics-stat">
+        <h3>100%</h3>
+        <p>Community Owned</p>
+      </div>
+      <div class="tokenomics-stat">
+        <h3>∞%</h3>
+        <p>Viral Growth</p>
       </div>
     </div>
   </section>
 
-  <section id="how-to-buy" class="how-to-buy">
-    <div class="container">
-      <h2 class="rv">GET STARTED</h2>
-      <div class="steps">
-        <div class="step rv" data-d="1">
-          <div class="step-circle">1</div>
-          <div class="step-line"></div>
-          <p>Get SOL — Buy on Coinbase, Binance, or Kraken</p>
-        </div>
-        <div class="step rv" data-d="2">
-          <div class="step-circle">2</div>
-          <div class="step-line"></div>
-          <p>Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
-        </div>
-        <div class="step rv" data-d="3">
-          <div class="step-circle">3</div>
-          <div class="step-line"></div>
-          <p>Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
-        </div>
-        <div class="step rv" data-d="4">
-          <div class="step-circle">4</div>
-          <p>Swap for $SOLO — paste contract, swap SOL</p>
-        </div>
+  <!-- HOW TO BUY SECTION -->
+  <section id="how-to-buy" class="rv" data-d="3">
+    <div class="section-title">GET STARTED</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <p>Get SOL — Buy on <b>Coinbase</b>, <b>Binance</b>, or <b>Kraken</b></p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <p>Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <p>Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <p>Swap for $SOLO — paste contract, swap SOL</p>
       </div>
     </div>
   </section>
 
-  <section id="community" class="community">
-    <div class="container">
-      <h2 class="rv">JOIN THE CONVERSATION</h2>
-      <div class="community-buttons rv" data-d="1">
-        <a class="btn-ghost btn-disabled">Coming Soon</a>
-        <a class="btn-ghost btn-disabled">Coming Soon</a>
-      </div>
+  <!-- COMMUNITY SECTION -->
+  <section id="community" class="rv" data-d="4">
+    <div class="section-title">JOIN THE CONVERSATION</div>
+    <div class="community-placeholder">
+      <div class="community-btn">Coming Soon</div>
+      <div class="community-btn">Coming Soon</div>
     </div>
   </section>
 
-  <section id="ca" class="contract-address">
-    <h4 class="rv">CONTRACT ADDRESS</h4>
-    <p class="rv" style="font-family:monospace;word-break:break-all;clamp(10px,1.4vw,13px)">HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN</p>
-    <button id="copyBtn" class="btn-ghost rv">Copy</button>
-    <div class="contract-warning rv">⚠ Always verify the CA before swapping</div>
+  <!-- CONTRACT ADDRESS SECTION -->
+  <section id="ca" class="rv" data-d="5">
+    <div id="ca-label">CONTRACT ADDRESS</div>
+    <div id="contract-address">HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN</div>
+    <button id="copyBtn">Copy</button>
+    <div id="warning-pill">⚠ Always verify the CA before swapping</div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#9945FF;font-weight:700;text-decoration:none">Solauncher</a>
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener">Solauncher</a>
   </footer>
 
   <script defer>
-    // ① NAV — paste this block EXACTLY, IDs must match HTML: hamburger / navOverlay / navClose
+    // ① NAV
     (function(){
       var h=document.getElementById('hamburger');
       var o=document.getElementById('navOverlay');
@@ -267,8 +252,7 @@
       });
     })();
 
-    // ② SCROLL REVEAL — safe pattern that NEVER causes blank pages
-    // CSS must include: .rv{transition:opacity 0.6s ease,transform 0.6s ease} .rv.h{opacity:0;transform:translateY(22px)} .rv.in{opacity:1!important;transform:none!important}
+    // ② SCROLL REVEAL
     (function(){
       var els=document.querySelectorAll('.rv');
       if(!els.length)return;
@@ -285,7 +269,7 @@
       }
     })();
 
-    // ③ COUNTER — data-count="N" on stat number elements
+    // ③ COUNTER
     document.querySelectorAll('[data-count]').forEach(function(el){
       new IntersectionObserver(function(entries){
         if(entries[0].isIntersecting){
@@ -298,7 +282,7 @@
     // ④ CA COPY
     (function(){var cb=document.getElementById('copyBtn');if(cb)cb.onclick=function(){navigator.clipboard.writeText('HAvEK2GdNgUuLF6FNgSFuhEFi5eXWhdPLgKFAjmEVSEN').then(function(){var o=cb.innerHTML;cb.innerHTML='✓ Copied!';cb.style.color='#22c55e';setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)})};})();
 
-    // ⑤ IMAGE FALLBACK — hides broken logo images gracefully (onerror attributes are stripped by the server)
+    // ⑤ IMAGE FALLBACK
     (function(){var PFALLBACK='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjOTk0NUZGIi8+CiAgICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtc2l6ZT0iNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfmoA8L3RleHQ+CiAgPC9zdmc+';['navbar-logo','hero-logo'].forEach(function(id){var img=document.getElementById(id);if(!img)return;img.addEventListener('error',function(){if(id==='hero-logo'){img.src=PFALLBACK}else{img.style.display='none'}});});})();
   </script>
 </body>
