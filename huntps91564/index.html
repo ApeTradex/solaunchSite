@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>USD Coin ($USDC) — Official Site</title>
+  <meta property="og:title" content="USD Coin">
+  <meta property="og:image" content="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #111111;
+      --primary-rgb: 17, 17, 17;
+      --secondary: #222222;
+      --secondary-rgb: 34, 34, 34;
+      --bg: #020208;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #f0f0f0;
+      --muted: rgba(240, 240, 240, 0.5);
+    }
+
+    body {
+      padding-top: 70px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: center;
+    }
+
+    section {
+      padding: clamp(120px, 16vw, 200px) 0;
+      position: relative;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px);
+    }
+
+    .hero h1 {
+      font-size: clamp(90px, 12vw, 180px);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .rv {
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .rv.h {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .rv.in {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .btn-primary, .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.18s, transform 0.18s;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      border: 1.5px solid rgba(var(--primary-rgb), 0.55);
+      color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.06);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(var(--primary-rgb), 0.13);
+      border-color: rgba(var(--primary-rgb), 0.85);
+    }
+
+    @media(max-width:768px) {
+      body { padding-top: 70px!important; }
+      section { padding: clamp(64px,12vw,100px) 0!important; }
+      h1 { font-size: clamp(38px,10vw,62px)!important; line-height: 1.1!important; }
+      .hero-content { padding: 40px 20px!important; }
+      .hero-actions { flex-direction: column!important; align-items: stretch!important; gap: 12px!important; }
+    }
+
+    @media(max-width:480px) {
+      h1 { font-size: clamp(32px,11vw,48px)!important; }
+      .nav-brand span { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png" id="navbar-logo" alt="" width="36" height="36" style="border-radius:50%;object-fit:cover;flex-shrink:0">
+        <span>USD Coin</span>
+      </a>
+      <div class="nav-right">
+        <a href="https://jup.ag/swap/SOL-EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" target="_blank" rel="noopener" class="nav-buy-btn">Buy $USDC</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">Mission Parameters</a>
+    <a href="#tokenomics">Launch Metrics</a>
+    <a href="#how-to-buy">Launch Protocol</a>
+    <a href="#community">Mission Control</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $USDC</a>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div style="position:absolute;width:200vw;height:200vh;top:-50vh;left:-50vw;background:radial-gradient(circle,rgba(17,17,17,0.1),transparent);animation:float 10s infinite;z-index:0;"></div>
+      <div style="position:absolute;width:200vw;height:200vh;top:-50vh;left:-50vw;background:radial-gradient(circle,rgba(17,17,17,0.1),transparent);animation:float 12s infinite;z-index:0;"></div>
+      <div style="position:absolute;width:200vw;height:200vh;top:-50vh;left:-50vw;background:radial-gradient(circle,rgba(17,17,17,0.1),transparent);animation:float 8s infinite;z-index:0;"></div>
+    </div>
+    <div class="hero-content">
+      <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png" id="hero-logo" alt="USD Coin Logo" style="width:100px;">
+      <div style="font-size:11px;letter-spacing:0.18em;color:var(--primary);margin-bottom:20px;">$USDC · SOLANA</div>
+      <h1>To the Moon</h1>
+      <p>The next era of digital currency. Reach escape velocity with $USDC.</p>
+      <div class="hero-actions">
+        <a href="https://jup.ag/swap/SOL-EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" target="_blank" rel="noopener" class="btn-primary">Buy $USDC</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="rv">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <h2>Mission Parameters</h2>
+      <div style="border-left:3px solid var(--primary);padding-left:20px;">
+        <p>A Solana token with the potential to redefine digital transactions. Our mission parameters ensure security, transparency, and efficiency. Join the future of finance with USD Coin.</p>
+        <blockquote>"Classified briefing — access restricted."</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="rv">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <h2>Launch Metrics</h2>
+      <div style="display:flex;gap:16px;justify-content:center;">
+        <div style="background:rgba(255,255,255,0.04);padding:20px;border-radius:8px;flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div data-count="7864299684" style="font-family:'Courier New',monospace;font-size:24px;">7,864,299,684</div>
+          <div style="font-size:14px;color:var(--muted);">Total Supply</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);padding:20px;border-radius:8px;flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="font-family:'Courier New',monospace;font-size:24px;">0% Tax</div>
+          <div style="font-size:14px;color:var(--muted);">Transaction Fee</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04);padding:20px;border-radius:8px;flex:1;display:flex;flex-direction:column;align-items:center;">
+          <div style="font-family:'Courier New',monospace;font-size:24px;">Community Owned</div>
+          <div style="font-size:14px;color:var(--muted);">Governance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy" class="rv">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <h2>Launch Protocol</h2>
+      <ol style="display:flex;gap:16px;justify-content:center;list-style:none;padding:0;">
+        <li style="flex:1;position:relative;padding:20px;background:var(--surface);border-radius:8px;">
+          <div>1. Get SOL</div>
+          <p style="color:var(--muted);">Buy on Coinbase, Binance, or Kraken</p>
+        </li>
+        <li style="flex:1;position:relative;padding:20px;background:var(--surface);border-radius:8px;">
+          <div>2. Create Wallet</div>
+          <p style="color:var(--muted);"><a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+        </li>
+        <li style="flex:1;position:relative;padding:20px;background:var(--surface);border-radius:8px;">
+          <div>3. Open Jupiter</div>
+          <p style="color:var(--muted);"><a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+        </li>
+        <li style="flex:1;position:relative;padding:20px;background:var(--surface);border-radius:8px;">
+          <div>4. Swap for $USDC</div>
+          <p style="color:var(--muted);">paste contract, swap SOL</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="community" class="rv">
+    <div style="max-width:min(1200px,92vw);margin:0 auto;padding:0 clamp(20px,4vw,40px);">
+      <h2>Mission Control</h2>
+      <div style="display:flex;gap:16px;justify-content:center;">
+        <a href="#" class="btn-primary" style="pointer-events:none;opacity:0.5;">Coming Soon</a>
+        <a href="#" class="btn-primary" style="pointer-events:none;opacity:0.5;">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ca" class="rv" style="text-align:center;max-width:680px;margin:0 auto;">
+    <div style="background:var(--surface);backdrop-filter:blur(20px);padding:20px;border-radius:8px;box-shadow:0 0 0 1px rgba(var(--primary-rgb),0.18),0 0 80px rgba(var(--primary-rgb),0.08),0 24px 48px rgba(0,0,0,0.4);">
+      <p style="font-size:10px;letter-spacing:0.22em;color:var(--primary);text-transform:uppercase;">CONTRACT ADDRESS</p>
+      <p style="font-family:'Courier New',monospace;font-size:clamp(10px,1.4vw,13px);word-break:break-all;">EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</p>
+      <button id="copyBtn" style="margin-top:10px;color:var(--primary);background:transparent;border:none;cursor:pointer;font-weight:bold;">Copy</button>
+      <p style="color:var(--muted);margin-top:10px;">⚠ Always verify the CA before swapping</p>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:28px 24px;font-size:13px;color:rgba(255,255,255,0.35)">Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener" style="color:#111111;font-weight:700;text-decoration:none">Solauncher</a></footer>
+
+  <script defer>
+    (function(){
+      var h=document.getElementById('hamburger');
+      var o=document.getElementById('navOverlay');
+      var c=document.getElementById('navClose');
+      if(h&&o&&c){
+        h.onclick=function(){o.classList.add('open')};
+        c.onclick=function(){o.classList.remove('open')};
+        o.querySelectorAll('a').forEach(function(a){a.onclick=function(){o.classList.remove('open')}});
+      }
+      window.addEventListener('scroll',function(){
+        var n=document.getElementById('navbar');
+        if(n)n.classList.toggle('scrolled',window.scrollY>60);
+      });
+    })();
+
+    (function(){
+      var els=document.querySelectorAll('.rv');
+      if(!els.length)return;
+      if('IntersectionObserver' in window){
+        els.forEach(function(el){el.classList.add('h')});
+        var ob=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){e.target.classList.remove('h');e.target.classList.add('in');ob.unobserve(e.target)}
+          });
+        },{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+        els.forEach(function(el){ob.observe(el)});
+      }else{
+        els.forEach(function(el){el.classList.add('in')});
+      }
+    })();
+
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          var t=+el.dataset.count,d=1400,s=performance.now();
+          (function tick(){var p=Math.min((performance.now()-s)/d,1),e=p<.5?2*p*p:1-(Math.pow(-2*p+2,2)/2);el.textContent=Math.round(e*t).toLocaleString();if(p<1)requestAnimationFrame(tick)})();
+        }
+      },{threshold:0.4}).observe(el);
+    });
+
+    (function(){
+      var cb=document.getElementById('copyBtn');
+      if(cb)cb.onclick=function(){
+        navigator.clipboard.writeText('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').then(function(){
+          var o=cb.innerHTML;
+          cb.innerHTML='✓ Copied!';
+          cb.style.color='#22c55e';
+          setTimeout(function(){cb.innerHTML=o;cb.style.color=''},2000)
+        });
+      };
+    })();
+
+    (function(){
+      var PFALLBACK='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjOTk0NUZGIi8+CiAgICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtc2l6ZT0iNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfmoA8L3RleHQ+CiAgPC9zdmc+';
+      ['navbar-logo','hero-logo'].forEach(function(id){
+        var img=document.getElementById(id);
+        if(!img)return;
+        img.addEventListener('error',function(){
+          if(id==='hero-logo'){img.src=PFALLBACK}else{img.style.display='none'}
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
