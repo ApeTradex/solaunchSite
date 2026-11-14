@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QZ Test Token ($QZT) — Official Site</title>
+  <meta property="og:title" content="QZ Test Token">
+  <meta property="og:image" content="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #000000;
+      --primary-rgb: 0, 0, 0;
+      --secondary: #ffe000;
+      --secondary-rgb: 255, 224, 0;
+      --bg: #0a0008;
+      --surface: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #f0f0f0;
+      --muted: rgba(240, 240, 240, 0.5);
+    }
+    body {
+      padding-top: 70px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg div {
+      position: absolute;
+      background-color: rgba(var(--primary-rgb), 0.07);
+    }
+    .hero-bg div:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 15%;
+    }
+    .hero-bg div:nth-child(2) {
+      width: 250px;
+      height: 250px;
+      top: 50%;
+      left: 60%;
+    }
+    .hero-bg div:nth-child(3) {
+      width: 200px;
+      height: 200px;
+      top: 20%;
+      left: 70%;
+    }
+    .hero-bg div:nth-child(4) {
+      width: 350px;
+      height: 350px;
+      top: 80%;
+      left: 10%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1200px;
+      padding: clamp(40px, 8vw, 80px) clamp(24px, 5vw, 80px);
+    }
+    #hero-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 64px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(90px, 15vw, 180px);
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      color: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      animation: glitch 5s infinite;
+    }
+    @keyframes glitch {
+      0%, 100% { clip-path: inset(0 0 0 0); }
+      15% { clip-path: inset(10% 80% 40% 0); }
+      30% { clip-path: inset(30% 0 0 0); }
+      45% { clip-path: inset(0 0 70% 0); }
+      60% { clip-path: inset(60% 0 0 0); }
+      75% { clip-path: inset(0 80% 0 0); }
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .hero-tagline {
+      font-size: 16px;
+      line-height: 1.75;
+      margin-top: 16px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .btn-primary, .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.18s, transform 0.18s;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      border: 1.5px solid rgba(var(--primary-rgb), 0.55);
+      color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.06);
+    }
+    .btn-ghost:hover {
+      background: rgba(var(--primary-rgb), 0.13);
+      border-color: rgba(var(--primary-rgb), 0.85);
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    #about, #tokenomics, #how-to-buy, #community, #ca {
+      padding: clamp(120px, 16vw, 200px) 0;
+      position: relative;
+      text-align: center;
+    }
+    #about .content, #tokenomics .content, #how-to-buy .content, #community .content, #ca .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 40px);
+      position: relative;
+      z-index: 1;
+    }
+    #about {
+      background: rgba(var(--primary-rgb), 0.04);
+    }
+    #about .quote {
+      font-size: 50px;
+      opacity: 0.2;
+      font-weight: 800;
+    }
+    #tokenomics {
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0/28px 28px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .stat-card {
+      background: var(--surface);
+      padding: 24px;
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 0 80px rgba(var(--primary-rgb), 0.08), 0 24px 48px rgba(0,0,0,0.4);
+    }
+    .stat-number {
+      font-size: 80px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+    #how-to-buy .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .step {
+      margin: 24px 0;
+      position: relative;
+    }
+    .step-number {
+      font-size: 120px;
+      opacity: 0.08;
+      position: absolute;
+      left: 0;
+      transform: translateX(-100%);
+    }
+    #ca {
+      background: rgba(var(--primary-rgb), 0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 0 80px rgba(var(--primary-rgb), 0.08), 0 24px 48px rgba(0,0,0,0.4);
+    }
+    #ca .card {
+      padding: 24px;
+    }
+    #ca .label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    #ca .address {
+      font-family: monospace;
+      font-size: clamp(10px, 1.4vw, 13px);
+      word-break: break-all;
+    }
+    #ca .copy-btn {
+      margin-top: 12px;
+      cursor: pointer;
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--primary);
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    #ca .copy-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    #ca .warning {
+      margin-top: 16px;
+      color: #ff9800;
+      font-size: 12px;
+      display: inline-block;
+    }
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+    footer a {
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px !important;
+      }
+      section {
+        padding: clamp(64px, 12vw, 100px) 0 !important;
+      }
+      h1 {
+        font-size: clamp(38px, 10vw, 62px) !important;
+        line-height: 1.1 !important;
+      }
+      .hero-content {
+        padding: 40px 20px !important;
+      }
+      [class*="two-col"], [class*="split"], [class*="grid-2"], [class*="flex-row"], [class*="about-grid"] {
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+      }
+      .cta-row, .cta-buttons, .hero-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+      }
+      .cta-row a, .cta-buttons a, .hero-actions a {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex !important;
+      }
+      [class*="step-cards"], [class*="steps-row"] {
+        flex-direction: column !important;
+      }
+      .stat-grid, .stats-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      [class*="tokenomics-inner"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: clamp(32px, 11vw, 48px) !important;
+      }
+      .stat-grid, .stats-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .nav-brand span {
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" width="36" height="36" alt="" style="border-radius:50%;object-fit:cover;flex-shrink:0" id="navbar-logo">
+        <span>QZ Test Token</span>
+      </a>
+      <div class="nav-right">
+        <a href="https://jup.ag/swap/SOL-So11111111111111111111111111111111111111112" target="_blank" rel="noopener" class="nav-buy-btn">Buy $QZT</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay">
+    <button class="nav-overlay-close" id="navClose"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#how-to-buy">How to Buy</a>
+    <a href="#community">Community</a>
+    <div class="nav-overlay-divider"></div>
+    <a href="https://jup.ag/swap/SOL-So11111111111111111111111111111111111111112" target="_blank" rel="noopener" class="nav-overlay-buy">Buy $QZT</a>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="hero-content">
+      <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" alt="QZ Test Token Logo" id="hero-logo">
+      <div class="hero-eyebrow">$QZT · SOLANA</div>
+      <h1>Unleash the Chaos</h1>
+      <div class="hero-tagline">ser, ngmi, gm, probably nothing</div>
+      <div class="hero-actions">
+        <a href="https://jup.ag/swap/SOL-So11111111111111111111111111111111111111112" target="_blank" rel="noopener" class="btn-primary">Buy $QZT</a>
+        <a href="#community" class="btn-ghost">Join Community</a>
+      </div>
+      <div class="scroll-cue">
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="content">
+      <h2 class="rv">THE LORE</h2>
+      <p class="rv" data-d="1">This is a benign security test page, designed for authorized users to test their security implementations and ensure robustness.</p>
+      <p class="rv" data-d="2">Harness the power of the QZ Test Token, where numbers mean nothing but the experience is everything.</p>
+      <div class="quote">"ser, ngmi"</div>
+    </div>
+  </section>
+
+  <section id="tokenomics">
+    <div class="content">
+      <h2 class="rv">CERTIFIED NUMBERS</h2>
+      <div class="stat-grid">
+        <div class="stat-card rv" data-d="1">
+          <div class="stat-number" data-count="0">0</div>
+          <div class="stat-label">Total Supply</div>
+        </div>
+        <div class="stat-card rv" data-d="2">
+          <div class="stat-number">0%</div>
+          <div class="stat-label">Tax</div>
+        </div>
+        <div class="stat-card rv" data-d="3">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Community Owned</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-to-buy">
+    <div class="content">
+      <h2 class="rv">INSTRUCTIONS ser</h2>
+      <div class="step rv" data-d="1">
+        <div class="step-number">1</div>
+        <p>Get SOL — Buy on Coinbase, Binance, or Kraken</p>
+      </div>
+      <div class="step rv" data-d="2">
+        <div class="step-number">2</div>
+        <p>Create Wallet — <a href="https://phantom.app" target="_blank">Phantom</a> or <a href="https://solflare.com" target="_blank">Solflare</a></p>
+      </div>
+      <div class="step rv" data-d="3">
+        <div class="step-number">3</div>
+        <p>Open Jupiter — <a href="https://jup.ag" target="_blank">jup.ag</a>, connect wallet</p>
+      </div>
+      <div class="step rv" data-d="4">
+        <div class="step-number">4</div>
+        <p>Swap for $QZT — paste contract, swap SOL</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="content">
+      <h2 class="rv">COMING SOON</h2>
+      <p class="rv" data-d="1">Join the chaos, follow the meme. But for now, stay tuned for community links.</p>
+      <div class="hero-actions rv" data-d="2">
+        <a href="#" class="btn-ghost" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+        <a href="#" class="btn-ghost" style="pointer-events: none; opacity: 0.5;">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ca">
+    <div class="content">
+      <div class="card rv">
+        <div class="label">CONTRACT ADDRESS</div>
+        <div class="address">So11111111111111111111111111111111111111112</div>
+        <div class="copy-btn" id="copyBtn">Copy Address</div>
+        <div class="warning">⚠ Always verify the CA before swapping</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Proudly Built by <a href="https://solauncher.org" target="_blank" rel="noopener">Solauncher</a>
+  </footer>
+
+  <script defer>
+    // ① NAV
+    (function() {
+      var h = document.getElementById('hamburger');
+      var o = document.getElementById('navOverlay');
+      var c = document.getElementById('navClose');
+      if (h && o && c) {
+        h.onclick = function() { o.classList.add('open') };
+        c.onclick = function() { o.classList.remove('open') };
+        o.querySelectorAll('a').forEach(function(a) { a.onclick = function() { o.classList.remove('open') } });
+      }
+      window.addEventListener('scroll', function() {
+        var n = document.getElementById('navbar');
+        if (n) n.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    })();
+
+    // ② SCROLL REVEAL
+    (function() {
+      var els = document.querySelectorAll('.rv');
+      if (!els.length) return;
+      if ('IntersectionObserver' in window) {
+        els.forEach(function(el) { el.classList.add('h') });
+        var ob = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.remove('h'); e.target.classList.add('in'); ob.unobserve(e.target) }
+          });
+        }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+        els.forEach(function(el) { ob.observe(el) });
+      } else {
+        els.forEach(function(el) { el.classList.add('in') });
+      }
+    })();
+
+    // ③ COUNTER
+    document.querySelectorAll('[data-count]').forEach(function(el) {
+      new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          var t = +el.dataset.count, d = 1400, s = performance.now();
+          (function tick() {
+            var p = Math.min((performance.now() - s) / d, 1),
+                e = p < .5 ? 2 * p * p : 1 - (Math.pow(-2 * p + 2, 2) / 2);
+            el.textContent = Math.round(e * t).toLocaleString();
+            if (p < 1) requestAnimationFrame(tick)
+          })();
+        }
+      }, { threshold: 0.4 }).observe(el);
+    });
+
+    // ④ CA COPY
+    (function() {
+      var cb = document.getElementById('copyBtn');
+      if (cb) cb.onclick = function() {
+        navigator.clipboard.writeText('So11111111111111111111111111111111111111112').then(function() {
+          var o = cb.innerHTML;
+          cb.innerHTML = '✓ Copied!';
+          cb.style.color = '#22c55e';
+          setTimeout(function() { cb.innerHTML = o; cb.style.color = '' }, 2000)
+        })
+      };
+    })();
+
+    // ⑤ IMAGE FALLBACK
+    (function() {
+      var PFALLBACK = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjOTk0NUZGIi8+CiAgICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtc2l6ZT0iNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfmoA8L3RleHQ+CiAgPC9zdmc+';
+      ['navbar-logo', 'hero-logo'].forEach(function(id) {
+        var img = document.getElementById(id);
+        if (!img) return;
+        img.addEventListener('error', function() {
+          if (id === 'hero-logo') {
+            img.src = PFALLBACK
+          } else {
+            img.style.display = 'none'
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
